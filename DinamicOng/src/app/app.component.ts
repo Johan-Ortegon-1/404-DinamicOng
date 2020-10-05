@@ -9,12 +9,12 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'DinamicOng';
 
-  //--------------------------------------------------
+  // --------------------------------------------------
   // Variable para saber que rol está logeado
   //private rol: string = "voluntario";
   //private rol: string = "ong";
   private rol: string = "sin rol";
-  //--------------------------------------------------
+  // --------------------------------------------------
 
   // Constructor con la variable router para realizar la navegación mediante el rol
   constructor(private router: Router) {}
@@ -28,7 +28,7 @@ export class AppComponent {
       this.router.navigate(['ong']);
     }
     else {
-      this.router.navigate(['home']);
+      //this.router.navigate(['home']);
     }
 
   }

@@ -1,0 +1,18 @@
+.nav {
+  background-color: aqua;
+}
+
+#contenido {
+  display: inline-block;
+  width: 100%;
+}
+
+#titulo {
+
+}
+
+#logo {
+  position: relative;
+  top: -50px;
+  text-align: right;
+}

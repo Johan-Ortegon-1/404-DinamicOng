@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      Nombre:
+      <input name="nombre" id="nombre" type="text" [(ngModel)]="nuevaOng.nombre">
+    </div>
+    <div class="col-12">
+      Correo:
+      <input name="correo" id="correo" type="email" [(ngModel)]="nuevaOng.correo">
+    </div>
+    <div class="col-12">
+      Ubicación:
+      <div class="col-12">
+        País:
+        <input name="pais" id="pais" type="text" [(ngModel)]="nuevaOng.pais">
+      </div>
+      <div class="col-12">
+        Ciudad:
+        <input name="ciudad" id="ciudad" type="text" [(ngModel)]="nuevaOng.ciudad">
+      </div>
+      <div class="col-12">
+        Dirección:
+        <input name="direccion" id="direccion" type="text" [(ngModel)]="nuevaOng.direccion">
+      </div>
+    </div>
+    <div class="col-12">
+      Visión:
+      <textarea name="vision" id="vision" [(ngModel)]="nuevaOng.vision"></textarea>
+    </div>
+    <div class="col-12">
+      Misión:
+      <textarea name="mision" id="mision" [(ngModel)]="nuevaOng.mision"></textarea>
+    </div>
+    <div class="col-12">
+      Contraseña:
+      <input type="password" name="contrasena" id="contrasena" [(ngModel)]="contrasena">
+    </div>
+    <div class="col-12">
+      Confirmar constraseña:
+      <input type="password" name="confirmContrasena" id="confirmContrasena" [(ngModel)]="confirmContrasena">
+    </div>
+    <div class="col-12">
+      <button (click)='onClick()' type="button">Oprimir</button>
+    </div>
+  </div>
+</div>
