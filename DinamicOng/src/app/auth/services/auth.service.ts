@@ -40,7 +40,7 @@ export class AuthService {
     }
   }
 
-  // Función para obtener el rol actual
+  // Función para obtener info del usuario actual
   getCurrentUser() {
     return this.afAuth.authState.pipe(first()).toPromise();
   }
