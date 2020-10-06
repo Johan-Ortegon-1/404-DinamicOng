@@ -1,18 +1,10 @@
 .nav {
-  background-color: aqua;
-}
-
-#contenido {
-  display: inline-block;
+  border-bottom: solid;
   width: 100%;
 }
 
 #titulo {
-
-}
-
-#logo {
-  position: relative;
-  top: -50px;
-  text-align: right;
+  font-size: xx-large;
+  padding-top: auto;
+  padding-bottom: auto;
 }

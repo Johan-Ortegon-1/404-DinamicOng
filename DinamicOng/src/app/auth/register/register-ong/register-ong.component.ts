@@ -34,10 +34,10 @@ export class RegisterOngComponent implements OnInit {
     console.log(this.nuevaOng.nombre);
     if(this.contrasena == this.confirmContrasena)
     {
-      let ong = new Ong("",this.nuevaOng.nombre, this.nuevaOng.correo, this.nuevaOng.telefonos,
+      const ong = new Ong('', this.nuevaOng.nombre, this.nuevaOng.correo, this.nuevaOng.telefonos,
       new Ubicacion(this.nuevaOng.ciudad, this.nuevaOng.pais, this.nuevaOng.direccion), this.nuevaOng.mision, this.nuevaOng.vision);
 
-
+      this.authSvc.registerOng(ong, this.contrasena);
     }
   }
 

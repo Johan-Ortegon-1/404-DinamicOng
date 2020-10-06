@@ -1,0 +1,9 @@
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
