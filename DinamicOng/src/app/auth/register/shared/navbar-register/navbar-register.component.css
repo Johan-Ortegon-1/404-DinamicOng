@@ -8,3 +8,16 @@
   padding-top: auto;
   padding-bottom: auto;
 }
+
+mat-icon {
+  font-size: 50px;
+}
+
+#logo {
+  height: 75px;
+  width: 90px;
+}
+
+.vcenter {
+  margin-top: auto;
+}

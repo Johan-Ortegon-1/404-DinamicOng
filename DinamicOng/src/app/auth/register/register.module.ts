@@ -6,6 +6,7 @@ import { RegisterComponent } from './register.component';
 import { RegisterOngComponent } from './register-ong/register-ong.component';
 import { NavbarRegisterComponent } from './shared/navbar-register/navbar-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     RegisterRoutingModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    MatIconModule
   ]
 })
 export class RegisterModule { }

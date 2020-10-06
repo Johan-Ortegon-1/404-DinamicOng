@@ -1,0 +1,8 @@
+.footer {
+  border-top: solid;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  height: 35px;
+}
+

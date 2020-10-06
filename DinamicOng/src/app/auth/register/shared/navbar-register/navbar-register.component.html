@@ -1,12 +1,19 @@
 <div class="nav">
   <div class="container">
     <div class="row">
-      <div class="col-sm-11" >
+
+      <div class="col-sm-1 vcenter">
+        <mat-icon aria-hidden="false" aria-label="add user">person_add</mat-icon>
+      </div>
+
+      <div class="col-sm-10 vcenter" >
         <h1 id="titulo"> Registro {{tipo}}</h1>
       </div>
+
       <div class="col-sm-1">
-        <a [routerLink]="['/home']"><img src="../../../../../assets/logotipo ONG.png" height="75px" width="90px"></a>
+        <a [routerLink]="['/home']"><img id="logo" src="../../../../../assets/logotipo ONG.png"></a>
       </div>
+
     </div>
   </div>
 </div>
