@@ -6,8 +6,8 @@ export class Ong extends Usuario {
   private vision: string;
   private mision: string;
 
-  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, ubicacion: Ubicacion, mision: string, vision: string) {
-    super(id, nombre, correo, telefonos, 'Ong', ubicacion);
+  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, ubicacion: Ubicacion, img: string, mision: string, vision: string) {
+    super(id, nombre, correo, telefonos, 'Ong', ubicacion, img);
     this.mision = mision;
     this.vision = vision;
   }

@@ -7,17 +7,16 @@ export class Usuario {
   private telefonos: Array<string>;
   private rol: string;
   private ubicacion: Ubicacion;
-  // --------------------------------------
-  // TODO Colocar imagen
-  // --------------------------------------
+  private imagenPerfil: string;
 
-  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, rol: string, ubicacion: Ubicacion) {
+  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, rol: string, ubicacion: Ubicacion, img: string) {
     this.nombre = nombre;
     this.correo = correo;
     this.id = id;
     this.telefonos = telefonos;
     this.rol = rol;
     this.ubicacion = ubicacion;
+    this.imagenPerfil = img;
   }
 
   get getNombre(): string {
@@ -58,6 +57,14 @@ export class Usuario {
 
   set setRol(rol: string) {
     this.rol = rol;
+  }
+
+  get getImagenPerfil(): string {
+    return this.imagenPerfil;
+  }
+
+  set setImagenPerfil(img: string) {
+    this.imagenPerfil = img;
   }
 
 }

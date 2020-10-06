@@ -7,3 +7,17 @@ textarea {
   resize: none;
 }
 
+img {
+  max-width: 80px;
+  max-height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+mat-icon {
+  font-size: 35px;
+  text-align: left;
+}
+

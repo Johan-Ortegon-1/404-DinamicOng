@@ -5,6 +5,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from 'firebase';
 import { Ong } from 'src/app/models/ong';
 import { Usuario } from '../../models/usuario';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthService {
 
   public user: User;
 
-  constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore) { }
+  constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore, private firestorage: AngularFireStorage) { }
 
   // Función para realizar el login
   async login(email: string, password: string) {
@@ -39,8 +40,14 @@ export class AuthService {
     }
   }
 
+  // Función para subir imagenes a Firestorage
+  subirImagenPerfil(usuario: Usuario) {
+    this.firestorage.upload('/ImagenPerfil-' + usuario.getId, usuario.getImagenPerfil);
+  }
+
   // Función que crea un usuario en Firestore
   createUsuario(usuario: Usuario) {
+    this.subirImagenPerfil(usuario);
     const param = JSON.parse(JSON.stringify(usuario));
     return this.firestore.collection('usuarios').doc(usuario.getId).set(param);
   }
