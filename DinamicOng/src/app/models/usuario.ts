@@ -1,15 +1,20 @@
 import { Ubicacion } from './ubicacion';
 
 export class Usuario {
-  private id: string;
-  private nombre: string;
-  private correo: string;
-  private telefonos: Array<string>;
-  private rol: string;
-  private ubicacion: Ubicacion;
-  private imagenPerfil: string;
+  public id: string;
+  public nombre: string;
+  public correo: string;
+  public telefonos: Array<string>;
+  public rol: string;
+  public ubicacion: Ubicacion;
+  public imagenPerfil: string;
 
-  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, rol: string, ubicacion: Ubicacion, img: string) {
+  constructor() {
+    this.telefonos = [];
+    this.ubicacion = new Ubicacion();
+  }
+
+  /* constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, rol: string, ubicacion: Ubicacion, img: string) {
     this.nombre = nombre;
     this.correo = correo;
     this.id = id;
@@ -65,6 +70,6 @@ export class Usuario {
 
   set setImagenPerfil(img: string) {
     this.imagenPerfil = img;
-  }
+  } */
 
 }

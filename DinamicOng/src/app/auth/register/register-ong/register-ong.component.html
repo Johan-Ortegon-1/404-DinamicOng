@@ -28,14 +28,15 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
           <div class="col-sm-10">
-            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="nuevaOng.nombre" required placeholder="Ingrese el nombre de la ONG">
+            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="ong.nombre" required placeholder="Ingrese el nombre de la ONG">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="correo">Correo: </label>
           <div class="col-sm-10">
-            <input class="form-control" name="correo" id="correo" type="email" [(ngModel)]="nuevaOng.correo" required placeholder="Ingrese el correo de la ONG">
+            <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="correo" id="correo" type="email" [(ngModel)]="ong.correo" required placeholder="Ingrese el correo de la ONG">
+            <small id="emailHelp" class="form-text text-muted">Formato: ejemplo@ejemplo.com.co</small>
           </div>
         </div>
 
@@ -44,15 +45,15 @@
 
           <div class="col-sm-3">
             <label for="pais">País </label>
-            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="nuevaOng.pais" required placeholder="País">
+            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="ong.ubicacion.pais" required placeholder="País">
           </div>
           <div class="col-sm-3">
             <label for="ciudad">Ciudad </label>
-            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="nuevaOng.ciudad" required placeholder="Ciudad">
+            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="ong.ubicacion.ciudad" required placeholder="Ciudad">
           </div>
           <div class="col-sm-4">
             <label for="direccion">Dirección </label>
-            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="nuevaOng.direccion" required placeholder="Dirección">
+            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="ong.ubicacion.direccion" required placeholder="Dirección">
           </div>
 
         </div>
@@ -63,7 +64,7 @@
             <input class="form-control" name="telefono" id="telefono" type="number" [(ngModel)]="telefonoNuevo" placeholder="Ingrese un teléfono">
             <table class="table table-bordered">
               <tbody>
-                <tr *ngFor="let tel of nuevaOng.telefonos">
+                <tr *ngFor="let tel of ong.telefonos">
                   <td>
                     {{tel}}
                   </td>
@@ -87,14 +88,14 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="vision">Visión: </label>
           <div class="col-sm-10">
-            <textarea class="form-control" name="vision" id="vision" [(ngModel)]="nuevaOng.vision" required placeholder="Ingrese la visión de la ONG"></textarea>
+            <textarea class="form-control" name="vision" id="vision" [(ngModel)]="ong.vision" required placeholder="Ingrese la visión de la ONG"></textarea>
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="mision">Misión: </label>
           <div class="col-sm-10">
-            <textarea class="form-control" name="mision" id="mision" [(ngModel)]="nuevaOng.mision" required placeholder="Ingrese la misión de la ONG"></textarea>
+            <textarea class="form-control" name="mision" id="mision" [(ngModel)]="ong.mision" required placeholder="Ingrese la misión de la ONG"></textarea>
           </div>
         </div>
 
@@ -118,7 +119,7 @@
             <a [routerLink] = '["/register"]'> <button class="btn btn-primary" type="button">Cancelar</button> </a>
           </div>
           <div class="col-sm-3">
-            <button class="btn btn-primary" type="submit" [disabled]='nuevaOng.telefonos.length == 0'>Registrarse</button>
+            <button class="btn btn-primary" type="submit" [disabled]='ong.telefonos.length == 0'>Registrarse</button>
           </div>
       </div>
 

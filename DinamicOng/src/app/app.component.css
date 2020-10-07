@@ -1,3 +1,11 @@
 #contenedor {
-  margin-bottom: 80px;
+  padding-bottom: 1%;
+}
+
+.footer *{
+  z-index: 3;
+}
+
+.contenedor * {
+  z-index: 1;
 }

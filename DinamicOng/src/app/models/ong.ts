@@ -3,10 +3,15 @@ import { Usuario } from './usuario';
 
 export class Ong extends Usuario {
 
-  private vision: string;
-  private mision: string;
+  public vision: string;
+  public mision: string;
 
-  constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, ubicacion: Ubicacion, img: string, mision: string, vision: string) {
+  constructor() {
+    super();
+  }
+
+  /* constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, ubicacion: Ubicacion, img: string,
+    mision: string, vision: string) {
     super(id, nombre, correo, telefonos, 'Ong', ubicacion, img);
     this.mision = mision;
     this.vision = vision;
@@ -26,6 +31,6 @@ export class Ong extends Usuario {
 
   set setVision(vision: string) {
     this.vision = vision;
-  }
+  } */
 
 }

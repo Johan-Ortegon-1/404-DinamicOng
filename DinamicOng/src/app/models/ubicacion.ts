@@ -1,9 +1,11 @@
 export class Ubicacion {
-  private ciudad: string;
-  private pais: string;
-  private direccion: string;
+  public ciudad: string;
+  public pais: string;
+  public direccion: string;
 
-  constructor(ciudad: string, pais: string, direccion: string) {
+  constructor() {}
+
+  /* constructor(ciudad: string, pais: string, direccion: string) {
     this.ciudad = ciudad;
     this.pais = pais;
     this.direccion = direccion;
@@ -31,6 +33,6 @@ export class Ubicacion {
 
   set setDireccion(direccion: string) {
     this.direccion = direccion;
-  }
+  } */
 
 }

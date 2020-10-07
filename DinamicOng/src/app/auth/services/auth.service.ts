@@ -30,9 +30,9 @@ export class AuthService {
   // Función para registrar una Ong
   async registerOng(ong: Ong, contrasena: string) {
     try {
-      const user = this.register(ong.getCorreo, contrasena);
+      const user = this.register(ong.correo, contrasena);
       // Insertar info ONG
-      ong.setId = (await user).user.uid;
+      ong.id = (await user).user.uid;
       this.createUsuario(ong);
       return user;
     } catch (error) {
@@ -42,14 +42,14 @@ export class AuthService {
 
   // Función para subir imagenes a Firestorage
   subirImagenPerfil(usuario: Usuario) {
-    this.firestorage.upload('/ImagenPerfil-' + usuario.getId, usuario.getImagenPerfil);
+    this.firestorage.upload('/ImagenPerfil-' + usuario.id, usuario.imagenPerfil);
   }
 
   // Función que crea un usuario en Firestore
   createUsuario(usuario: Usuario) {
     this.subirImagenPerfil(usuario);
     const param = JSON.parse(JSON.stringify(usuario));
-    return this.firestore.collection('usuarios').doc(usuario.getId).set(param);
+    return this.firestore.collection('usuarios').doc(usuario.id).set(param);
   }
 
   // Función para realizar el registro con usuario y contraseña
