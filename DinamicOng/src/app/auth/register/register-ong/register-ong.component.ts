@@ -25,9 +25,17 @@ export class RegisterOngComponent implements OnInit {
     this.ong = new Ong();
   }
 
-  onClick() {
+  async registrar() {
     if (this.contrasena === this.confirmContrasena) {
-      this.authSvc.registerOng(this.ong, this.contrasena);
+      const result = (await this.authSvc.registerOng(this.ong, this.contrasena));
+      console.log(result);
+      if(result == null) {
+        alert('ERROR: Ya existe un usuario con ese correo, por favor ingrese otro');
+      } else {
+        // Avanzar a la pantalla de la Ong
+      }
+    } else {
+      alert('ERROR: Las contraseñas no coinciden');
     }
   }
 

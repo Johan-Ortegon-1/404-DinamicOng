@@ -30,13 +30,17 @@ export class AuthService {
   // Función para registrar una Ong
   async registerOng(ong: Ong, contrasena: string) {
     try {
-      const user = this.register(ong.correo, contrasena);
-      // Insertar info ONG
-      ong.id = (await user).user.uid;
-      this.createUsuario(ong);
+      const user = (await this.register(ong.correo, contrasena));
+      if (user != null) {
+        // Insertar info ONG
+        ong.id = user.user.uid;
+        this.createUsuario(ong);
+      }
+
       return user;
     } catch (error) {
       console.error(error);
+      return null;
     }
   }
 
@@ -59,6 +63,7 @@ export class AuthService {
       return result;
     } catch (error) {
       console.log(error);
+      return null;
     }
   }
 

@@ -1,0 +1,32 @@
+<div class="nav">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-1">
+        <a ><img id="logo" src="../../../assets/logotipo ONG.png"></a>
+      </div>
+
+      <div class="col-sm-7 vcenter">
+        <ul class="menu">
+          <li [ngClass]="{'selected': selected[0] == true}"><a>Inicio</a></li>
+          <li [ngClass]="{'selected': selected[1] == true}"><a>Mi Perfil</a></li>
+          <li [ngClass]="{'selected': selected[2] == true}"><a>Mis Iniciciativas</a></li>
+          <li [ngClass]="{'selected': selected[3] == true}"><a>Administrar Voluntarios</a></li>
+        </ul>
+      </div>
+
+      <div class="col-sm-3 vcenter">
+        <ul class="icon-menu">
+          <li><a><mat-icon aria-hidden="false" aria-label="add user">search</mat-icon></a></li>
+          <li><a><mat-icon aria-hidden="false" aria-label="add user">forum</mat-icon></a></li>
+          <li><a><mat-icon aria-hidden="false" aria-label="add user">notifications</mat-icon></a></li>
+          <li><a><mat-icon aria-hidden="false" aria-label="add user">logout</mat-icon></a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+
+
+</div>
