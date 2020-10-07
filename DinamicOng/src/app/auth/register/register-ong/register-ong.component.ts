@@ -26,7 +26,8 @@ export class RegisterOngComponent implements OnInit {
   public confirmContrasena;
 
   public preview;
-  public telefonoNuevo;
+  public telefonoNuevo = '';
+  public errorTelefonos = '';
 
   constructor(private authSvc: AuthService) { }
 
@@ -62,8 +63,34 @@ export class RegisterOngComponent implements OnInit {
   }
 
   addTelefono() {
-    this.nuevaOng.telefonos.push(this.telefonoNuevo);
-    this.telefonoNuevo = '';
+
+    if (this.telefonoNuevo != '' && this.telefonoNuevo != null) {
+
+      if (this.nuevaOng.telefonos.indexOf(this.telefonoNuevo) == -1) {
+
+        const str  = String(this.telefonoNuevo);
+        if (!str.includes('-')) {
+          this.nuevaOng.telefonos.push(this.telefonoNuevo);
+          this.telefonoNuevo = '';
+          this.errorTelefonos = '';
+        } else {
+          this.errorTelefonos = 'Ingrese solo números';
+        }
+
+      } else {
+        this.errorTelefonos = 'El teléfono ya existe, ingrese un teléfono distinto';
+      }
+
+    } else {
+      this.errorTelefonos = 'Ingrese un teléfono';
+    }
   }
 
+  deleteTelefono(tel: string) {
+    const i = this.nuevaOng.telefonos.indexOf( tel );
+
+    if ( i !== -1 ) {
+      this.nuevaOng.telefonos.splice( i, 1 );
+    }
+  }
 }

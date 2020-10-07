@@ -1,6 +1,10 @@
 <div class="container" id="border">
 
-  <form (submit) = 'onClick()'>
+  <form (ngSubmit) = 'onClick()' #testForm="ngForm" ngNativeValidate>
+
+    <div class="row">
+      <label class="col-sm-10 col-form-label info">* Todos los campos son obligatorios</label>
+    </div>
 
     <div class="row">
 
@@ -54,19 +58,25 @@
         </div>
 
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Telefonos: </label>
+          <label class="col-sm-2 col-form-label">Teléfonos: </label>
           <div class="col-sm-8">
-            <input class="form-control" name="telefono" id="telefono" type="number" [(ngModel)]="telefonoNuevo" required placeholder="Ingrese un teléfono">
+            <input class="form-control" name="telefono" id="telefono" type="number" [(ngModel)]="telefonoNuevo" placeholder="Ingrese un teléfono">
             <table class="table table-bordered">
               <tbody>
-                <tr *ngFor="let item of nuevaOng.telefonos">
-                  <td>{{item}}</td>
+                <tr *ngFor="let tel of nuevaOng.telefonos">
+                  <td>
+                    {{tel}}
+                  </td>
+                  <td class="small-td">
+                    <a (click)="deleteTelefono(tel)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                  </td>
                 </tr>
               </tbody>
             </table>
+            <p class="error">{{errorTelefonos}}</p>
           </div>
           <div class="col-sm-2">
-            <a (click)="addTelefono()"><mat-icon aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
+            <a (click)="addTelefono()"><mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
           </div>
         </div>
 
@@ -108,7 +118,7 @@
             <a [routerLink] = '["/register"]'> <button class="btn btn-primary" type="button">Cancelar</button> </a>
           </div>
           <div class="col-sm-3">
-            <button class="btn btn-primary" type="submit">Registrarse</button>
+            <button class="btn btn-primary" type="submit" [disabled]='nuevaOng.telefonos.length == 0'>Registrarse</button>
           </div>
       </div>
 

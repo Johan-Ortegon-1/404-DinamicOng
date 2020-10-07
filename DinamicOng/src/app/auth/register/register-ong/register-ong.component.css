@@ -16,8 +16,32 @@ img {
   margin-top: 5px;
 }
 
-mat-icon {
+.big {
   font-size: 35px;
   text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { -moz-appearance:textfield; }
+
+.error {
+  color: red;
 }
 
