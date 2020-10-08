@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from './../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Usuario } from './../../models/usuario';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +22,10 @@ export class LoginComponent implements OnInit {
       if (response) {
         this.firestore.collection("usuarios", ref => ref.where('correo', '==', this.user)).snapshotChanges().subscribe(data => {
           data.map(elem => {
-            let usr = elem.payload.doc.data();
-            console.log(usr);
+            let usr = new Usuario();
+            //usr.correo = elem.payload.doc.data().correo;
+            //usr.rol = elem.payload.doc.data().rol;
+            console.log(elem.payload.doc.data());
           });
         });
       }

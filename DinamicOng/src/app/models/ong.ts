@@ -5,9 +5,10 @@ export class Ong extends Usuario {
 
   public vision: string;
   public mision: string;
-
+  
   constructor() {
     super();
+    this.rol = 'Ong';
   }
 
   /* constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, ubicacion: Ubicacion, img: string,
