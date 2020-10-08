@@ -20,16 +20,5 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    console.log(this.rol);
-    if(this.rol == "voluntario") {
-      this.router.navigate(['voluntario']);
-    }
-    else if(this.rol == "ong") {
-      this.router.navigate(['ong']);
-    }
-    else {
-      this.router.navigate(['home']);
-    }
-
   }
 }

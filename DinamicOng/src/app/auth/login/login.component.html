@@ -1,1 +1,8 @@
 <p>login works!</p>
+<div>
+  <form class="formu" (ngSubmit)="doLogin()">
+    <input class="inputs" type="text" [(ngModel)]="user" name="user" placeholder="usuario">
+    <input class="inputs" type="password" [(ngModel)]="password" name="pass" placeholder="contraseña">
+    <button class="boton" type="submit" id="login">Login</button>
+  </form>
+</div>
