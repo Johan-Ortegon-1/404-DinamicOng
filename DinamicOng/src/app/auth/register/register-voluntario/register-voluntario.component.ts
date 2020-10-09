@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Ong } from 'src/app/models/ong';
 import { AuthService } from '../../services/auth.service';
 import { IdiomasDisponibles } from '../../../models/idiomas';
+import { AreasConocimientoDisponibles } from '../../../models/areasConocimiento';
+import { AreasConocimiento } from '../../../models/enumAreasConocimiento';
 @Component({
   selector: 'app-register-voluntario',
   templateUrl: './register-voluntario.component.html',
@@ -17,15 +19,18 @@ export class RegisterVoluntarioComponent implements OnInit {
   public preview: string;
   public telefonoNuevo = '';
   public errorTelefonos = '';
-  public idiomas: IdiomasDisponibles;
+  public idiomas: IdiomasDisponibles = new IdiomasDisponibles();
+  public areasConocimiento: AreasConocimientoDisponibles = new AreasConocimientoDisponibles();
   public misIdiomas: string[];
+  public misAreasConocimiento: string[];
 
   constructor(private authSvc: AuthService) { }
 
 
   ngOnInit(): void {
     this.ong = new Ong();
-    this.misIdiomas = 
+    this.misIdiomas = this.idiomas.idiomas;
+    this.misAreasConocimiento = this.areasConocimiento.areasConocimeinto;
   }
 
   async registrar() {

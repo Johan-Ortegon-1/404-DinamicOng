@@ -102,11 +102,57 @@
             <div class="col-sm-6">
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="contrasena">Idioma </label>
+                    <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma </label>
                     <select id="listaIdioma" name="lista-idiomas">
                         <option selected>Seleccione el idioma</option>
-                        <option *ngFor="let idioma of idiomas">Idioma: {{idioma}}</option>
+                        <option *ngFor="let idioma of misIdiomas">{{idioma}}</option>
                     </select>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma Secuendario</label>
+                    <select id="listaIdioma" name="lista-idiomas">
+                        <option selected>Seleccione el idioma</option>
+                        <option *ngFor="let idioma of misIdiomas">{{idioma}}</option>
+                    </select>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="idiomasAdicionales">Idiomas adicionales</label>
+                    <input type="text" name="idiomasAdicionales">
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 1</label>
+                    <input type="text" name="habilida">
+                    <select id="listaIdioma" name="lista-idiomas">
+                        <option selected>Seleccione el area</option>
+                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
+                    </select>
+                    <button class="btn btn-primary">Certificado</button>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 2</label>
+                    <input type="text" name="habilida">
+                    <select id="listaIdioma" name="lista-idiomas">
+                        <option selected>Seleccione el area</option>
+                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
+                    </select>
+                    <button class="btn btn-primary">Certificado</button>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 3</label>
+                    <input type="text" name="habilida">
+                    <select id="listaIdioma" name="lista-idiomas">
+                        <option selected>Seleccione el area</option>
+                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
+                    </select>
+                    <button class="btn btn-primary">Certificado</button>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="fechaNacimiento">Fecha de nacimiento</label>
+                    <input type="Date" name="fechaNacimiento">
                 </div>
                 
                 <div class="form-group row">

@@ -1,5 +1,3 @@
-import { Ubicacion } from './ubicacion';
-
 export class IdiomasDisponibles
 {
     public idiomas: string[];
