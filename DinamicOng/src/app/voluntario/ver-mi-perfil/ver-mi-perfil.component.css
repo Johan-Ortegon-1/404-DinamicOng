@@ -1,0 +1,60 @@
+.contenedor{
+  width: 1000px;
+  height: 2700px;
+  background-color: black;
+  padding: 20px;
+  margin-left: 100px;
+}
+
+.primera{
+  width: 900px;
+  height: 300px;
+  background-color: white;
+  margin : 30px;
+  padding: 20px;
+
+}
+
+.foto{
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+  float: left;
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.nombre{
+  width: 500px;
+  height: 100px;
+  background-color: blueviolet;
+  float: right;
+  margin-top: 50px;
+  margin-right: 50px;
+  padding-top:30px;
+}
+
+.nombre h1{
+  text-align: center;
+}
+
+div{
+  width: 950px;
+  height: 300px;
+  background-color: blue;
+  margin: 10px;
+}
+
+.ubicacion{
+  width: 600px;
+  height: 600px;
+  margin: 10px;
+  background-color: brown;
+  margin-left: 200px;
+}
+
+textarea{
+  margin: 20px;
+  width: 900px;
+  height: 220px;
+}
