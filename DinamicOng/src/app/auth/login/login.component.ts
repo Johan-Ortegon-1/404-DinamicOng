@@ -14,24 +14,18 @@ export class LoginComponent implements OnInit {
   user = 'user';
   password = 'password';
 
-  constructor(private router: Router, private auth: AuthService) { }
+  constructor(private router: Router, private auth: AuthService, private firestore: AngularFirestore) { }
 
   doLogin() {
     console.log(this.user + ' - ' + this.password);
     this.auth.login(this.user, this.password).then(response=> {
       if (response) {
-        this.auth.buscarRolByCorreo(this.user).subscribe((data:any) => {
+        this.firestore.collection("usuarios", ref => ref.where('correo', '==', this.user)).snapshotChanges().subscribe(data => {
           data.map(elem => {
-            let usr = elem.payload.doc.data();
-            localStorage.setItem('uid', usr.id);
-            if(usr.rol == 'Ong') {
-              //navegar a inicio ong
-              console.log('nav ong');
-            }
-            else {
-              //navegar a inicio voluntario
-              console.log('nav voluntario');
-            }
+            let usr = new Usuario();
+            //usr.correo = elem.payload.doc.data().correo;
+            //usr.rol = elem.payload.doc.data().rol;
+            console.log(elem.payload.doc.data());
           });
         });
       }

@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
-import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 
 
 

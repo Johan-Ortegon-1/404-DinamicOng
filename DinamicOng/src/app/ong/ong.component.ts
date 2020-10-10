@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ong',
@@ -8,12 +7,9 @@ import { Router } from '@angular/router';
 })
 export class OngComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('uid') == null) {
-      this.router.navigate(['']);
-    }
   }
 
 }

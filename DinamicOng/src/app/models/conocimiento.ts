@@ -1,10 +1,10 @@
-export class Conocimiento {​​
-  public nombre: string;
-  public area: string;
+export class Conocimiento {
 
-  constructor() {​​
-    this.nombre = '';
-    this.area = '';
-  }​​
+    public nombre: string;
+    public area: string;
 
-}​​
+    constructor() {
+        this.nombre = '';
+        this.area = '';
+    }
+}
