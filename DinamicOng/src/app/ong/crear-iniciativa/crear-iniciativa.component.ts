@@ -3,6 +3,7 @@ import { AreasConocimiento } from 'src/app/models/enumAreasConocimiento';
 import { Iniciativa } from '../../models/iniciativa';
 import { Idiomas } from '../../models/enumIdiomas';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { IniciativaService } from '../../iniciativa/services/iniciativa.service';
 
 @Component({
   selector: 'app-crear-iniciativa',
@@ -28,14 +29,14 @@ export class CrearIniciativaComponent implements OnInit {
 
   public preview = [];
 
-  constructor(private configC: NgbCarouselConfig) {
+  constructor(private iniciativaService: IniciativaService, private configC: NgbCarouselConfig) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
    }
 
   ngOnInit(): void {
     this.iniciativaNueva = new Iniciativa();
-    this.hoy = this.obtenerFechaHoy(2);
+    this.hoy = this.iniciativaService.obtenerFechaHoy(2);
     this.opcAreas = Object.keys(this.areasConoc);
     this.areaNueva = AreasConocimiento.Ingenieria;
 
@@ -45,7 +46,7 @@ export class CrearIniciativaComponent implements OnInit {
   }
 
   crearIniciativa() {
-
+    this.iniciativaService.crearIniciativa(this.iniciativaNueva);
   }
 
   uploadImage($event) {
@@ -62,30 +63,6 @@ export class CrearIniciativaComponent implements OnInit {
 
       reader.readAsDataURL($event.target.files[0]);
     }
-  }
-
-  obtenerFechaHoy(formato: number) {
-    const dateOb = new Date();
-
-    // adjust 0 before single digit date
-    const date = ("0" + dateOb.getDate()).slice(-2);
-
-    // current month
-    const month = ("0" + (dateOb.getMonth() + 1)).slice(-2);
-
-    // current year
-    const year = dateOb.getFullYear();
-
-    let result = null;
-
-    if (formato == 1) {
-      result = date + '/' + month + '/' + year;
-    } else if (formato == 2) {
-      result = year + '-' + month + '-' + date;
-    }
-
-    return result;
-
   }
 
   addAreaConoc() {
