@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'ver-perfil' , component: VerMiPerfilComponent
-      },
+      }
       {
         path: 'iniciativa/:id', component: VerIniciativaComponent
       },
