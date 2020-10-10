@@ -1,6 +1,6 @@
 .contenedor{
   width: 1000px;
-  height: 2700px;
+  height: 2400px;
   background-color: black;
   padding: 20px;
   margin-left: 100px;
@@ -45,6 +45,7 @@ div{
   margin: 10px;
 }
 
+
 .ubicacion{
   width: 600px;
   height: 600px;
@@ -57,4 +58,17 @@ textarea{
   margin: 20px;
   width: 900px;
   height: 220px;
+}
+
+.normal{
+  margin: 5px;
+  width: 900px;
+  height: 40px;
+}
+
+.media{
+  width: 950px;
+  height: 500px;
+  background-color: blue;
+  margin: 10px;
 }
