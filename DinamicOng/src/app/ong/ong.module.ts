@@ -9,6 +9,7 @@ import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
+import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 
 
 
@@ -17,7 +18,8 @@ import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.compo
     OngComponent,
     NavbarOngComponent,
     CrearIniciativaComponent,
-    VerIniciativasComponent
+    VerIniciativasComponent,
+    VerMiPerfilComponent
   ],
   imports: [
     CommonModule,
