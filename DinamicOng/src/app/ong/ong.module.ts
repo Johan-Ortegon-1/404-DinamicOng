@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 
 
 
@@ -15,7 +16,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     OngComponent,
     NavbarOngComponent,
-    CrearIniciativaComponent
+    CrearIniciativaComponent,
+    VerIniciativasComponent
   ],
   imports: [
     CommonModule,
