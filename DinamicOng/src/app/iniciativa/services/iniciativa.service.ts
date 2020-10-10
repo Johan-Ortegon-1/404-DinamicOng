@@ -25,7 +25,6 @@ export class IniciativaService {
       this.ongService.consultarOngByID(idOng).then(item => {
 
         ong = item.data() as Ong;
-        console.log(ong.ubicacion.pais);
         ong.iniciativas.push(iniciativa.id);
         this.ongService.updateOng(ong);
         this.subirImagenesIniciativa(iniciativa);
@@ -39,14 +38,63 @@ export class IniciativaService {
     }
   }
 
+  obtenerFechaHoy(formato: number) {
+    const dateOb = new Date();
+    // adjust 0 before single digit date
+    const date = ("0" + dateOb.getDate()).slice(-2);
+
+    // current month
+    const month = ("0" + (dateOb.getMonth() + 1)).slice(-2);
+
+    // current year
+    const year = dateOb.getFullYear();
+
+    let result = null;
+
+    if (formato == 1) {
+      result = date + '/' + month + '/' + year;
+    } else if (formato == 2) {
+      result = year + '-' + month + '-' + date;
+    }
+
+    return result;
+  }
+
+  compararFechaMenorIgualHoy(fecha1: Date) {
+    const fecha2 = this.obtenerFechaHoy(2);
+    if (fecha1 <= fecha2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Función para subir imagenes a Firestorage
   subirImagenesIniciativa(iniciativa: Iniciativa) {
     console.log(iniciativa);
     let n = 1;
     iniciativa.imagenes.forEach(element => {
-      this.firestorage.upload('/ImagenIniciativa_' + n + '-' + iniciativa.id, element);
+      this.firestorage.upload('/' + iniciativa.id + '/ImagenIniciativa_' + n, element);
       n++;
     });
   }
+
+  consultarIniciativaByID(id: string) {
+    return this.firestore.collection('iniciativas').doc(id).ref.get();
+  }
+
+  obtenerImagenesIniciativa(id: string) {
+    let ulrs: Array<string> = [];
+    const storageRef = this.firestorage.storage.ref().child(id);
+    storageRef.listAll().then(resp => {
+      resp.items.forEach(imgRef => {
+        imgRef.getDownloadURL().then(url => {
+          ulrs.push(url);
+          console.log(url);
+        });
+      });
+    });
+    return ulrs;
+}
 
 }

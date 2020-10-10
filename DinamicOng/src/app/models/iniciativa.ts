@@ -1,4 +1,5 @@
 import { Ubicacion } from './ubicacion';
+import { Valoracion } from './valoracion';
 
 export class Iniciativa {
 
@@ -15,9 +16,11 @@ export class Iniciativa {
   public areasConocimientoRelacionadas: Array<string>;
   public participantes: Array<string>;
   public idOng: string;
+  public valoraciones: Valoracion;
 
   constructor() {
     this.imagenes = [];
+    this.valoraciones = new Valoracion();
     this.ubicacion = new Ubicacion();
     this.idiomasDeseables =  [];
     this.areasConocimientoRelacionadas = [];

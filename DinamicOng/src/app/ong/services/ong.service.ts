@@ -3,6 +3,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Ong } from '../../models/ong';
 import { AuthService } from '../../auth/services/auth.service';
+import { strict } from 'assert';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,10 @@ export class OngService {
   // Función que crea un usuario en Firestore
   updateOng(ong: Ong) {
     this.authService.updateUsuario(ong);
+  }
+
+  obtenerImagenPerfil(id: string) {
+    return this.firestorage.storage.ref().child('ImagenPerfil-' + id).getDownloadURL();
   }
 
 }
