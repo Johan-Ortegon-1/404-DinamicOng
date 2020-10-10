@@ -16,11 +16,11 @@ export class Iniciativa {
   public areasConocimientoRelacionadas: Array<string>;
   public participantes: Array<string>;
   public idOng: string;
-  public valoraciones: Valoracion;
+  public valoraciones: Array<Valoracion>;
 
   constructor() {
     this.imagenes = [];
-    this.valoraciones = new Valoracion();
+    this.valoraciones = [];
     this.ubicacion = new Ubicacion();
     this.idiomasDeseables =  [];
     this.areasConocimientoRelacionadas = [];

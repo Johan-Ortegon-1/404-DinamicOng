@@ -4,13 +4,16 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Ong } from 'src/app/models/ong';
 import { Iniciativa } from '../../models/iniciativa';
 import { OngService } from '../../ong/services/ong.service';
+import { VoluntarioService } from '../../voluntario/services/voluntario.service';
+import { Voluntario } from '../../models/voluntario';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IniciativaService {
 
-  constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage, private ongService: OngService) { }
+  constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage,
+    private ongService: OngService, private voluntarioService: VoluntarioService) { }
 
   crearIniciativa(iniciativa: Iniciativa) {
     if (localStorage.getItem('uid') != null) {
@@ -60,8 +63,9 @@ export class IniciativaService {
     return result;
   }
 
-  compararFechaMenorIgualHoy(fecha1: Date) {
-    const fecha2 = this.obtenerFechaHoy(2);
+  compararFechaMenorIgualHoy(f1: Date) {
+    const fecha1 = new Date(f1);
+    const fecha2 = new Date(this.obtenerFechaHoy(2));
     if (fecha1 <= fecha2) {
       return true;
     } else {
@@ -83,6 +87,11 @@ export class IniciativaService {
     return this.firestore.collection('iniciativas').doc(id).ref.get();
   }
 
+  updateIniciativa(iniciativa: Iniciativa) {
+    const param = JSON.parse(JSON.stringify(iniciativa));
+    this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
+  }
+
   obtenerImagenesIniciativa(id: string) {
     let ulrs: Array<string> = [];
     const storageRef = this.firestorage.storage.ref().child(id);
@@ -90,11 +99,24 @@ export class IniciativaService {
       resp.items.forEach(imgRef => {
         imgRef.getDownloadURL().then(url => {
           ulrs.push(url);
-          console.log(url);
         });
       });
     });
     return ulrs;
-}
+  }
+
+  obtenerParticipantes(ids: Array<string>): Array<Voluntario> {
+    let participantes = [];
+    ids.forEach(id => {
+      this.voluntarioService.consultarVoluntarioByID(id).then(resp => {
+        let part: Voluntario = resp.data() as Voluntario;
+        this.voluntarioService.obtenerImagenPerfil(part.id).then(img => {
+          part.imagenPerfil = img;
+          participantes.push(part);
+        });
+      });
+    });
+    return participantes;
+  }
 
 }

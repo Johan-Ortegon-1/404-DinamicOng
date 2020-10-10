@@ -6,6 +6,8 @@ import { Usuario } from 'src/app/models/usuario';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ong } from '../../models/ong';
 import { OngService } from '../../ong/services/ong.service';
+import { Voluntario } from '../../models/voluntario';
+import { Valoracion } from '../../models/valoracion';
 
 @Component({
   selector: 'app-ver-iniciativa',
@@ -16,9 +18,10 @@ export class VerIniciativaComponent implements OnInit {
 
   public inicativa: Iniciativa;
   public id: string;
-  public participantes: Array<Usuario>; //Voluntario
+  public participantes: Array<Voluntario>; //Voluntario
   public imagenes: Array<string>;
   public creador: Ong;
+  public valoracionNueva: Valoracion;
 
   public isOng: boolean;
   public creatorOng: boolean;
@@ -32,6 +35,7 @@ export class VerIniciativaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.valoracionNueva = new Valoracion();
     this.creador = new Ong();
     this.imagenes = [];
     this.participantes = [];
@@ -47,7 +51,7 @@ export class VerIniciativaComponent implements OnInit {
   obtenerIniciativa() {
     this.iniciativaService.consultarIniciativaByID(this.id).then(resp => {
       this.inicativa = resp.data() as Iniciativa;
-      //this.obtenerParticipantes();
+      this.obtenerParticipantes();
       const ruta = this.router.url;
       const str = String(ruta);
       if (str.includes('ong')) {
@@ -84,9 +88,25 @@ export class VerIniciativaComponent implements OnInit {
   }
 
   obtenerParticipantes() {
-    this.inicativa.participantes.forEach(p => {
-      //this.participantes.push();
-    });
+    this.participantes = this.iniciativaService.obtenerParticipantes(this.inicativa.participantes);
+  }
+
+  obtenerParticipanteById(id: string): Voluntario {
+    let participante = new Voluntario();
+    for (let p of this.participantes) {
+      if (p.id == id) {
+        participante = p;
+        break;
+      }
+    }
+    return participante;
+  }
+
+  comentar() {
+    //this.valoracionNueva.idValorador = localStorage.getItem('uid');
+    this.valoracionNueva.idValorador = '1Hq9g93bToOJxUEf66TGpQknQ4s1';
+    this.inicativa.valoraciones.push(this.valoracionNueva);
+    this.iniciativaService.updateIniciativa(this.inicativa);
   }
 
 }

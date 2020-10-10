@@ -2,6 +2,38 @@
   text-align: center;
 }
 
+.vcenter {
+  display: block;
+  margin-top: auto;
+}
+
+.centerTable {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.not-visible {
+  background-color: #00000000;
+  border-color: #00000000;
+}
+
+a {
+  cursor: pointer;
+}
+
+.btext {
+  font-size: large;
+}
+
+.wtable {
+  width: 80%;
+}
+
 #border {
   border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
 }
@@ -15,8 +47,8 @@ label, h1 {
 }
 
 .small {
-  max-width: 40px;
-  max-height: 40px;
+  max-width: 80px;
+  max-height: 80px;
 }
 
 img {
