@@ -6,11 +6,10 @@ import { OngComponent } from './ong.component';
 
 const routes: Routes = [
   {
-    path: '', component: OngComponent,
+    path: '',
+    component: OngComponent,
     children: [
-      {
-        path: 'crear-iniciativa', component: CrearIniciativaComponent
-      },
+      {path: 'crear-iniciativa', component: CrearIniciativaComponent}
     ]
   }
 ];

@@ -20,12 +20,17 @@ export class LoginComponent implements OnInit {
     console.log(this.user + ' - ' + this.password);
     this.auth.login(this.user, this.password).then(response=> {
       if (response) {
-        this.firestore.collection("usuarios", ref => ref.where('correo', '==', this.user)).snapshotChanges().subscribe(data => {
+        this.firestore.collection("usuarios", ref => ref.where('correo', '==', this.user)).snapshotChanges().subscribe((data:any) => {
           data.map(elem => {
-            let usr = new Usuario();
-            //usr.correo = elem.payload.doc.data().correo;
-            //usr.rol = elem.payload.doc.data().rol;
-            console.log(elem.payload.doc.data());
+            let usr = elem.payload.doc.data();
+            if(usr.rol == 'Ong') {
+              //navegar a inicio ong
+              console.log('nav ong');
+            }
+            else {
+              //navegar a inicio voluntario
+              console.log('nav voluntario');
+            }
           });
         });
       }
