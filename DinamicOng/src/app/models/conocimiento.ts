@@ -1,11 +1,10 @@
 export class Conocimiento {
 
     public nombre: string;
-    public certificado: boolean;
-    public imagenCertificado: string;
-
+    public area: string;
 
     constructor() {
-        
+        this.nombre = '';
+        this.area = '';
     }
 }

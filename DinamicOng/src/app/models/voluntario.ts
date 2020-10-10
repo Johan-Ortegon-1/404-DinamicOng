@@ -3,7 +3,7 @@ import { Conocimiento } from './conocimiento';
 
 export class Voluntario extends Usuario {
 
-    public areasDeConocimiento: Conocimiento[];
+    public habilidades: Conocimiento[];
     public idiomas: string[];
     public fechaNacimiento: Date;
 
@@ -11,7 +11,7 @@ export class Voluntario extends Usuario {
     constructor() {
         super();
         this.rol = 'Voluntario';
-        this.areasDeConocimiento = [];
+        this.habilidades = [];
         this.idiomas = [];
     }
 }

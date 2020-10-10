@@ -1,4 +1,3 @@
-<p>register-voluntario works!</p>
 <div class="container" id="border">
 
     <form (ngSubmit)='registrar()' #testForm="ngForm" ngNativeValidate>
@@ -103,51 +102,62 @@
 
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma </label>
-                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idioma1">
-                        <option selected>Seleccione el idioma</option>
-                        <option *ngFor="let idioma of misIdiomas">{{idioma}}</option>
+                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo">
+                        <option *ngFor="let idioma of opcidiomas">{{idiomas[idioma]}}</option>
                     </select>
+                    <a (click)="addIdioma()">
+                        <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                    </a>
+                </div>
+
+                <div class="col-sm-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr *ngFor="let idioma of voluntario.idiomas">
+                                <td>
+                                    {{idioma}}
+                                </td>
+                                <td class="small-td">
+                                    <a (click)="deleteIdioma(idioma)">
+                                        <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                            remove_circle</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="error">{{errorIdiomas}}</p>
                 </div>
 
                 <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma Secuendario</label>
-                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idioma2">
-                        <option selected>Seleccione el idioma</option>
-                        <option *ngFor="let idioma of misIdiomas">{{idioma}}</option>
+                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad</label>
+                    <input type="text" name="habilida" [(ngModel)]="this.habilidadNuevaNombre">
+                    <label class="col-form-label lable-area" for="listaAreas">Area</label>
+                    <select id="listaAreas" name="lista-idiomas" [(ngModel)]="this.habilidadNuevaArea">
+                        <option *ngFor="let areaC of opcAreas">{{areasConoc[areaC]}}</option>
                     </select>
+                    <a (click)="addArea()">
+                        <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                    </a>
                 </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="idiomasAdicionales">Idiomas adicionales</label>
-                    <input type="text" name="idiomasAdicionales" [(ngModel)]="this.idioma3">
-                </div>
-
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 1</label>
-                    <input type="text" name="habilida">
-                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.nombreHabilidad1">
-                        <option selected>Seleccione el area</option>
-                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
-                    </select>
-                    <button (click)="subirCertificado()" class="btn btn-primary">Certificado</button>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 2</label>
-                    <input type="text" name="habilida">
-                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.nombreHabilidad2">
-                        <option selected>Seleccione el area</option>
-                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
-                    </select>
-                    <button (click)="subirCertificado()" class="btn btn-primary">Certificado</button>
-                </div>
-                <div class="form-group row">
-                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad 3</label>
-                    <input type="text" name="habilida">
-                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.nombreHabilidad3">
-                        <option selected>Seleccione el area</option>
-                        <option *ngFor="let area of misAreasConocimiento">{{area}}</option>
-                    </select>
-                    <button (click)="subirCertificado()" class="btn btn-primary">Certificado</button>
+                
+                <div class="col-sm-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr *ngFor="let habilidad of voluntario.habilidades">
+                                <td>
+                                    {{habilidad.nombre}} - {{habilidad.area}}
+                                </td>
+                                <td class="small-td">
+                                    <a (click)="deleteArea(habilidad)">
+                                        <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                            remove_circle</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="error">{{errorArea}}</p>
                 </div>
 
                 <div class="form-group row">
