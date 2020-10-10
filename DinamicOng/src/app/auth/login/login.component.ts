@@ -14,15 +14,16 @@ export class LoginComponent implements OnInit {
   user = 'user';
   password = 'password';
 
-  constructor(private router: Router, private auth: AuthService, private firestore: AngularFirestore) { }
+  constructor(private router: Router, private auth: AuthService) { }
 
   doLogin() {
     console.log(this.user + ' - ' + this.password);
     this.auth.login(this.user, this.password).then(response=> {
       if (response) {
-        this.firestore.collection("usuarios", ref => ref.where('correo', '==', this.user)).snapshotChanges().subscribe((data:any) => {
+        this.auth.buscarRolByCorreo(this.user).subscribe((data:any) => {
           data.map(elem => {
             let usr = elem.payload.doc.data();
+            localStorage.setItem('uid', usr.id);
             if(usr.rol == 'Ong') {
               //navegar a inicio ong
               console.log('nav ong');
