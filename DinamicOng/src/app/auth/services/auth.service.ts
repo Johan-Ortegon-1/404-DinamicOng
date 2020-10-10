@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {User} from 'firebase';
 import { Ong } from 'src/app/models/ong';
+import { Voluntario } from 'src/app/models/voluntario';
 import { Usuario } from '../../models/usuario';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -36,6 +37,23 @@ export class AuthService {
         // Insertar info ONG
         ong.id = user.user.uid;
         this.createUsuario(ong);
+      }
+
+      return user;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  }
+
+  // Funciona para registrar un voluntario
+  async registerVoluntario(voluntario: Voluntario, contrasena: string) {
+    try {
+      const user = (await this.register(voluntario.correo, contrasena));
+      if (user != null) {
+        // Insertar info ONG
+        voluntario.id = user.user.uid;
+        this.createUsuario(voluntario);
       }
 
       return user;
