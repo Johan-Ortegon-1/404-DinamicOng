@@ -19,7 +19,8 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     NavbarOngComponent,
     CrearIniciativaComponent,
     VerIniciativasComponent,
-    VerMiPerfilComponent
+    VerMiPerfilComponent,
+    AdministrarVoluntariosComponent
   ],
   imports: [
     CommonModule,
