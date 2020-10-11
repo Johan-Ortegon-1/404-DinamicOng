@@ -20,7 +20,7 @@ import {GoogleMapsModule} from '@angular/google-maps';
     NavbarOngComponent,
     CrearIniciativaComponent,
     VerIniciativasComponent,
-    VerMiPerfilComponent
+    VerMiPerfilComponent,
     CrearIniciativaComponent,
     VerIniciativaComponent
   ],
