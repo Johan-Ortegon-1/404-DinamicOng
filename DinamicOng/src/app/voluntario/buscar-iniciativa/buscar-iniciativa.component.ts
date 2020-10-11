@@ -77,7 +77,7 @@ export class BuscarIniciativaComponent implements OnInit {
       arrFiltro[0] = false;
     }
 
-    if(iniciativa.fechaInicio >= this.iniciativaBuscar.fechaInicio && iniciativa.fechaFinalizacion <= this.iniciativaBuscar.fechaFinalizacion) {
+    if(iniciativa.fechaInicio >= this.iniciativaBuscar.fechaInicio && iniciativa.fechaInicio <= this.iniciativaBuscar.fechaFinalizacion) {
       arrFiltro[1] = true;
     }
     else {
