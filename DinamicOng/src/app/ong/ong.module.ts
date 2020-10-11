@@ -20,7 +20,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     CrearIniciativaComponent,
     VerIniciativasComponent,
     VerMiPerfilComponent,
-    AdministrarVoluntariosComponent
+    
   ],
   imports: [
     CommonModule,
