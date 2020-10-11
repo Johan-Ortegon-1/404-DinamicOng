@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.info {
+  color: blue;
+}
+
 .vcenter {
   display: block;
   margin-top: auto;
@@ -46,17 +50,22 @@ label, h1 {
   margin-bottom: 15px;
 }
 
-.small {
-  max-width: 80px;
-  max-height: 80px;
-}
-
-img {
+.big {
   max-width: 400px;
   max-height: 400px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+.small {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.xsmall {
+  max-width: 40px;
+  max-height: 40px;
 }
 
 ngb-carousel {
@@ -66,4 +75,29 @@ ngb-carousel {
   margin-right: auto;
   background-color: #00000010;
   border-radius: 30px;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 20px;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
 }

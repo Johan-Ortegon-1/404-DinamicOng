@@ -11,7 +11,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
-
+import {GoogleMapsModule} from '@angular/google-maps';
 
 
 @NgModule({
@@ -29,7 +29,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     OngRoutingModule,
     MatIconModule,
     FormsModule, ReactiveFormsModule,
-    NgbModule
+    NgbModule, GoogleMapsModule,
   ]
 })
 export class OngModule { }

@@ -6,6 +6,7 @@ import { Iniciativa } from '../../models/iniciativa';
 import { OngService } from '../../ong/services/ong.service';
 import { VoluntarioService } from '../../voluntario/services/voluntario.service';
 import { Voluntario } from '../../models/voluntario';
+import { Solicitud } from '../../models/solicitud';
 
 @Injectable({
   providedIn: 'root'
@@ -117,6 +118,26 @@ export class IniciativaService {
       });
     });
     return participantes;
+  }
+
+  solicitarUnirse(iniciativa: Iniciativa, idVol: string) {
+    let solicitud = new Solicitud();
+    solicitud.contestado = false;
+    solicitud.aceptado = false;
+    solicitud.idIniciativa = iniciativa.id;
+    solicitud.idOng = iniciativa.idOng;
+    solicitud.idVoluntario = idVol;
+    const idSol = this.crearSolicitud(solicitud);
+    iniciativa.solicitudes.push(idSol);
+    this.updateIniciativa(iniciativa);
+  }
+
+  crearSolicitud(solicitud: Solicitud): string {
+    const id = this.firestore.createId();
+    solicitud.id = id;
+    const param = JSON.parse(JSON.stringify(solicitud));
+    this.firestore.collection('solicitudes').doc(id).set(param);
+    return id;
   }
 
 }
