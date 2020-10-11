@@ -15,6 +15,8 @@ export class Iniciativa {
   public areasConocimientoRelacionadas: Array<string>;
   public participantes: Array<string>;
   public idOng: string;
+  public imagenPerfil: string;
+  public nombreOng: string;
 
   constructor() {
     this.imagenes = [];

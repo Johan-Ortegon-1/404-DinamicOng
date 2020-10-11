@@ -12,6 +12,10 @@ export class IniciativaService {
 
   constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage, private ongService: OngService) { }
 
+  buscarIniciativa(iniciativa: Iniciativa) {
+    return this.firestore.collection("iniciativas", ref => ref.where('idOng', '==', iniciativa.idOng)).snapshotChanges();
+  }
+
   crearIniciativa(iniciativa: Iniciativa) {
     if (localStorage.getItem('uid') != null) {
       const idOng = localStorage.getItem('uid');
@@ -49,4 +53,17 @@ export class IniciativaService {
     });
   }
 
+  obtenerImagenesIniciativa(id: string) {
+    let ulrs: Array<string> = [];
+    const storageRef = this.firestorage.storage.ref().child(id);
+    storageRef.listAll().then(resp => {
+      resp.items.forEach(imgRef => {
+        imgRef.getDownloadURL().then(url => {
+          ulrs.push(url);
+          console.log(url);
+        });
+      });
+    });
+    return ulrs;
+  }
 }

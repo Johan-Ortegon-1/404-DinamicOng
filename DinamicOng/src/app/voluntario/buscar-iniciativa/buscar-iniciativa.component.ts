@@ -3,6 +3,8 @@ import { AreasConocimiento } from '../../models/enumAreasConocimiento';
 import { Iniciativa } from '../../models/iniciativa';
 import { Idiomas } from '../../models/enumIdiomas';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { IniciativaService } from './../../iniciativa/services/iniciativa.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-buscar-iniciativa',
@@ -16,7 +18,7 @@ export class BuscarIniciativaComponent implements OnInit {
   public opcidiomas = [];
   public idiomas = Idiomas;
 
-  public iniciativaNueva: Iniciativa;
+  public iniciativaBuscar: Iniciativa;
   public hoy: string;
 
   public areaNueva = '';
@@ -25,15 +27,13 @@ export class BuscarIniciativaComponent implements OnInit {
   public idiomaNuevo = '';
   public errorIdioma = '';
 
-  public preview = [];
-
-  constructor(private configC: NgbCarouselConfig) {
+  constructor(private configC: NgbCarouselConfig, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
    }
 
   ngOnInit(): void {
-    this.iniciativaNueva = new Iniciativa();
+    this.iniciativaBuscar = new Iniciativa();
     this.hoy = this.obtenerFechaHoy(2);
     this.opcAreas = Object.keys(this.areasConoc);
     this.areaNueva = AreasConocimiento.Ingenieria;
@@ -44,7 +44,116 @@ export class BuscarIniciativaComponent implements OnInit {
   }
 
   buscarIniciativa() {
-    console.log(this.iniciativaNueva);
+    this.iniciativaBuscar.idOng = localStorage.getItem('uid');
+    let iniciativas: Iniciativa[] = [];
+    this.iniciativaService.buscarIniciativa(this.iniciativaBuscar).subscribe((data:any) => {
+      data.map(elem => {
+        let iniciativa = elem.payload.doc.data();
+        if(this.verificarFiltro(iniciativa)) {
+          iniciativas.push(iniciativa);
+          console.log(iniciativa);
+        }
+        else {
+          console.log('falle');
+        }
+      });
+
+      if(iniciativas.length == 0) {
+        alert('Sin resultados')
+      }
+      else {
+        localStorage.setItem('iniciativasFiltradas', JSON.stringify(iniciativas));
+        this.router.navigate(["/voluntario/mostrar-iniciativa"]);
+      }
+    });
+  }
+
+  verificarFiltro(iniciativa: Iniciativa): boolean {
+    let arrFiltro: boolean[] = [false, false, false, false, false];
+
+    if(iniciativa.nombre.toUpperCase().indexOf(this.iniciativaBuscar.nombre.toUpperCase()) !== -1) {
+      arrFiltro[0] = true;
+    }
+    else {
+      arrFiltro[0] = false;
+    }
+
+    if(iniciativa.fechaInicio >= this.iniciativaBuscar.fechaInicio && iniciativa.fechaFinalizacion <= this.iniciativaBuscar.fechaFinalizacion) {
+      arrFiltro[1] = true;
+    }
+    else {
+      arrFiltro[1] = false;
+    }
+
+    if(Object.entries(this.iniciativaBuscar.ubicacion).length !== 0) {
+      if(
+        iniciativa.ubicacion.ciudad.toUpperCase().indexOf(this.iniciativaBuscar.ubicacion.ciudad.toUpperCase()) !== -1 ||
+        iniciativa.ubicacion.pais.toUpperCase().indexOf(this.iniciativaBuscar.ubicacion.pais.toUpperCase()) !== -1 ||
+        iniciativa.ubicacion.direccion.toUpperCase().indexOf(this.iniciativaBuscar.ubicacion.direccion.toUpperCase()) !== -1
+      ) {
+        arrFiltro[2] = true;
+      }
+      else {
+        arrFiltro[2] = false;
+      }
+    }
+    else {
+      arrFiltro[2] = true;
+    }
+
+    let sw = false;
+    if(this.iniciativaBuscar.areasConocimientoRelacionadas.length != 0) {
+      this.iniciativaBuscar.areasConocimientoRelacionadas.map(areaCBuscar => {
+          iniciativa.areasConocimientoRelacionadas.map(areaC => {
+              if(!sw) {
+                if(areaC == areaCBuscar) {
+                  arrFiltro[3] = true;
+                  sw = true;
+                }
+                else {
+                  arrFiltro[3] = false;
+                }
+              }
+            }
+          )
+        }
+      );
+    }
+    else {
+      arrFiltro[3] = true;
+    }
+
+    sw = false;
+    if(this.iniciativaBuscar.idiomasDeseables.length != 0) {
+      this.iniciativaBuscar.idiomasDeseables.map(idiomaBuscar => {
+          iniciativa.idiomasDeseables.map(idioma => {
+              if (!sw) {
+                if(idioma == idiomaBuscar) {
+                  arrFiltro[4] = true;
+                  sw = true;
+                }
+                else {
+                  arrFiltro[4] = false;
+                }
+              }
+            }
+          )
+        }
+      );
+    }
+    else {
+      arrFiltro[4] =true;
+    }
+
+    sw = true;
+    arrFiltro.map(elem => {
+      console.log(elem);
+      if(!elem && sw) {
+        sw = false;
+      }
+    });
+
+    return sw;
   }
 
   obtenerFechaHoy(formato: number) {
@@ -73,9 +182,9 @@ export class BuscarIniciativaComponent implements OnInit {
 
   addAreaConoc() {
 
-    if (this.iniciativaNueva.areasConocimientoRelacionadas.indexOf(this.areaNueva) == -1) {
+    if (this.iniciativaBuscar.areasConocimientoRelacionadas.indexOf(this.areaNueva) == -1) {
 
-      this.iniciativaNueva.areasConocimientoRelacionadas.push(this.areaNueva);
+      this.iniciativaBuscar.areasConocimientoRelacionadas.push(this.areaNueva);
       this.areaNueva = AreasConocimiento.Ingenieria;
       this.errorArea = '';
 
@@ -85,18 +194,18 @@ export class BuscarIniciativaComponent implements OnInit {
   }
 
   deleteAreaConoc(area: string) {
-    const i = this.iniciativaNueva.areasConocimientoRelacionadas.indexOf( area );
+    const i = this.iniciativaBuscar.areasConocimientoRelacionadas.indexOf( area );
 
     if ( i !== -1 ) {
-      this.iniciativaNueva.areasConocimientoRelacionadas.splice( i, 1 );
+      this.iniciativaBuscar.areasConocimientoRelacionadas.splice( i, 1 );
     }
   }
 
   addIdioma() {
 
-    if (this.iniciativaNueva.idiomasDeseables.indexOf(this.idiomaNuevo) == -1) {
+    if (this.iniciativaBuscar.idiomasDeseables.indexOf(this.idiomaNuevo) == -1) {
 
-      this.iniciativaNueva.idiomasDeseables.push(this.idiomaNuevo);
+      this.iniciativaBuscar.idiomasDeseables.push(this.idiomaNuevo);
       this.idiomaNuevo = Idiomas.Espanol;
       this.errorIdioma = '';
 
@@ -106,10 +215,10 @@ export class BuscarIniciativaComponent implements OnInit {
   }
 
   deleteIdioma(idioma: string) {
-    const i = this.iniciativaNueva.idiomasDeseables.indexOf( idioma );
+    const i = this.iniciativaBuscar.idiomasDeseables.indexOf( idioma );
 
     if ( i !== -1 ) {
-      this.iniciativaNueva.idiomasDeseables.splice( i, 1 );
+      this.iniciativaBuscar.idiomasDeseables.splice( i, 1 );
     }
   }
 }

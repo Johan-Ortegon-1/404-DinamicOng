@@ -10,21 +10,21 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
           <div class="col-sm-10">
-            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="iniciativaNueva.nombre" required placeholder="Ingrese el nombre de la Iniciativa">
+            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="iniciativaBuscar.nombre" required placeholder="Ingrese el nombre de la Iniciativa">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="fechaInicio">Fecha de Inicio: </label>
           <div class="col-sm-10">
-            <input class="form-control" min="{{hoy}}" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaNueva.fechaInicio" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+            <input class="form-control" min="{{hoy}}" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaBuscar.fechaInicio" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="fechaFin">Fecha de fin: </label>
           <div class="col-sm-10">
-            <input class="form-control" min="{{iniciativaNueva.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaNueva.fechaFinalizacion" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+            <input class="form-control" min="{{iniciativaBuscar.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaBuscar.fechaFinalizacion" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
           </div>
         </div>
 
@@ -33,15 +33,15 @@
 
           <div class="col-sm-3">
             <label for="pais">País </label>
-            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="iniciativaNueva.ubicacion.pais" required placeholder="País">
+            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.pais" placeholder="País">
           </div>
           <div class="col-sm-3">
             <label for="ciudad">Ciudad </label>
-            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="iniciativaNueva.ubicacion.ciudad" required placeholder="Ciudad">
+            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.ciudad" placeholder="Ciudad">
           </div>
           <div class="col-sm-4">
             <label for="direccion">Dirección </label>
-            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="iniciativaNueva.ubicacion.direccion" required placeholder="Dirección">
+            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.direccion" placeholder="Dirección">
           </div>
 
         </div>
@@ -60,7 +60,7 @@
           <div class="col-sm-4">
             <table class="table table-bordered">
               <tbody>
-                <tr *ngFor="let areaC of iniciativaNueva.areasConocimientoRelacionadas">
+                <tr *ngFor="let areaC of iniciativaBuscar.areasConocimientoRelacionadas">
                   <td>
                     {{areaC}}
                   </td>
@@ -87,7 +87,7 @@
           <div class="col-sm-4">
             <table class="table table-bordered">
               <tbody>
-                <tr *ngFor="let idioma of iniciativaNueva.idiomasDeseables">
+                <tr *ngFor="let idioma of iniciativaBuscar.idiomasDeseables">
                   <td>
                     {{idioma}}
                   </td>

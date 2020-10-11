@@ -8,13 +8,15 @@ import { BuscarIniciativaComponent } from './buscar-iniciativa/buscar-iniciativa
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
+import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.component';
 
 
 @NgModule({
   declarations: [
     VoluntarioComponent,
     NavbarVoluntarioComponent,
-    BuscarIniciativaComponent
+    BuscarIniciativaComponent,
+    MostrarBusquedaComponent
   ],
   imports: [
     CommonModule,
