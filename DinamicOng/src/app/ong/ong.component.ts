@@ -13,6 +13,8 @@ export class OngComponent implements OnInit {
   ngOnInit(): void {
     if (localStorage.getItem('uid') == null) {
       this.router.navigate(['']);
+    } else if (localStorage.getItem('rol') == 'Voluntario') {
+      this.router.navigate(['/voluntario']);
     }
   }
 

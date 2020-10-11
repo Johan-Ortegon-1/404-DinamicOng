@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+img, .click {
+  cursor: pointer;
+}
+
 #border {
   border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
 }

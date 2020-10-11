@@ -46,4 +46,8 @@ export class MostrarBusquedaComponent implements OnInit {
     localStorage.setItem('idOng', iniciativa.idOng);
     this.router.navigate(["/voluntario/ver-ong"]);
   }
+
+  navVerIni(id: string) {
+    this.router.navigate(["/voluntario/iniciativa/" + id]);
+  }
 }

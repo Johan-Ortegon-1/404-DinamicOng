@@ -104,7 +104,6 @@ export class IniciativaService {
       resp.items.forEach(imgRef => {
         imgRef.getDownloadURL().then(url => {
           ulrs.push(url);
-          console.log(url);
         });
       });
     });

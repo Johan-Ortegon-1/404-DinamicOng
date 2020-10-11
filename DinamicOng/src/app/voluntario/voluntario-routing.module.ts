@@ -14,18 +14,13 @@ const routes: Routes = [
       {path: 'buscar-iniciativa', component: BuscarIniciativaComponent},
       {path: 'mostrar-iniciativa', component: MostrarBusquedaComponent},
       {path: 'mi-perfil', component: VerMiPerfilComponent},
-      {path: 'ver-ong', component: VerOngComponent}  
+      {path: 'ver-ong', component: VerOngComponent} ,
+      { path: 'iniciativa/:id', component: VerIniciativaComponent },
+      { path: 'participaciones', component: MisParticipacionesComponent }
     ]
   }
 ]
-const routes: Routes = [{ path: '', component: VoluntarioComponent, children: [
-  {
-    path: 'iniciativa/:id', component: VerIniciativaComponent
-  },
-  {
-    path: 'participaciones', component: MisParticipacionesComponent
-  }
-] }];
+
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
