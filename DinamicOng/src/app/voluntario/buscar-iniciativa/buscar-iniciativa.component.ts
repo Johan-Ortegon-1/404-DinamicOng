@@ -44,9 +44,8 @@ export class BuscarIniciativaComponent implements OnInit {
   }
 
   buscarIniciativa() {
-    this.iniciativaBuscar.idOng = localStorage.getItem('uid');
     let iniciativas: Iniciativa[] = [];
-    this.iniciativaService.buscarIniciativa(this.iniciativaBuscar).subscribe((data:any) => {
+    this.iniciativaService.buscarIniciativa().subscribe((data:any) => {
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {

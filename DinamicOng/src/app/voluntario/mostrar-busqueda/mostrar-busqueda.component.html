@@ -1,72 +1,53 @@
 <p>mostrar-busqueda works!</p>
 <div class="container" id="border">
-  <div *ngFor='let iniciativa of iniciativas'>
-    <div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="nombre">Nombre Iniciativa: </label>
-        <div class="col-sm-10">
-          <p>{{iniciativa.nombre}}</p>
-        </div>
-      </div>
-
-      <div class="margin">
-        <ngb-carousel>
-          <ng-template ngbSlide *ngFor="let item of iniciativa.imagenes">
-            <div class="picsum-img-wrapper">
-              <img [src]="item">
+  <table class="table table-bordered">
+    <tbody>
+      <tr *ngFor="let iniciativa of iniciativas">
+        <td>
+          <div class="">
+            <div class="row">
+              <div class="col-sm-1">
+                <ngb-carousel>
+                  <ng-template ngbSlide *ngFor="let item of iniciativa.imagenes">
+                    <div class="picsum-img-wrapper">
+                      <img [src]="item">
+                    </div>
+                  </ng-template>
+                </ngb-carousel>
+              </div>
+              <div class="col-sm-7">
+                {{iniciativa.nombre}}
+              </div>
+              <div class="col-sm-1">
+                <img (click)='navVerOng(iniciativa)' [src]="iniciativa.imagenPerfil">
+              </div>
+              <div class="col-sm-3">
+                {{iniciativa.nombreOng}}
+              </div>
             </div>
-          </ng-template>
-        </ngb-carousel>
-      </div>
-    </div>
-
-    <div>
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="nombre">Nombre Ong: </label>
-        <div class="col-sm-10">
-          <p>{{iniciativa.nombreOng}}</p>
-        </div>
-      </div>
-
-      <div class="margin">
-        <ngb-carousel>
-          <ng-template ngbSlide>
-            <div class="picsum-img-wrapper">
-              <img [src]="iniciativa.imagenPerfil">
+            <div class="row">
+              <label class="col-sm-2" for="fechaInicio">Descripción: </label>
+              <div class="col-sm-10">
+                {{iniciativa.descripcion}}
+              </div>
             </div>
-          </ng-template>
-        </ngb-carousel>
-      </div>
-    </div>
-
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label" for="fechaInicio">Descripción: </label>
-      <div class="col-sm-10">
-        <p>{{iniciativa.descripcion}}</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="fechaInicio">Fecha de Inicio: </label>
-        <div class="col-sm-10">
-          <p>{{iniciativa.fechaInicio}}</p>
-        </div>
-      </div>
-
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label" for="fechaFin">Fecha de fin: </label>
-        <div class="col-sm-10">
-          <p>{{iniciativa.fechaFinalizacion}}</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-sm-8"></div>
-    <div class="col-sm-1">
-      <a > <button class="btn btn-primary" type="button">Cancelar</button> </a>
-    </div>
-  </div>
+            <div class="row">
+              <div class="col-sm-6 row">
+                <label class="col-sm-3" for="fechaInicio">Fecha de Inicio: </label>
+                <div class="col-sm-3">
+                  {{iniciativa.fechaInicio}}
+                </div>
+              </div>
+              <div class="col-sm-6 row">
+                <label class="col-sm-3">Fecha de Finalización: </label>
+                <div class="col-sm-3">
+                  {{iniciativa.fechaFinalizacion}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

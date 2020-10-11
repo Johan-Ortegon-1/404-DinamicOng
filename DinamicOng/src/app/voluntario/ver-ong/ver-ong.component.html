@@ -1,1 +1,100 @@
-<p>ver-ong works!</p>
+<div class="container" id="border">
+
+  <div class="row">
+    <div class="form-group" class="col-sm-1">
+      <div>
+
+        <div>
+          <img [src]='ong.imagenPerfil'>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='col-sm-10 center'>
+      <div class="col-sm-10">
+        <p>{{ong.nombre}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="correo">Correo: </label>
+    <div class="col-sm-10">
+      <p>{{ong.correo}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Ubicación: </label>
+
+    <div class="col-sm-3">
+      <label for="pais">País </label>
+      <p>{{ong.ubicacion.pais}}</p>
+    </div>
+    <div class="col-sm-3">
+      <label for="ciudad">Ciudad </label>
+      <p>{{ong.ubicacion.ciudad}}</p>
+    </div>
+    <div class="col-sm-4">
+      <label for="direccion">Dirección </label>
+      <p>{{ong.ubicacion.direccion}}</p>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Teléfonos: </label>
+    <div class="col-sm-8">
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let tel of ong.telefonos">
+            <td>
+              {{tel}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="vision">Visión: </label>
+    <div class="col-sm-10">
+      <p>{{ong.vision}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="mision">Misión: </label>
+    <div class="col-sm-10">
+      <p>{{ong.mision}}</p>
+    </div>
+  </div>
+
+  <div class="row">
+      <h1 class="col-sm-12">Mis Iniciativas</h1>
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let ini of iniciativas">
+            <td>
+              <div class="row">
+                <div class="col-sm-2">
+                  <ngb-carousel>
+                      <ng-template ngbSlide *ngFor="let item of ini.imagenes">
+                          <div class="picsum-img-wrapper">
+                              <img class="big" [src]="item">
+                          </div>
+                      </ng-template>
+                  </ngb-carousel>
+                </div>
+                <div class="col-sm-4">
+                  {{ini.nombre}}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>

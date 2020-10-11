@@ -41,4 +41,9 @@ export class MostrarBusquedaComponent implements OnInit {
     this.iniciativas = iniciativas2;
     console.log(this.iniciativas);
   }
+
+  navVerOng(iniciativa: Iniciativa) {
+    localStorage.setItem('idOng', iniciativa.idOng);
+    this.router.navigate(["/voluntario/ver-ong"]);
+  }
 }

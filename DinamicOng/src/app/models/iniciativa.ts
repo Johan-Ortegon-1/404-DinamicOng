@@ -16,9 +16,11 @@ export class Iniciativa {
   public idiomasDeseables: Array<string>;
   public areasConocimientoRelacionadas: Array<string>;
   public participantes: Array<string>;
+  //lo necesito
   public idOng: string;
   public imagenPerfil: string;
   public nombreOng: string;
+
   public valoraciones: Array<Valoracion>;
   public solicitudes: Array<string>;
 

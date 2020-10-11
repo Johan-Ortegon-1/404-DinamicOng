@@ -16,8 +16,8 @@ export class IniciativaService {
   constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage,
     private ongService: OngService, private voluntarioService: VoluntarioService) { }
 
-  buscarIniciativa(iniciativa: Iniciativa) {
-    return this.firestore.collection("iniciativas", ref => ref.where('idOng', '==', iniciativa.idOng)).snapshotChanges();
+  buscarIniciativa() {
+    return this.firestore.collection("iniciativas").snapshotChanges();
   }
 
   crearIniciativa(iniciativa: Iniciativa) {

@@ -3,8 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
-
-
 import { OngComponent } from './ong.component';
 import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';

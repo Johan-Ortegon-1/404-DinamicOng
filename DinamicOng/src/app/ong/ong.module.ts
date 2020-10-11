@@ -12,7 +12,6 @@ import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario
 import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
-import {GoogleMapsModule} from '@angular/google-maps';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
 
 
@@ -21,7 +20,7 @@ import { AdministrarVoluntariosComponent } from './administrar-voluntarios/admin
     OngComponent,
     NavbarOngComponent,
     CrearIniciativaComponent,
-    BuscarVoluntarioComponent
+    BuscarVoluntarioComponent,
     VerIniciativasComponent,
     VerMiPerfilComponent,
     CrearIniciativaComponent,
@@ -33,7 +32,7 @@ import { AdministrarVoluntariosComponent } from './administrar-voluntarios/admin
     OngRoutingModule,
     MatIconModule,
     FormsModule, ReactiveFormsModule,
-    NgbModule, GoogleMapsModule,
+    NgbModule
   ]
 })
 export class OngModule { }
