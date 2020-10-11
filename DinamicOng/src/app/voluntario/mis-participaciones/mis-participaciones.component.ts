@@ -20,8 +20,8 @@ export class MisParticipacionesComponent implements OnInit {
     private router: Router, private iniciativaService: IniciativaService) { }
 
   ngOnInit(): void {
-    //const idVol = localStorage.getItem('uid');
-    const idVol = '1Hq9g93bToOJxUEf66TGpQknQ4s1';
+    const idVol = localStorage.getItem('uid');
+    //const idVol = '1Hq9g93bToOJxUEf66TGpQknQ4s1';
     this.participaciones = this.obtenerParticipaciones(idVol);
     console.log(this.participaciones);
   }
