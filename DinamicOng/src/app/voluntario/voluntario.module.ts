@@ -10,6 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.component';
 import { VerOngComponent } from './ver-ong/ver-ong.component';
+import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { VerOngComponent } from './ver-ong/ver-ong.component';
     NavbarVoluntarioComponent,
     BuscarIniciativaComponent,
     MostrarBusquedaComponent,
-    VerOngComponent
+    VerOngComponent,
+    VerMiPerfilComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,39 @@
+<div class="container" id="border">
+
+    <div class="row">
+        <h1 class="col-sm-12">Mis Iniciativas</h1>
+
+        <div *ngFor="let ini of iniciativas" class="container" id="border">
+            
+            <div class="form-group row">
+                <div class="margin">
+
+                    <ngb-carousel>
+                        <ng-template ngbSlide *ngFor="let item of imagenes">
+                            <div class="picsum-img-wrapper">
+                                <img class="big" [src]="item">
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+
+                </div>
+
+
+                <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+                {{ini.nombre}}
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-8"></div>
+        <div class="col-sm-2">
+            <button onclick="location.href = 'ong/crear-iniciativa';" id="myButton" class="btn btn-primary">Crear
+                Iniciativas</button>
+            <!-- <button (click)="crearIni()">Crear Iniciativa </button> -->
+
+        </div>
+    </div>
+
+</div>

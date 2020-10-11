@@ -10,12 +10,13 @@ import { environment } from '../environments/environment.prod';
 import { LoginComponent } from './auth/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { VerIniciativaComponent } from './iniciativa/ver-iniciativa/ver-iniciativa.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

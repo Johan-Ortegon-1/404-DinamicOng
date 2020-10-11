@@ -36,7 +36,7 @@ export class CrearIniciativaComponent implements OnInit {
 
   ngOnInit(): void {
     this.iniciativaNueva = new Iniciativa();
-    this.hoy = this.obtenerFechaHoy(2);
+    this.hoy = this.iniciativaService.obtenerFechaHoy(2);
     this.opcAreas = Object.keys(this.areasConoc);
     this.areaNueva = AreasConocimiento.Ingenieria;
 
@@ -63,30 +63,6 @@ export class CrearIniciativaComponent implements OnInit {
 
       reader.readAsDataURL($event.target.files[0]);
     }
-  }
-
-  obtenerFechaHoy(formato: number) {
-    const dateOb = new Date();
-
-    // adjust 0 before single digit date
-    const date = ("0" + dateOb.getDate()).slice(-2);
-
-    // current month
-    const month = ("0" + (dateOb.getMonth() + 1)).slice(-2);
-
-    // current year
-    const year = dateOb.getFullYear();
-
-    let result = null;
-
-    if (formato == 1) {
-      result = date + '/' + month + '/' + year;
-    } else if (formato == 2) {
-      result = year + '-' + month + '-' + date;
-    }
-
-    return result;
-
   }
 
   addAreaConoc() {

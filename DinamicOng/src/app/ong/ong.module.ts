@@ -9,7 +9,11 @@ import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario.component';
-
+import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
+import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
+import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
+import {GoogleMapsModule} from '@angular/google-maps';
+import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
 
 
 @NgModule({
@@ -18,13 +22,18 @@ import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario
     NavbarOngComponent,
     CrearIniciativaComponent,
     BuscarVoluntarioComponent
+    VerIniciativasComponent,
+    VerMiPerfilComponent,
+    CrearIniciativaComponent,
+    VerIniciativaComponent,
+    AdministrarVoluntariosComponent
   ],
   imports: [
     CommonModule,
     OngRoutingModule,
     MatIconModule,
     FormsModule, ReactiveFormsModule,
-    NgbModule
+    NgbModule, GoogleMapsModule,
   ]
 })
 export class OngModule { }

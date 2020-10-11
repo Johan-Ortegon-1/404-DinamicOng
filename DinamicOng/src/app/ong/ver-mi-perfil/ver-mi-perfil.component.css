@@ -1,0 +1,139 @@
+h1 {
+  text-align: left;
+}
+
+#border {
+  border-radius: 5px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+picsum-img-wrapper {
+  padding: 15px;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+
+
+button{
+  width: auto;
+  float: right;
+  text-align: center;
+}
+
+.primera{
+  width: 1000px;
+  height: 300px;
+  background-color: red;
+  margin : 30px;
+  padding: 20px;
+  margin-top: 50px;
+}
+
+.seccion{
+  width: 1000px;
+  height: 300px;
+  background-color: blue;
+  margin: 30px;
+}
+
+
+.foto{
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+  float: left;
+  margin-left: 50px;
+  margin-top: 20px;
+  border: solid;
+  border-color: black;
+}
+
+.nombre{
+  width: 500px;
+  height: 100px;
+  background-color: blueviolet;
+  float: right;
+  margin-top: 50px;
+  margin-right: 50px;
+  padding-top:30px;
+}
+
+textarea{
+  margin: 20px;
+  width: 950px;
+  height: 220px;
+}
+
+.ubicacion{
+  width: 600px;
+  height: 600px;
+  margin: 10px;
+  background-color: brown;
+  margin-left: 200px;
+  border:solid;
+  border-color: black;
+}
+
+.seccionx{
+  background-color: blue;
+}
+
+.seccionx textarea{
+  margin: 5px;
+  width: 900px;
+  height: auto;
+  background-color: blueviolet;
+}
