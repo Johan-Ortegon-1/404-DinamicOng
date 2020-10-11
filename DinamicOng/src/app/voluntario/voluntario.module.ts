@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatIconModule } from '@angular/material/icon';
 import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.component';
+import { VerOngComponent } from './ver-ong/ver-ong.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.co
     VoluntarioComponent,
     NavbarVoluntarioComponent,
     BuscarIniciativaComponent,
-    MostrarBusquedaComponent
+    MostrarBusquedaComponent,
+    VerOngComponent
   ],
   imports: [
     CommonModule,
