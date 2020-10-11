@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { VoluntarioRoutingModule } from './voluntario-routing.module';
 import { VoluntarioComponent } from './voluntario.component';
+import { NavbarVoluntarioComponent } from '../shared/navbar-voluntario/navbar-voluntario.component';
+import { MisParticipacionesComponent } from './mis-participaciones/mis-participaciones.component';
+import { MatIconModule } from '@angular/material/icon';
 import { NavbarVoluntarioComponent } from './shared/navbar-voluntario/navbar-voluntario.component';
 import { BuscarIniciativaComponent } from './buscar-iniciativa/buscar-iniciativa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +15,6 @@ import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.co
 import { VerOngComponent } from './ver-ong/ver-ong.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 
-
 @NgModule({
   declarations: [
     VoluntarioComponent,
@@ -20,6 +22,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     BuscarIniciativaComponent,
     MostrarBusquedaComponent,
     VerOngComponent,
+    MisParticipacionesComponent,
     VerMiPerfilComponent
   ],
   imports: [

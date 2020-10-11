@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Iniciativa } from '../../models/iniciativa';
 import { IniciativaService } from '../services/iniciativa.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ong } from '../../models/ong';
 import { OngService } from '../../ong/services/ong.service';
 import { Voluntario } from '../../models/voluntario';
 import { Valoracion } from '../../models/valoracion';
-import { Solicitud } from 'src/app/models/solicitud';
 
 @Component({
   selector: 'app-ver-iniciativa',
@@ -30,6 +28,7 @@ export class VerIniciativaComponent implements OnInit {
   public participante: boolean;
   public empezo: boolean;
   public comento: boolean;
+  public solicito: boolean;
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
     private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) {
@@ -43,6 +42,7 @@ export class VerIniciativaComponent implements OnInit {
     this.imagenes = [];
     this.participantes = [];
     this.creatorOng = false;
+    this.solicito = false;
     this.comento = false;
     this.participante = false;
     this.empezo = false;
@@ -68,16 +68,6 @@ export class VerIniciativaComponent implements OnInit {
 
         if (this.inicativa.idOng == idOng) {
           this.creatorOng = true;
-          this.ongService.consultarOngByID(this.inicativa.idOng).then(resp => {
-
-            this.creador = resp.data() as Ong;
-            this.ongService.obtenerImagenPerfil(this.creador.id).then(url =>{
-
-              this.creador.imagenPerfil = url;
-
-            });
-
-          });
         } else {
 
           this.ongService.consultarOngByID(this.inicativa.idOng).then(resp => {
@@ -97,12 +87,32 @@ export class VerIniciativaComponent implements OnInit {
         this.isOng = false;
         const idVol = localStorage.getItem('uid');
 
+        this.ongService.consultarOngByID(this.inicativa.idOng).then(resp => {
+
+          this.creador = resp.data() as Ong;
+          this.ongService.obtenerImagenPerfil(this.creador.id).then(url =>{
+
+            this.creador.imagenPerfil = url;
+
+          });
+
+        });
+
         if (this.inicativa.participantes.indexOf(idVol) != -1) {
 
           this.participante = true;
           this.yaComento(idVol);
 
+        } else {
+
+          this.iniciativaService.consultarSolicitud(idVol, this.inicativa.id).then(resp => {
+            this.solicito = true;
+          }, error => {
+            console.log(error);
+            this.solicito = false;
+          });
         }
+
       } else {
         this.router.navigate(['']);
       }
@@ -149,6 +159,7 @@ export class VerIniciativaComponent implements OnInit {
       this.valoracionNueva.idValorador = localStorage.getItem('uid');
       this.inicativa.valoraciones.push(this.valoracionNueva);
       this.iniciativaService.updateIniciativa(this.inicativa);
+      this.comento = true;
   }
 
   yaComento(idPart: string) {
@@ -161,8 +172,8 @@ export class VerIniciativaComponent implements OnInit {
   }
 
   solicitarUnirse() {
-    const idVol = "1Hq9g93bToOJxUEf66TGpQknQ4s1";
-    //const idVol = localStorage.getItem('uid');
+    //const idVol = "1Hq9g93bToOJxUEf66TGpQknQ4s1";
+    const idVol = localStorage.getItem('uid');
     this.iniciativaService.solicitarUnirse(this.inicativa, idVol);
   }
 
