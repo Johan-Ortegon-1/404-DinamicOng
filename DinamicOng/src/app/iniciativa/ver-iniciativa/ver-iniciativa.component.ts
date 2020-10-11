@@ -159,6 +159,7 @@ export class VerIniciativaComponent implements OnInit {
       this.valoracionNueva.idValorador = localStorage.getItem('uid');
       this.inicativa.valoraciones.push(this.valoracionNueva);
       this.iniciativaService.updateIniciativa(this.inicativa);
+      this.comento = true;
   }
 
   yaComento(idPart: string) {
