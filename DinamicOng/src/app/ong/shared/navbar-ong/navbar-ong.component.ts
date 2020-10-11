@@ -15,9 +15,25 @@ export class NavbarOngComponent implements OnInit {
     false
   ];
 
-  constructor(private route: Router) { }
+  constructor(private route: Router) {
+    this.route.events.subscribe(val => {
+      this.actualizarCambios();
+    });
+  }
 
   ngOnInit(): void {
+    this.actualizarCambios();
+  }
+
+  actualizarCambios() {
+
+    this.selected = [
+      false,
+      false,
+      false,
+      false
+    ];
+
     const ruta = this.route.url;
 
     if (ruta == '/ong/inicio') {
@@ -29,8 +45,6 @@ export class NavbarOngComponent implements OnInit {
     } else if (ruta == '/ong/administrar-voluntarios') {
       this.selected[3] = true;
     }
-
-    // console.log(ruta);
   }
 
 }

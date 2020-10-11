@@ -9,7 +9,6 @@ import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
-import {GoogleMapsModule} from '@angular/google-maps';
 
 
 @NgModule({
@@ -24,7 +23,7 @@ import {GoogleMapsModule} from '@angular/google-maps';
     OngRoutingModule,
     MatIconModule,
     FormsModule, ReactiveFormsModule,
-    NgbModule, GoogleMapsModule,
+    NgbModule,
   ]
 })
 export class OngModule { }

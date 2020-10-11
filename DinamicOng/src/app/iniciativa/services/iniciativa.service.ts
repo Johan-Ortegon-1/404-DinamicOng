@@ -140,4 +140,9 @@ export class IniciativaService {
     return id;
   }
 
+  consultarSolicitud(idVol: string, idInic: string) {
+    return this.firestore.collection('solicitudes').ref.where('idVoluntario', '==', idVol)
+      .where('idIniciativa', '==', idInic).get();
+  }
+
 }

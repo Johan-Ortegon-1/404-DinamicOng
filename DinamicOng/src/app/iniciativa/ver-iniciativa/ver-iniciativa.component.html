@@ -5,8 +5,10 @@
     </div>
 
     <div class="row" [hidden]='creatorOng'>
-      <h1 class="col-sm-10">{{inicativa.nombre}}</h1>
-      <img class="xsmall col-sm-1" [src] = "creador.imagenPerfil">
+      <h1 class="col-sm-9">{{inicativa.nombre}}</h1>
+      <div class="col-sm-1 right">
+        <img class="xsmall" [src] = "creador.imagenPerfil">
+      </div>
       <h1 class="col-sm-1">{{creador.nombre}}</h1>
     </div>
 
@@ -183,13 +185,14 @@
       </tfoot>
     </table>
 
-    <div class="row" [hidden]="isOng || participante">
-      <div class="col-sm-8">
+    <div class="row" [hidden]="isOng">
+      <div class="col-sm-8" [hidden]="solicito || participante">
       </div>
+      <div class="col-sm-10"[hidden]="!solicito && !participante"></div>
       <div class="col-sm-2">
         <a><button class="btn btn-primary" type="button">Contactar ONG</button></a>
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2" [hidden]="solicito || participante">
         <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
       </div>
     </div>
