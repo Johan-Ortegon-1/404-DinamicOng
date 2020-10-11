@@ -1,15 +1,15 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Ong } from "src/app/models/ong";
-import { Voluntario } from "src/app/models/voluntario";
-import { Conocimiento } from "src/app/models/conocimiento";
-import { AuthService } from "../../services/auth.service";
+import { Component, Input, OnInit } from '@angular/core';
+import { Ong } from 'src/app/models/ong';
+import { Voluntario } from 'src/app/models/voluntario';
+import { Conocimiento } from 'src/app/models/conocimiento';
+import { AuthService } from '../../services/auth.service';
 import { AreasConocimiento } from 'src/app/models/enumAreasConocimiento';
 import { Idiomas } from 'src/app/models/enumIdiomas';
 
 @Component({
-  selector: "app-register-voluntario",
-  templateUrl: "./register-voluntario.component.html",
-  styleUrls: ["./register-voluntario.component.css"],
+  selector: 'app-register-voluntario',
+  templateUrl: './register-voluntario.component.html',
+  styleUrls: ['./register-voluntario.component.css'],
 })
 export class RegisterVoluntarioComponent implements OnInit {
   public ong: Ong;
@@ -57,13 +57,13 @@ export class RegisterVoluntarioComponent implements OnInit {
       console.log(result);
       if (result == null) {
         alert(
-          "ERROR: Ya existe un usuario con ese correo, por favor ingrese otro"
+          'ERROR: Ya existe un usuario con ese correo, por favor ingrese otro'
         );
       } else {
         // Avanzar a la pantalla de la Voluntario
       }
     } else {
-      alert("ERROR: Las contraseñas no coinciden");
+      alert('ERROR: Las contraseñas no coinciden');
     }
   }
 
@@ -82,22 +82,22 @@ export class RegisterVoluntarioComponent implements OnInit {
   }
 
   addTelefono() {
-    if (this.telefonoNuevo !== "" && this.telefonoNuevo != null) {
+    if (this.telefonoNuevo !== '' && this.telefonoNuevo != null) {
       if (this.voluntario.telefonos.indexOf(this.telefonoNuevo) === -1) {
         const str = String(this.telefonoNuevo);
-        if (!str.includes("-")) {
+        if (!str.includes('-')) {
           this.voluntario.telefonos.push(this.telefonoNuevo);
-          this.telefonoNuevo = "";
-          this.errorTelefonos = "";
+          this.telefonoNuevo = '';
+          this.errorTelefonos = '';
         } else {
-          this.errorTelefonos = "Ingrese solo números";
+          this.errorTelefonos = 'Ingrese solo números';
         }
       } else {
         this.errorTelefonos =
-          "El teléfono ya existe, ingrese un teléfono distinto";
+          'El teléfono ya existe, ingrese un teléfono distinto';
       }
     } else {
-      this.errorTelefonos = "Ingrese un teléfono";
+      this.errorTelefonos = 'Ingrese un teléfono';
     }
   }
 

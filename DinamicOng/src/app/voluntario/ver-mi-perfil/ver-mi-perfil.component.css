@@ -1,20 +1,94 @@
-.contenedor{
-  width: 1000px;
-  height: 2400px;
-  background-color: black;
-  padding: 20px;
-  margin-left: 50px;
+h1 {
+  text-align: left;
+}
+
+#border {
+  border-radius: 5px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+picsum-img-wrapper {
+  padding: 15px;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+
+
+button{
+  width: auto;
+  float: right;
+  text-align: center;
 }
 
 .primera{
-  width: 900px;
+  width: 1000px;
   height: 300px;
-  background-color: white;
+  background-color: red;
   margin : 30px;
   padding: 20px;
   margin-top: 50px;
-
 }
+
+.seccion{
+  width: 1000px;
+  height: 300px;
+  background-color: blue;
+  margin: 30px;
+}
+
 
 .foto{
   width: 200px;
@@ -23,6 +97,8 @@
   float: left;
   margin-left: 50px;
   margin-top: 20px;
+  border: solid;
+  border-color: black;
 }
 
 .nombre{
@@ -35,17 +111,11 @@
   padding-top:30px;
 }
 
-.nombre h1{
-  text-align: center;
-}
-
-div{
+textarea{
+  margin: 20px;
   width: 950px;
-  height: 300px;
-  background-color: blue;
-  margin: 10px;
+  height: 220px;
 }
-
 
 .ubicacion{
   width: 600px;
@@ -53,27 +123,18 @@ div{
   margin: 10px;
   background-color: brown;
   margin-left: 200px;
+  border:solid;
+  border-color: black;
 }
 
-textarea{
-  margin: 20px;
-  width: 900px;
-  height: 220px;
+.seccionx{
+  background-color: blue;
 }
 
-.normal{
+.seccionx textarea{
   margin: 5px;
   width: 900px;
-  height: 40px;
+  height: auto;
+  background-color: blueviolet;
 }
 
-.media{
-  width: 950px;
-  height: 500px;
-  background-color: blue;
-  margin: 10px;
-}
-
-button{
-  float: right;
-}
