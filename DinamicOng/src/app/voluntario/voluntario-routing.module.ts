@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { VoluntarioComponent } from './voluntario.component';
-import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
+import { VerMiPerfilComponent } from "./ver-mi-perfil/VerMiPerfilComponent";
 
 const routes: Routes = [
   {

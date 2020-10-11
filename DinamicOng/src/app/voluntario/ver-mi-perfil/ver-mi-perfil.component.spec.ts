@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerMiPerfilComponent } from './ver-mi-perfil.component';
+import { VerMiPerfilComponent } from "./VerMiPerfilComponent";
 
 describe('VerMiPerfilComponent', () => {
   let component: VerMiPerfilComponent;
