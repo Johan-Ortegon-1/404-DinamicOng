@@ -18,6 +18,10 @@ export class AuthService {
 
   constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore, private firestorage: AngularFireStorage) { }
 
+  buscarRolByCorreo(correo: string) {
+    return this.firestore.collection("usuarios", ref => ref.where('correo', '==', correo)).snapshotChanges();
+  }
+
   // Función para realizar el login
   async login(email: string, password: string) {
     try {
@@ -70,9 +74,21 @@ export class AuthService {
 
   // Función que crea un usuario en Firestore
   createUsuario(usuario: Usuario) {
-    this.subirImagenPerfil(usuario);
+    if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }
+    usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));
     return this.firestore.collection('usuarios').doc(usuario.id).set(param);
+  }
+
+  updateUsuario(usuario: Usuario) {
+    if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }
+    usuario.imagenPerfil = '';
+    const param = JSON.parse(JSON.stringify(usuario));
+    return this.firestore.collection('usuarios').doc(usuario.id).update(param);
   }
 
   // Función para realizar el registro con usuario y contraseña

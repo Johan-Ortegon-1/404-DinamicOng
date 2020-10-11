@@ -5,6 +5,7 @@ import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.compo
 
 
 import { OngComponent } from './ong.component';
+import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 
 const routes: Routes = [
@@ -13,6 +14,9 @@ const routes: Routes = [
     children: [
       {
         path: 'crear-iniciativa', component: CrearIniciativaComponent
+      },
+      {
+        path: 'iniciativa/:id', component: VerIniciativaComponent
       },
       {
         path: 'ver-iniciativas', component: VerIniciativasComponent

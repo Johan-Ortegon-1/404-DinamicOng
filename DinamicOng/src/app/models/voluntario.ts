@@ -1,17 +1,16 @@
-import { Usuario } from './usuario';
-import { Conocimiento } from './conocimiento';
+import {​​ Usuario }​​ from './usuario';
+import {​​ Conocimiento }​​ from './conocimiento';
 
-export class Voluntario extends Usuario {
+export class Voluntario extends Usuario {​​
 
-    public habilidades: Conocimiento[];
-    public idiomas: string[];
-    public fechaNacimiento: Date;
+  public habilidades: Conocimiento[];
+  public idiomas: string[];
+  public fechaNacimiento: Date;
 
-
-    constructor() {
-        super();
-        this.rol = 'Voluntario';
-        this.habilidades = [];
-        this.idiomas = [];
-    }
-}
+  constructor() {​​
+    super();
+    this.rol = 'Voluntario';
+    this.habilidades = [];
+    this.idiomas = [];
+  }​​
+}​​

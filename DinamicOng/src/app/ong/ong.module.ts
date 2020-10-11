@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 
@@ -20,6 +21,8 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     CrearIniciativaComponent,
     VerIniciativasComponent,
     VerMiPerfilComponent
+    CrearIniciativaComponent,
+    VerIniciativaComponent
   ],
   imports: [
     CommonModule,
