@@ -4,17 +4,12 @@
         <h1 class="col-sm-12">Administrar Voluntarios</h1>
 
         <div *ngFor="let ini of iniciativas" class="container">
-            <div class="form-group row container" id="border" style='text-align: center;'  *ngFor ="let vol of ini.participantes" style="display:flex; flex-direction: row; justify-content: center; align-items: center"
-            >
-                <label class="col-sm-3" for="nombreVol">Nombre Voluntario: </label>
-                <p>{{vol}}</p><br>
-                <label class="col-sm-2 col-form-label" for="nombreIni">Nombre Iniciativa: </label>
-                <p>{{ini.nombre}}</p><br>
-                &nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-               
+            <div class="form-group row container" id="border" style='text-align: center;'
+                *ngFor="let vol of ini.participantes"
+                style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <label class="col-sm-2 col-form-label" for="nombreVol">{{vol}} </label>
+
+                <label class="col-sm-2 col-form-label" for="nombreIni">{{ini.nombre}} </label>
                 <button type="submit" id="buttona">Aceptar</button>
                 &nbsp;
                 &nbsp;
@@ -22,5 +17,5 @@
             </div>
         </div>
     </div>
- 
+
 </div>

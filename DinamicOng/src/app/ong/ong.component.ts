@@ -11,11 +11,11 @@ export class OngComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('uid') == null) {
-      this.router.navigate(['']);
-    } else if (localStorage.getItem('rol') == 'Voluntario') {
-      this.router.navigate(['/voluntario']);
-    }
+    // if (localStorage.getItem('uid') == null) {
+    //   this.router.navigate(['']);
+    // } else if (localStorage.getItem('rol') == 'Voluntario') {
+    //   this.router.navigate(['/voluntario']);
+    // }
   }
 
 }
