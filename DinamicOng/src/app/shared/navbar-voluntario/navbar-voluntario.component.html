@@ -8,7 +8,7 @@
 
       <div class="col-sm-7 vcenter">
         <ul class="menu">
-          <li [ngClass]="{'selected': selected[0] == true}"><a>Inicio</a></li>
+          <li [ngClass]="{'selected': selected[0] == true}"><a [routerLink]="['/voluntario']">Inicio</a></li>
           <li [ngClass]="{'selected': selected[1] == true}"><a [routerLink] = "['/voluntario/mi-perfil']">Mi Perfil</a></li>
           <li [ngClass]="{'selected': selected[2] == true}"><a>Mis Suscripciones</a></li>
           <li [ngClass]="{'selected': selected[3] == true}"><a [routerLink] = "['/voluntario/participaciones']">Mis Participaciones</a></li>

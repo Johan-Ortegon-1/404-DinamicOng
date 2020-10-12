@@ -13,12 +13,13 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    // if (localStorage.getItem('uid') != null) {
-    //   if (localStorage.getItem('rol') == 'Ong') {
-    //     this.router.navigate(['/ong']);
-    //   } else if (localStorage.getItem('rol') == 'Voluntario') {
-    //     this.router.navigate(['/voluntario']);
-    //   }
-    // }
+    /*
+    if (localStorage.getItem('uid') != null) {
+      if (localStorage.getItem('rol') == 'Ong') {
+        this.router.navigate(['/ong']);
+      } else if (localStorage.getItem('rol') == 'Voluntario') {
+        this.router.navigate(['/voluntario']);
+      }
+    }*/
   }
 }

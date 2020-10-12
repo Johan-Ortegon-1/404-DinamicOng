@@ -11,6 +11,7 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    /*
     if (localStorage.getItem('uid') != null) {
       if (localStorage.getItem('rol') == 'Ong') {
         this.router.navigate(['/ong']);
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/voluntario']);
       }
     }
+    */
   }
 
 }
