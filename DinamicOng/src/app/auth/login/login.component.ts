@@ -16,6 +16,18 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private auth: AuthService) { }
 
+  ngOnInit(): void {
+    if (localStorage.getItem('uid')) {
+      const rol = localStorage.getItem('rol');
+      if (rol == 'Ong') {
+        this.router.navigate(['/ong']);
+      } else if (rol == 'Voluntario') {
+        this.router.navigate(['/voluntario']);
+      }
+    }
+
+  }
+
   doLogin() {
     console.log(this.user + ' - ' + this.password);
     this.auth.login(this.user, this.password).then(response=> {
@@ -25,22 +37,21 @@ export class LoginComponent implements OnInit {
             let usr = elem.payload.doc.data();
             localStorage.setItem('uid', usr.id);
             if(usr.rol == 'Ong') {
-              //navegar a inicio ong
+              localStorage.setItem('rol', 'Ong');
+              this.router.navigate(['/ong']);
               console.log('nav ong');
             }
             else {
-              //navegar a inicio voluntario
+              localStorage.setItem('rol', 'Voluntario');
+              this.router.navigate(['/voluntario']);
               console.log('nav voluntario');
             }
           });
         });
       }
       else {
-        alert('error en log in')
+        alert('error en log in');
       }
     });
-  }
-
-  ngOnInit(): void {
   }
 }

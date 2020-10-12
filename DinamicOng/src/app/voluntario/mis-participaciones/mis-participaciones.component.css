@@ -1,0 +1,38 @@
+.center * {
+  text-align: center;
+}
+
+.vcenter {
+  display: block;
+  margin-top: auto;
+}
+
+.centerTable {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+
+.wtable {
+  width: 80%;
+  overflow: scroll;
+}
+
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%; min-height: 550px;
+}
+
+label, h1 {
+  font-weight: bold;
+}
+
+.small {
+  max-width: 30px;
+  max-height: 30px;
+}
+

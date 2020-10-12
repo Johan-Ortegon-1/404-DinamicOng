@@ -16,6 +16,10 @@ export class IniciativaService {
   constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage,
     private ongService: OngService, private voluntarioService: VoluntarioService) { }
 
+  buscarIniciativa() {
+    return this.firestore.collection("iniciativas").snapshotChanges();
+  }
+
   crearIniciativa(iniciativa: Iniciativa) {
     if (localStorage.getItem('uid') != null) {
       const idOng = localStorage.getItem('uid');
@@ -138,6 +142,11 @@ export class IniciativaService {
     const param = JSON.parse(JSON.stringify(solicitud));
     this.firestore.collection('solicitudes').doc(id).set(param);
     return id;
+  }
+
+  consultarSolicitud(idVol: string, idInic: string) {
+    return this.firestore.collection('solicitudes').ref.where('idVoluntario', '==', idVol)
+      .where('idIniciativa', '==', idInic).get();
   }
 
 }

@@ -25,5 +25,4 @@ export class OngService {
   obtenerImagenPerfil(id: string) {
     return this.firestorage.storage.ref().child('ImagenPerfil-' + id).getDownloadURL();
   }
-
 }
