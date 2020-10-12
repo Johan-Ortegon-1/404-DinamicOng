@@ -22,6 +22,7 @@ export class VerIniciativasComponent implements OnInit {
 
   public iniciativas: Array<Iniciativa> = [];
   public imagenes: Array<string>;
+  public imagenActual: string;
   public creadas = false;
 
 
@@ -58,6 +59,7 @@ export class VerIniciativasComponent implements OnInit {
       nuevaIniciativa = resp.data() as Iniciativa;
       this.iniciativas.push(nuevaIniciativa);
       this.imagenes = this.iniciativaService.obtenerImagenesIniciativa(nuevaIniciativa.id);
+      this.imagenActual = this.imagenes[0];
     }, error => {
       console.log(error);
     });

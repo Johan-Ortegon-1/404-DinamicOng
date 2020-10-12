@@ -4,25 +4,25 @@
         <h1 class="col-sm-12">Mi buzón</h1>
 
         <div *ngFor="let soli of solicitudes" class="container">
-            <div *ngIf="soli.aceptado"class="form-group row container" id="border" style='text-align: center;'
+            <div *ngIf="soli.aceptado" class="form-group row container" id="border" style='text-align: center;'
                 style="display:flex; flex-direction: row; justify-content: center; align-items: center">
                 <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
-                class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
-                notifications</mat-icon>
+                    class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
+                    notifications</mat-icon>
                 <label class="col-sm-2 col-form-label" for="nombreVol">{{soli.idOng}} </label>
                 <label class="col-sm-2 col-form-label" for="nombreVol">{{soli.idIniciativa}} </label>
                 <p>Has Sido Aceptado!</p>
-               
+
             </div>
-            <div *ngIf="!soli.aceptado"class="form-group row container" id="border" style='text-align: center;'
+            <div *ngIf="!soli.aceptado" class="form-group row container" id="border" style='text-align: center;'
                 style="display:flex; flex-direction: row; justify-content: center; align-items: center">
                 <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
-                class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
-                notifications</mat-icon>
+                    class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
+                    notifications</mat-icon>
                 <label class="col-sm-2 col-form-label" for="nombreVol">{{soli.idOng}} </label>
                 <label class="col-sm-2 col-form-label" for="nombreVol">{{soli.idIniciativa}} </label>
                 <p>Has Sido Rechazado</p>
-               
+
             </div>
         </div>
     </div>

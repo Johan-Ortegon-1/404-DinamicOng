@@ -1,7 +1,7 @@
 <div class="container" id="border">
 
     <div class="row">
-        <h1 class="col-sm-12">Mis Iniciativas</h1>
+        <h1 id="titulo" class="col-sm-12">Mis Iniciativas</h1>
 
         <div *ngFor="let ini of iniciativas" class="container" id="border">
             
@@ -18,9 +18,8 @@
 
                 </div>
 
-
-                <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
-                {{ini.nombre}}
+                <label id="titulo_menor" class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+                <p id="contenido_titulo_menor"> {{ini.nombre}} </p>
             </div>
         </div>
     </div>
