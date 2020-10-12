@@ -1,79 +1,186 @@
-.contenedor{
-  width: 1000px;
-  height: 2400px;
-  background-color: black;
-  padding: 20px;
-  margin-left: 50px;
+h1 {
+  text-align: left;
+  font-weight: 500;
+  font-size: 20;
+}
+
+#border {
+  border-radius: 5px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+img {
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+picsum-img-wrapper {
+  padding: 15px;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+button{
+  width: auto;
+  float: right;
+  text-align: center;
 }
 
 .primera{
-  width: 900px;
+  width: auto;
   height: 300px;
-  background-color: white;
   margin : 30px;
   padding: 20px;
   margin-top: 50px;
-
+  display:flex ;
 }
+
+.seccion{
+  width: 1000px;
+  height: 300px;
+  margin: 30px;
+  display: flex;
+}
+
 
 .foto{
   width: 200px;
   height: 200px;
-  background-color: aqua;
   float: left;
   margin-left: 50px;
   margin-top: 20px;
+  border: solid;
+  border-color: black;
 }
 
 .nombre{
   width: 500px;
   height: 100px;
-  background-color: blueviolet;
   float: right;
   margin-top: 50px;
   margin-right: 50px;
   padding-top:30px;
 }
 
-.nombre h1{
-  text-align: center;
-}
-
-div{
+textarea{
+  margin: 20px;
   width: 950px;
-  height: 300px;
-  background-color: blue;
-  margin: 10px;
+  height: 220px;
+  font-size: 30px;
+  border: none;
 }
-
 
 .ubicacion{
   width: 600px;
   height: 600px;
   margin: 10px;
-  background-color: brown;
   margin-left: 200px;
+  border:solid;
+  border-color: black;
 }
 
-textarea{
+.seccionx{
+
+  margin-left: 30px;
+}
+
+.seccionx textarea{
   margin: 20px;
   width: 900px;
-  height: 220px;
+  height: auto;
+}
+h2{
+
+  text-align: center;
+  font-size: 50px;
 }
 
-.normal{
-  margin: 5px;
+table{
   width: 900px;
-  height: 40px;
+  margin:auto;
+  margin-top: 30px;
+  margin-left: 40px;
+  margin-right: 40px;
+  border: 4px solid black;
+  border-collapse: collapse;
+
 }
 
-.media{
-  width: 950px;
-  height: 500px;
-  background-color: blue;
-  margin: 10px;
+tr:nth-child(odd) {
+  background-color:white;
+  color:black;
+  border: solid;
+}
+tr:nth-child(even) {
+  background-color:white;
+  color:black;
+  border: solid;
+}
+th {
+  font-size: 25px;
+  color :white;
+  background-color:gray;
+  border: 4px solid;
 }
 
-button{
-  float: right;
+th,td{
+  width: 200px;
+  height: 10px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.tabla{
+  width: auto;
+  height: 250px;
+  margin-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
