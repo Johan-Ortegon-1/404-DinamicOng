@@ -7,6 +7,7 @@ import { Ong } from 'src/app/models/ong';
 import { Voluntario } from 'src/app/models/voluntario';
 import { Usuario } from '../../models/usuario';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class AuthService {
 
   public user: User;
 
-  constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore, private firestorage: AngularFireStorage) { }
+  constructor(public afAuth: AngularFireAuth, private firestore: AngularFirestore, private firestorage: AngularFireStorage, private router: Router) { }
 
   buscarRolByCorreo(correo: string) {
     return this.firestore.collection("usuarios", ref => ref.where('correo', '==', correo)).snapshotChanges();
@@ -105,7 +106,9 @@ export class AuthService {
   // Función para realizar el logout
   async logout() {
     try {
-      await this.afAuth.signOut();
+      await this.afAuth.signOut().then(()=>{
+        this.router.navigate(['/login']);
+      });
     } catch (error) {
       console.log(error);
     }

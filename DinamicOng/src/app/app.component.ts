@@ -13,6 +13,8 @@ export class AppComponent {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
+
+    this.router.navigate(['/login']);
     /*
     if (localStorage.getItem('uid') != null) {
       if (localStorage.getItem('rol') == 'Ong') {

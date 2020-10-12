@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar-ong',
@@ -15,7 +16,7 @@ export class NavbarOngComponent implements OnInit {
     false
   ];
 
-  constructor(private route: Router) {
+  constructor(private route: Router, private auth: AuthService) {
     this.route.events.subscribe(val => {
       this.actualizarCambios();
     });
@@ -45,6 +46,12 @@ export class NavbarOngComponent implements OnInit {
     } else if (ruta == '/ong/administrar-voluntarios') {
       this.selected[3] = true;
     }
+  }
+
+  logout(){
+
+    localStorage.clear();
+    this.auth.logout();
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-navbar-voluntario',
@@ -15,7 +16,7 @@ export class NavbarVoluntarioComponent implements OnInit {
     false
   ];
 
-  constructor(private route: Router) {
+  constructor(private route: Router,private auth: AuthService) {
     this.route.events.subscribe(val => {
       this.actualizarCambios();
     });
@@ -49,12 +50,9 @@ export class NavbarVoluntarioComponent implements OnInit {
 
 
   logout(){
-    /*
-      return this.afAuth.auth.signOut().then(() => {
-        this.route.navigate(['sign-in']);
-      })*/
 
-      this.route.navigate(['']);
+    localStorage.clear();
+    this.auth.logout();
   }
 
 }
