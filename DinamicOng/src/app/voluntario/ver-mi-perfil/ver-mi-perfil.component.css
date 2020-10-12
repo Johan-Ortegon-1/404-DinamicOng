@@ -1,7 +1,7 @@
 h1 {
   text-align: left;
   font-weight: 500;
-  font-size: 20;
+  font-size: 10;
 }
 
 #border {
@@ -75,7 +75,7 @@ button{
 
 .primera{
   width: auto;
-  height: 300px;
+  height: 500px;
   margin : 30px;
   padding: 20px;
   margin-top: 50px;
@@ -91,8 +91,8 @@ button{
 
 
 .foto{
-  width: 200px;
-  height: 200px;
+  width: 420px;
+  height: 400px;
   float: left;
   margin-left: 50px;
   margin-top: 20px;
@@ -101,7 +101,7 @@ button{
 }
 
 .nombre{
-  width: 500px;
+  width: 400px;
   height: 100px;
   float: right;
   margin-top: 50px;
@@ -139,7 +139,7 @@ textarea{
 h2{
 
   text-align: center;
-  font-size: 50px;
+  font-size: 20px;
 }
 
 table{
