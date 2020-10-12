@@ -47,4 +47,14 @@ export class NavbarVoluntarioComponent implements OnInit {
     }
   }
 
+
+  logout(){
+    /*
+      return this.afAuth.auth.signOut().then(() => {
+        this.route.navigate(['sign-in']);
+      })*/
+
+      this.route.navigate(['']);
+  }
+
 }

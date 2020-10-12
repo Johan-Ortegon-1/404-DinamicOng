@@ -6,7 +6,7 @@
     <div class="primera">
       <div class="foto ">
         <div class="picsum-img-wrapper">
-          <img [src]=ong.imagenPerfil>
+          <img [src]="ong.imagenPerfil">
         </div>
       </div>
       <div class="nombre">
@@ -15,23 +15,23 @@
     </div>
     <!--Informacion de ong-->
     <div class="seccion">
-      <h1>Mision</h1>
-      <textarea>
+      <h1>Misión</h1>
+      <textarea readonly>
         {{ong.mision}}
       </textarea>
     </div>
     <div class="seccion">
-      <h1>Vision</h1>
-      <textarea>
+      <h1>Visión</h1>
+      <textarea readonly>
         {{ong.vision}}
       </textarea>
     </div>
     <!--Informacion media-->
     <div class="seccionx">
-      <h1>Fecha de creacion</h1>
-      <textarea class="normal"></textarea>
+      <h1>Fecha de creación</h1>
+      <textarea class="normal" readonly></textarea>
       <h1>Correo</h1>
-      <textarea class="normal">{{ong.correo}}</textarea>
+      <textarea class="normal" readonly>{{ong.correo}}</textarea>
     </div>
     <div class="seccion">
       <div class="tabla">
@@ -39,7 +39,7 @@
         <table class="table table-light">
           <thead>
             <tr>
-              <th>Telefono</th>
+              <th>Teléfono</th>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +51,7 @@
       </div>
     </div>
     <!--Ubicacion -->
-    <h1>Ubicacion</h1>
+    <h1>Ubicación</h1>
     <div class="ubicacion">
     </div>
   </div>
