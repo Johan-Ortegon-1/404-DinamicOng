@@ -10,11 +10,11 @@ import { Ong } from 'src/app/models/ong';
 })
 export class VerMiPerfilComponent implements OnInit {
 
-  private ong: Ong;
-  private uid: string;
-  private mision: string;
-  private vision: string;
-  private telefonos: string[];
+  public ong: Ong;
+  public uid: string;
+  public mision: string;
+  public vision: string;
+  public telefonos: string[];
   constructor(private ongServices: OngService, private configC: NgbCarouselConfig) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
