@@ -34,7 +34,7 @@ export class VerIniciativaComponent implements OnInit {
     private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
-   }
+  }
 
   ngOnInit(): void {
     this.valoracionNueva = new Valoracion();

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { OngService } from '../services/ong.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Ong } from 'src/app/models/ong';
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-ver-iniciativas',
@@ -57,8 +58,10 @@ export class VerIniciativasComponent implements OnInit {
     let nuevaIniciativa = new Iniciativa();
     this.iniciativaService.consultarIniciativaByID(idiniciativa).then(resp => {
       nuevaIniciativa = resp.data() as Iniciativa;
-      this.iniciativas.push(nuevaIniciativa);
       this.imagenes = this.iniciativaService.obtenerImagenesIniciativa(nuevaIniciativa.id);
+      nuevaIniciativa.imagenes = this.imagenes;
+      this.iniciativas.push(nuevaIniciativa);
+      
       this.imagenActual = this.imagenes[0];
     }, error => {
       console.log(error);
@@ -67,4 +70,11 @@ export class VerIniciativasComponent implements OnInit {
   // back() {
   //   this.router.navigate(['/conductor/inicio-conductor']);
   // }
+  verIniciativa(iniciativaSeleccionada: Iniciativa) {
+    this.router.navigate(['/ong/iniciativa/' + iniciativaSeleccionada.id]);
+  }
+
+  verCrearIniciativa() {
+    this.router.navigate(['/ong/crear-iniciativa']);
+  }
 }
