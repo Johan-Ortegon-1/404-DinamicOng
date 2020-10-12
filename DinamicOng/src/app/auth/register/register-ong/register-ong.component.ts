@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Ong } from 'src/app/models/ong';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register-ong',
@@ -18,7 +19,7 @@ export class RegisterOngComponent implements OnInit {
   public telefonoNuevo = '';
   public errorTelefonos = '';
 
-  constructor(private authSvc: AuthService) { }
+  constructor(private authSvc: AuthService, private router: Router) { }
 
 
   ngOnInit(): void {
@@ -32,7 +33,7 @@ export class RegisterOngComponent implements OnInit {
       if(result == null) {
         alert('ERROR: Ya existe un usuario con ese correo, por favor ingrese otro');
       } else {
-        // Avanzar a la pantalla de la Ong
+        this.router.navigate(['/ong']);
       }
     } else {
       alert('ERROR: Las contraseñas no coinciden');

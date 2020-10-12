@@ -1,0 +1,53 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  border-bottom: solid;
+  width: 100%;
+}
+
+#logo {
+  height: 75px;
+  width: 90px;
+}
+
+.vcenter {
+  margin-top: auto;
+}
+
+ul {
+  list-style:none;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+.selected a {
+  color: red;
+  cursor:default;
+}
+
+li a {
+  display: block;
+  text-align: center;
+  padding: 16px;
+  cursor:pointer;
+  color: black;
+}
+
+a {
+  cursor:pointer;
+  text-decoration: none;
+}
+
+.icon-menu li a {
+  padding: 5px;
+
+}
+
+li:hover * {
+  color: red;
+}
