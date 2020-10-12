@@ -9,9 +9,9 @@
       <div class="col-sm-7 vcenter">
         <ul class="menu">
           <li [ngClass]="{'selected': selected[0] == true}"><a>Inicio</a></li>
-          <li [ngClass]="{'selected': selected[1] == true}"><a>Mi Perfil</a></li>
-          <li [ngClass]="{'selected': selected[2] == true}"><a>Mis Iniciciativas</a></li>
-          <li [ngClass]="{'selected': selected[3] == true}"><a>Administrar Voluntarios</a></li> 
+          <li [ngClass]="{'selected': selected[1] == true}"><a [routerLink]="['/ong/ver-perfil']">Mi Perfil</a></li>
+          <li [ngClass]="{'selected': selected[2] == true}"><a [routerLink] = "['/ong/ver-iniciativas']">Mis Iniciciativas</a></li>
+          <li [ngClass]="{'selected': selected[3] == true}"><a [routerLink] = "['/ong/administrar-voluntarios']">Administrar Voluntarios</a></li>
         </ul>
         <!-- [routerLink] = "['/ong/ver-perfil']"
         [routerLink] = "['/ong/ver-iniciativas']"

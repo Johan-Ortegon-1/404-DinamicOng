@@ -24,20 +24,29 @@ export class VerMiPerfilComponent implements OnInit {
   constructor(private voluntarioServices: VoluntarioService, private configC: NgbCarouselConfig) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
-   }
+  }
 
   ngOnInit(): void {
     this.voluntario = new Voluntario();
-    this.uid = 'fEZlOu94IEeV27fKfRBGINrj9zK2';
+    this.uid = localStorage.getItem('uid');
 
-    this.voluntarioServices.consultarVoluntarioByID(this.uid).then(resp  => {
+    this.voluntarioServices.obtenerImagenPerfil(this.uid).then(url => {
+      this.voluntario.imagenPerfil = url;
+    });
+
+
+    this.voluntarioServices.consultarVoluntarioByID(this.uid).then(resp => {
       this.voluntario = resp.data() as Voluntario;
       this.prueb = this.voluntario.nombre;
       this.conocimientos = this.voluntario.habilidades;
       this.idim = this.voluntario.idiomas;
       this.telefonos = this.voluntario.telefonos;
 
-  });
-}
+      this.voluntarioServices.obtenerImagenPerfil(this.uid).then(url => {
+        this.voluntario.imagenPerfil = url;
+      });
+
+    });
+  }
 
 }
