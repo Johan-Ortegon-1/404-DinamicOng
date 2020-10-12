@@ -192,10 +192,21 @@
       <div class="col-sm-2">
         <a><button class="btn btn-primary" type="button">Contactar ONG</button></a>
       </div>
+
       <div class="col-sm-2" [hidden]="solicito || participante">
         <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
       </div>
     </div>
+
+
+  <!--
+  <div class="col-sm-2" >
+    <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
+  </div>
+</div>
+
+-->
+
 
     <div class="row" [hidden]="!creatorOng">
       <div class="col-sm-10">

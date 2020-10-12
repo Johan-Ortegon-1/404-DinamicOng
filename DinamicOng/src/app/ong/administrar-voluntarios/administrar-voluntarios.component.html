@@ -3,13 +3,13 @@
     <div class="row">
         <h1 class="col-sm-12">Administrar Voluntarios</h1>
 
-        <div *ngFor="let ini of iniciativas" class="container">
+        <div *ngFor="let aux of solis" class="container">
             <div class="form-group row container" id="border" style='text-align: center;'
-                *ngFor="let vol of ini.participantes"
-                style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-                <label class="col-sm-2 col-form-label" for="nombreVol">{{vol}} </label>
 
-                <label class="col-sm-2 col-form-label" for="nombreIni">{{ini.nombre}} </label>
+                style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreVoluntaro}} </label>
+
+                <label class="col-sm-2 col-form-label" for="nombreIni">{{aux.nombreIniciativa}} </label>
                 <button type="submit" id="buttona">Aceptar</button>
                 &nbsp;
                 &nbsp;
@@ -19,3 +19,4 @@
     </div>
 
 </div>
+

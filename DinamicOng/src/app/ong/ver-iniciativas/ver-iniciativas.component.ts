@@ -15,7 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 export class VerIniciativasComponent implements OnInit {
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
-    private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) { }
+              private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) { }
 
   public ruta = this.router.url;
   public str = String(this.ruta);
@@ -28,7 +28,7 @@ export class VerIniciativasComponent implements OnInit {
 
 
   ngOnInit(): void {
-    /**Obtencion de la Ong actual */
+    /*Obtencion de la Ong actual */
     this.imagenes = [];
     this.obtenerOngActual();
   }
@@ -41,9 +41,10 @@ export class VerIniciativasComponent implements OnInit {
         this.ongActual = resp.data() as Ong;
         console.log('Objeto Ong completo: ' + this.ongActual.correo);
 
-        //llenado de las iniciativas
-        for (let iter of this.ongActual.iniciativas) {
+        // llenado de las iniciativas
+        for (const iter of this.ongActual.iniciativas) {
           this.llenarListaIniciativas(iter);
+
         }
 
         this.ongService.obtenerImagenPerfil(this.ongActual.id).then(url => {

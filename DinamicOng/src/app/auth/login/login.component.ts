@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
+    /*
     if (localStorage.getItem('uid')) {
       const rol = localStorage.getItem('rol');
       if (rol == 'Ong') {
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
       } else if (rol == 'Voluntario') {
         this.router.navigate(['/voluntario']);
       }
-    }
+
+    }*/
 
   }
 

@@ -129,7 +129,10 @@ export class IniciativaService {
     solicitud.contestado = false;
     solicitud.aceptado = false;
     solicitud.idIniciativa = iniciativa.id;
+    console.log('id iniciativa', solicitud.idIniciativa);
     solicitud.idOng = iniciativa.idOng;
+
+    console.log('id iniciativa', solicitud.idOng);
     solicitud.idVoluntario = idVol;
     const idSol = this.crearSolicitud(solicitud);
     iniciativa.solicitudes.push(idSol);
@@ -147,6 +150,10 @@ export class IniciativaService {
   consultarSolicitud(idVol: string, idInic: string) {
     return this.firestore.collection('solicitudes').ref.where('idVoluntario', '==', idVol)
       .where('idIniciativa', '==', idInic).get();
+  }
+
+  consultarSolicitudByID(id: string) {
+    return this.firestore.collection('solicitudes').doc(id).ref.get();
   }
 
 }

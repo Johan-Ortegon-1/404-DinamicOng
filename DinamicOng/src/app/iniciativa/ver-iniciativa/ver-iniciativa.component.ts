@@ -109,6 +109,7 @@ export class VerIniciativaComponent implements OnInit {
             if (!resp.empty) {
               this.solicito = true;
             }
+            //this.solicito = true;
           }, error => {
             console.log(error);
             this.solicito = false;

@@ -4,6 +4,7 @@ import { Iniciativa } from '../../models/iniciativa';
 import { Idiomas } from '../../models/enumIdiomas';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { IniciativaService } from '../../iniciativa/services/iniciativa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-iniciativa',
@@ -29,7 +30,7 @@ export class CrearIniciativaComponent implements OnInit {
 
   public preview = [];
 
-  constructor(private iniciativaService: IniciativaService, private configC: NgbCarouselConfig) {
+  constructor(private iniciativaService: IniciativaService, private configC: NgbCarouselConfig, private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
    }
@@ -47,6 +48,7 @@ export class CrearIniciativaComponent implements OnInit {
 
   crearIniciativa() {
     this.iniciativaService.crearIniciativa(this.iniciativaNueva);
+    this.router.navigate(['/ong']);
   }
 
   uploadImage($event) {
