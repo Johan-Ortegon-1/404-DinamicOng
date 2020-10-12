@@ -14,7 +14,7 @@ export class AppComponent {
 
   ngOnInit(): void {
 
-    this.router.navigate(['/login']);
+    //this.router.navigate(['/login']);
     /*
     if (localStorage.getItem('uid') != null) {
       if (localStorage.getItem('rol') == 'Ong') {

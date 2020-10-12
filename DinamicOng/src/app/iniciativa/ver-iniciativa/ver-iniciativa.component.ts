@@ -106,7 +106,9 @@ export class VerIniciativaComponent implements OnInit {
         } else {
 
           this.iniciativaService.consultarSolicitud(idVol, this.inicativa.id).then(resp => {
-            this.solicito = true;
+            if (!resp.empty) {
+              this.solicito = true;
+            }
           }, error => {
             console.log(error);
             this.solicito = false;

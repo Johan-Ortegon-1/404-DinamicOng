@@ -8,10 +8,11 @@ import { NavbarRegisterComponent } from './shared/navbar-register/navbar-registe
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import { RegisterVoluntarioComponent } from './register-voluntario/register-voluntario.component';
+import { RegisterHomeComponent } from './register-home/register-home.component';
 
 
 @NgModule({
-  declarations: [RegisterComponent, RegisterOngComponent, NavbarRegisterComponent, RegisterVoluntarioComponent],
+  declarations: [RegisterComponent, RegisterOngComponent, NavbarRegisterComponent, RegisterVoluntarioComponent, RegisterHomeComponent],
   imports: [
     CommonModule,
     RegisterRoutingModule,

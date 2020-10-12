@@ -1,0 +1,17 @@
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%; min-height: 550px;
+}
+
+.vcenter {
+  margin-top: 150px;
+}
+
+button {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 15px;
+}
+
+.center {
+  text-align: center;
+}
