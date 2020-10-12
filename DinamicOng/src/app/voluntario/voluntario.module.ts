@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.component';
 import { VerOngComponent } from './ver-ong/ver-ong.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
+import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
     MostrarBusquedaComponent,
     VerOngComponent,
     MisParticipacionesComponent,
-    VerMiPerfilComponent
+    VerMiPerfilComponent,
+    VerNotificacionesComponent
   ],
   imports: [
     CommonModule,

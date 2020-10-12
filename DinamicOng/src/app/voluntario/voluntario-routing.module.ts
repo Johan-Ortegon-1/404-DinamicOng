@@ -7,6 +7,7 @@ import { BuscarIniciativaComponent } from './buscar-iniciativa/buscar-iniciativa
 import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { VerOngComponent } from './ver-ong/ver-ong.component';
+import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
 
 const routes: Routes = [
   { path: '', component: VoluntarioComponent,
@@ -16,7 +17,8 @@ const routes: Routes = [
       {path: 'mi-perfil', component: VerMiPerfilComponent},
       {path: 'ver-ong', component: VerOngComponent} ,
       { path: 'iniciativa/:id', component: VerIniciativaComponent },
-      { path: 'participaciones', component: MisParticipacionesComponent }
+      { path: 'participaciones', component: MisParticipacionesComponent },
+      { path: 'ver-notificaciones', component: VerNotificacionesComponent }
     ]
   }
 ]
