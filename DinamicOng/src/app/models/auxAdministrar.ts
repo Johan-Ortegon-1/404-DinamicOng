@@ -7,6 +7,8 @@ export class AuxAdministrar {
   public idOng: string;
   public nombreVoluntaro: string;
   public nombreIniciativa: string;
+  public nombreOng: string;
+  public rutaImagenOng: string;
 
   constructor() {
 

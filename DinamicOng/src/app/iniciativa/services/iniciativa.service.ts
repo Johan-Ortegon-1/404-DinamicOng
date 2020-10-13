@@ -160,4 +160,8 @@ export class IniciativaService {
     this.firestore.collection('solicitudes').doc(solicitud.id).update(param);
   }
 
+  consultarTodasSolicitudes() {
+    return this.firestore.collection('solicitudes').snapshotChanges();
+  }
+
 }
