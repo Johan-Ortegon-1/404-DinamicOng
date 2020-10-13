@@ -23,7 +23,9 @@ export class MostrarBusquedaComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
     this.iniciativas = JSON.parse(localStorage.getItem('iniciativasFiltradas'));
+    console.log('bandera' , this.iniciativas);
     let iniciativas2:Iniciativa[] = [];
     this.iniciativas.map(elem => {
       let ong = null;

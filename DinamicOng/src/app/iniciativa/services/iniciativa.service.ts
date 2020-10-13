@@ -155,5 +155,9 @@ export class IniciativaService {
   consultarSolicitudByID(id: string) {
     return this.firestore.collection('solicitudes').doc(id).ref.get();
   }
+  updateSolicitud(solicitud: Solicitud){
+    const param = JSON.parse(JSON.stringify(solicitud));
+    this.firestore.collection('solicitudes').doc(solicitud.id).update(param);
+  }
 
 }

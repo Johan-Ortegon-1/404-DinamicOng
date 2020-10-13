@@ -178,6 +178,8 @@ export class VerIniciativaComponent implements OnInit {
     //const idVol = "1Hq9g93bToOJxUEf66TGpQknQ4s1";
     const idVol = localStorage.getItem('uid');
     this.iniciativaService.solicitarUnirse(this.inicativa, idVol);
+    alert('Se ha realizado la solicitud con exito');
+    this.solicito = true;
   }
 
 }

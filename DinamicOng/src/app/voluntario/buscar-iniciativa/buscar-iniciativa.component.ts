@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AreasConocimiento } from '../../models/enumAreasConocimiento';
 import { Iniciativa } from '../../models/iniciativa';
 import { Idiomas } from '../../models/enumIdiomas';
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './buscar-iniciativa.component.html',
   styleUrls: ['./buscar-iniciativa.component.css']
 })
-export class BuscarIniciativaComponent implements OnInit {
+export class BuscarIniciativaComponent implements OnInit, OnDestroy {
   public opcAreas = [];
   public areasConoc = AreasConocimiento;
 
@@ -26,6 +26,7 @@ export class BuscarIniciativaComponent implements OnInit {
 
   public idiomaNuevo = '';
   public errorIdioma = '';
+  public var = null;
 
   constructor(private configC: NgbCarouselConfig, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) {
     configC.interval = 5000;
@@ -43,9 +44,15 @@ export class BuscarIniciativaComponent implements OnInit {
 
   }
 
+  ngOnDestroy():void {
+    if(this.var != null)
+      this.var.unsubscribe();
+  }
+
   buscarIniciativa() {
     let iniciativas: Iniciativa[] = [];
-    this.iniciativaService.buscarIniciativa().subscribe((data:any) => {
+
+    this.var = this.iniciativaService.buscarIniciativa().subscribe((data:any) => {
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {

@@ -1,4 +1,4 @@
-export class auxAdministrar {
+export class AuxAdministrar {
   public contestado: boolean;
   public aceptado: boolean;
   public id: string;
