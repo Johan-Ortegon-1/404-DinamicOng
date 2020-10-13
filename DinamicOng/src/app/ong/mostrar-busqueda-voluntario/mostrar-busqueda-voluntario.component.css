@@ -2,6 +2,10 @@ h1 {
   text-align: center;
 }
 
+img, .click {
+  cursor: pointer;
+}
+
 #border {
   border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
 }
@@ -12,8 +16,8 @@ textarea {
 }
 
 img {
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 40px;
+  max-height: 40px;
   display: block;
   margin-left: auto;
   margin-right: auto;

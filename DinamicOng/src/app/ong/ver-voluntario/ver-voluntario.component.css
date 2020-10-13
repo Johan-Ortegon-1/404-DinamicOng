@@ -1,0 +1,54 @@
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+.center {
+  text-align: center;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+}
+
+img {
+  max-width: 80px;
+  max-height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+}
+
+a {
+  cursor:pointer;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+input[type=number] { -moz-appearance:textfield; }
+
+.error {
+  color: red;
+}
