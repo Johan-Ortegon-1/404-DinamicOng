@@ -1,11 +1,11 @@
 <div class="container" id="border">
 
     <div class="center" [hidden]="!creatorOng">
-      <h1>{{inicativa.nombre}}</h1>
+      <h1>{{iniciativa.nombre}}</h1>
     </div>
 
     <div class="row" [hidden]='creatorOng'>
-      <h1 class="col-sm-9">{{inicativa.nombre}}</h1>
+      <h1 class="col-sm-9">{{iniciativa.nombre}}</h1>
       <div class="col-sm-1 right">
         <img class="xsmall" [src] = "creador.imagenPerfil">
       </div>
@@ -15,11 +15,11 @@
     <div class="row">
       <label class="col-sm-2">Descripción: </label>
       <div class="col-sm-10">
-        {{inicativa.descripcion}}
+        {{iniciativa.descripcion}}
       </div>
     </div>
 
-    <div class="row" [hidden]="!empezo">
+    <div class="row" [hidden]="!empezo || iniciativa.valoraciones.length == 0">
       <label class="col-sm-2">Valoración: </label>
       <div class="col-sm-10 row">
         <div class="col-sm-1">{{puntaje}}</div>
@@ -32,22 +32,22 @@
     <div class="row">
       <label class="col-sm-3">Cantidad de voluntarios de: </label>
       <div class="col-sm-1">
-        {{inicativa.cantidadMinVoluntarios}}
+        {{iniciativa.cantidadMinVoluntarios}}
       </div>
       <label class="col-sm-1">a: </label>
       <div class="col-sm-1">
-        {{inicativa.cantidadMaxVoluntarios}}
+        {{iniciativa.cantidadMaxVoluntarios}}
       </div>
     </div>
 
     <div class="row">
       <label class="col-sm-2">Fecha de Inicio: </label>
       <div class="col-sm-2">
-        {{inicativa.fechaInicio}}
+        {{iniciativa.fechaInicio}}
       </div>
       <label class="col-sm-2">Fecha de Finalización: </label>
       <div class="col-sm-2">
-        {{inicativa.fechaFinalizacion}}
+        {{iniciativa.fechaFinalizacion}}
       </div>
     </div>
 
@@ -57,19 +57,19 @@
       <div class="col-sm-3">
         <label>País: </label>
         <br>
-        {{inicativa.ubicacion.pais}}
+        {{iniciativa.ubicacion.pais}}
       </div>
 
       <div class="col-sm-3">
         <label>Ciudad: </label>
         <br>
-        {{inicativa.ubicacion.ciudad}}
+        {{iniciativa.ubicacion.ciudad}}
       </div>
 
       <div class="col-sm-4">
         <label>Dirección: </label>
         <br>
-        {{inicativa.ubicacion.direccion}}
+        {{iniciativa.ubicacion.direccion}}
       </div>
 
       <div class="row">
@@ -83,7 +83,7 @@
       <div class="col-sm-4">
         <table class="table table-bordered">
           <tbody>
-            <tr *ngFor="let areaC of inicativa.areasConocimientoRelacionadas">
+            <tr *ngFor="let areaC of iniciativa.areasConocimientoRelacionadas">
               <td>
                 {{areaC}}
               </td>
@@ -99,7 +99,7 @@
       <div class="col-sm-4">
         <table class="table table-bordered">
           <tbody>
-            <tr *ngFor="let idioma of inicativa.idiomasDeseables">
+            <tr *ngFor="let idioma of iniciativa.idiomasDeseables">
               <td>
                 {{idioma}}
               </td>
@@ -147,7 +147,7 @@
         <th>Comentarios</th>
       </thead>
       <tbody>
-        <tr *ngFor="let val of inicativa.valoraciones">
+        <tr *ngFor="let val of iniciativa.valoraciones">
           <td>
             <div class="row">
               <img class="col-sm-2 small vcenter" [src]="obtenerParticipanteById(val.idValorador).imagenPerfil">
