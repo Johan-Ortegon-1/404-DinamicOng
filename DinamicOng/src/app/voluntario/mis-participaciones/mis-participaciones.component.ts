@@ -21,9 +21,7 @@ export class MisParticipacionesComponent implements OnInit {
 
   ngOnInit(): void {
     const idVol = localStorage.getItem('uid');
-    //const idVol = '1Hq9g93bToOJxUEf66TGpQknQ4s1';
     this.participaciones = this.obtenerParticipaciones(idVol);
-    console.log(this.participaciones);
   }
 
   redirigir(tipo: number, id: string) {
@@ -38,7 +36,6 @@ export class MisParticipacionesComponent implements OnInit {
     let iniciativas = [];
     this.voluntarioService.consultarVoluntarioByID(id).then(resp => {
       let vol = resp.data() as Voluntario;
-      console.log(vol);
       vol.participaciones.forEach(inicId => {
         this.iniciativaService.consultarIniciativaByID(inicId).then(resp2 => {
           let inic = resp2.data() as Iniciativa;
