@@ -186,27 +186,17 @@
     </table>
 
     <div class="row" [hidden]="isOng">
-      <div class="col-sm-8" [hidden]="solicito || participante">
+      <div class="col-sm-8" [hidden]="solicito || participante || !hayCupos">
       </div>
       <div class="col-sm-10"[hidden]="!solicito && !participante"></div>
       <div class="col-sm-2">
         <a><button class="btn btn-primary" type="button">Contactar ONG</button></a>
       </div>
 
-      <div class="col-sm-2" [hidden]="solicito || participante">
+      <div class="col-sm-2" [hidden]="solicito || participante || !hayCupos">
         <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
       </div>
     </div>
-
-
-  <!--
-  <div class="col-sm-2" >
-    <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
-  </div>
-</div>
-
--->
-
 
     <div class="row" [hidden]="!creatorOng">
       <div class="col-sm-10">
