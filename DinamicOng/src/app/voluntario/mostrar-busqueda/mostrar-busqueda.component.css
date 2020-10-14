@@ -2,7 +2,7 @@ h1 {
   text-align: center;
 }
 
-img, .click {
+img, .click, a {
   cursor: pointer;
 }
 

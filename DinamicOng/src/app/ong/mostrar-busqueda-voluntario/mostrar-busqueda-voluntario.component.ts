@@ -23,7 +23,11 @@ export class MostrarBusquedaVoluntarioComponent implements OnInit {
     this.voluntarios = JSON.parse(localStorage.getItem('voluntariosFiltrados'));
     let voluntarios2: Voluntario[] = [];
     this.voluntarios.map( elem => {
-      voluntarios2.push(elem); });
+      this.voluntarioService.obtenerImagenPerfil(elem.id).then(url => {
+        elem.imagenPerfil = url;
+        voluntarios2.push(elem);
+      });
+    });
     this.voluntarios = voluntarios2;
     console.log("estos son lo voluntarios")
     console.log(this.voluntarios);

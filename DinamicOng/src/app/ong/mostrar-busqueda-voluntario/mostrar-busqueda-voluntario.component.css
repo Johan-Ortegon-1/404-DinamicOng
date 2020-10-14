@@ -15,6 +15,10 @@ textarea {
   resize: none;
 }
 
+a {
+  cursor: pointer;
+}
+
 img {
   max-width: 40px;
   max-height: 40px;

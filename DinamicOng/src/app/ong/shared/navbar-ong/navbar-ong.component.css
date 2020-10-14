@@ -40,6 +40,7 @@ li a {
 
 a {
   cursor:pointer;
+  text-decoration: none;
 }
 
 .icon-menu li a {
@@ -47,6 +48,6 @@ a {
 
 }
 
-li:hover {
+li:hover *{
   color: red;
 }

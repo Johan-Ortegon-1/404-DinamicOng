@@ -14,8 +14,6 @@ import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.compo
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
 import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
-
-
 @NgModule({
   declarations: [
     OngComponent,

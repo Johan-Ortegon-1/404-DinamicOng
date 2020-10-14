@@ -15,7 +15,7 @@ const routes: Routes = [
       {path: 'buscar-iniciativa', component: BuscarIniciativaComponent},
       {path: 'mostrar-iniciativa', component: MostrarBusquedaComponent},
       {path: 'mi-perfil', component: VerMiPerfilComponent},
-      {path: 'ver-ong', component: VerOngComponent} ,
+      {path: 'ver-ong/:id', component: VerOngComponent} ,
       { path: 'iniciativa/:id', component: VerIniciativaComponent },
       { path: 'participaciones', component: MisParticipacionesComponent },
       { path: 'ver-notificaciones', component: VerNotificacionesComponent }

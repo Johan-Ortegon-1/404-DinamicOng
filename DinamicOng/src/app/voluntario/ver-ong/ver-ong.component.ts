@@ -21,7 +21,7 @@ export class VerOngComponent implements OnInit {
   constructor(private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.ong.id = localStorage.getItem('idOng');
+    this.ong.id = this.route.snapshot.paramMap.get('id');
     this.obtenerOngActual();
   }
 

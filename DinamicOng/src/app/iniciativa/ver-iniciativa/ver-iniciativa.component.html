@@ -7,9 +7,9 @@
     <div class="row" [hidden]='creatorOng'>
       <h1 class="col-sm-9">{{iniciativa.nombre}}</h1>
       <div class="col-sm-1 right">
-        <img class="xsmall" [src] = "creador.imagenPerfil">
+        <a (click)="navOng(creador.id)"><img class="xsmall" [src] = "creador.imagenPerfil"></a>
       </div>
-      <h1 class="col-sm-1">{{creador.nombre}}</h1>
+      <a (click)="navOng(creador.id)"><h1 class="col-sm-1">{{creador.nombre}}</h1></a>
     </div>
 
     <div class="row">

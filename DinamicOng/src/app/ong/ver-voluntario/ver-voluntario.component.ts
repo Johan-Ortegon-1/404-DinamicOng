@@ -25,7 +25,10 @@ export class VerVoluntarioComponent implements OnInit {
 
   obtenerVoluntarioActual() {
     this.voluntarioService.consultarVoluntarioByID(this.voluntario.id).then(resp => {
-      this.voluntario= resp.data() as Voluntario;
+      this.voluntario = resp.data() as Voluntario;
+      this.voluntarioService.obtenerImagenPerfil(this.voluntario.id).then(url => {
+        this.voluntario.imagenPerfil = url;
+      });
       console.log(this.voluntario);
 
       //llenado de las iniciativas
