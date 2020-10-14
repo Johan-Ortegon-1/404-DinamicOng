@@ -2,7 +2,7 @@ h1 {
   text-align: center;
 }
 
-img, .click, a {
+img, .click {
   cursor: pointer;
 }
 
@@ -13,6 +13,10 @@ img, .click, a {
 textarea {
   height: 120px;
   resize: none;
+}
+
+a {
+  cursor: pointer;
 }
 
 img {

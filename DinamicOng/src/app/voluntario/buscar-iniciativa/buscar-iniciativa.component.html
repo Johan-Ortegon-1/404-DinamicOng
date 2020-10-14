@@ -16,14 +16,14 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="fechaInicio">Fecha de Inicio: </label>
           <div class="col-sm-10">
-            <input class="form-control" min="{{hoy}}" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaBuscar.fechaInicio" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+            <input class="form-control" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaBuscar.fechaInicio" placeholder="Ingrese la fecha de Inicio de la Iniciativa">
           </div>
         </div>
 
         <div class="form-group row">
           <label class="col-sm-2 col-form-label" for="fechaFin">Fecha de fin: </label>
           <div class="col-sm-10">
-            <input class="form-control" min="{{iniciativaBuscar.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaBuscar.fechaFinalizacion" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+            <input class="form-control" min="{{iniciativaBuscar.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaBuscar.fechaFinalizacion" placeholder="Ingrese la fecha de Inicio de la Iniciativa">
           </div>
         </div>
 

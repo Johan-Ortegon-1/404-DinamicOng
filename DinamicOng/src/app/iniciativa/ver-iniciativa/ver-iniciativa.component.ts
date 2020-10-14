@@ -15,7 +15,7 @@ import { Valoracion } from '../../models/valoracion';
 })
 export class VerIniciativaComponent implements OnInit {
 
-  public inicativa: Iniciativa;
+  public iniciativa: Iniciativa;
   public puntaje: number;
   public id: string;
   public participantes: Array<Voluntario>;
@@ -29,6 +29,7 @@ export class VerIniciativaComponent implements OnInit {
   public empezo: boolean;
   public comento: boolean;
   public solicito: boolean;
+  public hayCupos: boolean;
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
     private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) {
@@ -42,11 +43,12 @@ export class VerIniciativaComponent implements OnInit {
     this.imagenes = [];
     this.participantes = [];
     this.creatorOng = false;
+    this.hayCupos = true;
     this.solicito = false;
     this.comento = false;
     this.participante = false;
     this.empezo = false;
-    this.inicativa = new Iniciativa();
+    this.iniciativa = new Iniciativa();
     this.id = this.routeActive.snapshot.paramMap.get('id');
     this.obtenerIniciativa();
 
@@ -55,7 +57,7 @@ export class VerIniciativaComponent implements OnInit {
   obtenerIniciativa() {
     this.iniciativaService.consultarIniciativaByID(this.id).then(resp => {
 
-      this.inicativa = resp.data() as Iniciativa;
+      this.iniciativa = resp.data() as Iniciativa;
       this.obtenerParticipantes();
       this.calcularValoracion();
       const ruta = this.router.url;
@@ -66,11 +68,11 @@ export class VerIniciativaComponent implements OnInit {
         this.isOng = true;
         const idOng = localStorage.getItem('uid');
 
-        if (this.inicativa.idOng == idOng) {
+        if (this.iniciativa.idOng == idOng) {
           this.creatorOng = true;
         } else {
 
-          this.ongService.consultarOngByID(this.inicativa.idOng).then(resp => {
+          this.ongService.consultarOngByID(this.iniciativa.idOng).then(resp => {
 
             this.creador = resp.data() as Ong;
             this.ongService.obtenerImagenPerfil(this.creador.id).then(url =>{
@@ -87,10 +89,10 @@ export class VerIniciativaComponent implements OnInit {
         this.isOng = false;
         const idVol = localStorage.getItem('uid');
 
-        this.ongService.consultarOngByID(this.inicativa.idOng).then(resp => {
+        this.ongService.consultarOngByID(this.iniciativa.idOng).then(resp => {
 
           this.creador = resp.data() as Ong;
-          this.ongService.obtenerImagenPerfil(this.creador.id).then(url =>{
+          this.ongService.obtenerImagenPerfil(this.creador.id).then(url => {
 
             this.creador.imagenPerfil = url;
 
@@ -98,33 +100,37 @@ export class VerIniciativaComponent implements OnInit {
 
         });
 
-        if (this.inicativa.participantes.indexOf(idVol) != -1) {
+        if (this.iniciativa.participantes.length == this.iniciativa.cantidadMaxVoluntarios) {
+          this.hayCupos = false;
+        }
+
+        if (this.iniciativa.participantes.indexOf(idVol) != -1) {
 
           this.participante = true;
           this.yaComento(idVol);
 
         } else {
 
-          this.iniciativaService.consultarSolicitud(idVol, this.inicativa.id).then(resp => {
+          this.iniciativaService.consultarSolicitud(idVol, this.iniciativa.id).then(resp => {
             if (!resp.empty) {
               this.solicito = true;
             }
-            //this.solicito = true;
           }, error => {
             console.log(error);
             this.solicito = false;
           });
+
         }
 
       } else {
         this.router.navigate(['']);
       }
 
-      if (this.iniciativaService.compararFechaMenorIgualHoy(this.inicativa.fechaInicio)) {
+      if (this.iniciativaService.compararFechaMenorIgualHoy(this.iniciativa.fechaInicio)) {
         this.empezo = true;
       }
 
-      this.imagenes = this.iniciativaService.obtenerImagenesIniciativa(this.inicativa.id);
+      this.imagenes = this.iniciativaService.obtenerImagenesIniciativa(this.iniciativa.id);
 
     }, error => {
       console.log(error);
@@ -133,10 +139,10 @@ export class VerIniciativaComponent implements OnInit {
 
   calcularValoracion() {
     let res = 0;
-    this.inicativa.valoraciones.forEach(v => {
+    this.iniciativa.valoraciones.forEach(v => {
       res += v.puntaje;
     });
-    res /= this.inicativa.valoraciones.length;
+    res /= this.iniciativa.valoraciones.length;
     this.puntaje = res;
     res = res / 5 * 100;
     res = Math.round(res / 10) * 10;
@@ -144,7 +150,7 @@ export class VerIniciativaComponent implements OnInit {
   }
 
   obtenerParticipantes() {
-    this.participantes = this.iniciativaService.obtenerParticipantes(this.inicativa.participantes);
+    this.participantes = this.iniciativaService.obtenerParticipantes(this.iniciativa.participantes);
   }
 
   obtenerParticipanteById(id: string): Voluntario {
@@ -160,13 +166,13 @@ export class VerIniciativaComponent implements OnInit {
 
   comentar() {
       this.valoracionNueva.idValorador = localStorage.getItem('uid');
-      this.inicativa.valoraciones.push(this.valoracionNueva);
-      this.iniciativaService.updateIniciativa(this.inicativa);
+      this.iniciativa.valoraciones.push(this.valoracionNueva);
+      this.iniciativaService.updateIniciativa(this.iniciativa);
       this.comento = true;
   }
 
   yaComento(idPart: string) {
-    for (let val of this.inicativa.valoraciones) {
+    for (let val of this.iniciativa.valoraciones) {
       if (val.idValorador == idPart) {
         this.comento = true;
         break;
@@ -175,11 +181,26 @@ export class VerIniciativaComponent implements OnInit {
   }
 
   solicitarUnirse() {
-    //const idVol = "1Hq9g93bToOJxUEf66TGpQknQ4s1";
-    const idVol = localStorage.getItem('uid');
-    this.iniciativaService.solicitarUnirse(this.inicativa, idVol);
-    alert('Se ha realizado la solicitud con exito');
-    this.solicito = true;
+
+    if (this.iniciativa.participantes.length < this.iniciativa.cantidadMaxVoluntarios) {
+      const idVol = localStorage.getItem('uid');
+      this.iniciativaService.solicitarUnirse(this.iniciativa, idVol);
+      alert('Se ha realizado la solicitud con exito');
+      this.solicito = true;
+    } else {
+      alert('NO se pudo realizar la solicutud, pues los cupos ya están completamente llenos');
+    }
+  }
+
+  navOng(id: string) {
+    const ruta = this.router.url;
+    const str = String(ruta);
+    if (str.includes('voluntario')) {
+      this.router.navigate(['/voluntario/ver-ong/' + id]);
+    } else if (str.includes('ong')) {
+      //this.router.navigate(['/ong/ver-ong' + id]);
+    }
+
   }
 
 }

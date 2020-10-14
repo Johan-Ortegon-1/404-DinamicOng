@@ -5,6 +5,7 @@ import { Conocimiento } from "src/app/models/conocimiento";
 import { AuthService } from "../../services/auth.service";
 import { AreasConocimiento } from 'src/app/models/enumAreasConocimiento';
 import { Idiomas } from 'src/app/models/enumIdiomas';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-register-voluntario",
@@ -37,7 +38,7 @@ export class RegisterVoluntarioComponent implements OnInit {
 
   public fechaNacimiento: Date;
 
-  constructor(private authSvc: AuthService) {}
+  constructor(private authSvc: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.ong = new Ong();
@@ -60,7 +61,9 @@ export class RegisterVoluntarioComponent implements OnInit {
           "ERROR: Ya existe un usuario con ese correo, por favor ingrese otro"
         );
       } else {
-        // Avanzar a la pantalla de la Voluntario
+        localStorage.setItem('uid', result.user.uid);
+        localStorage.setItem('rol', 'voluntario');
+        this.router.navigate(['/voluntario']);
       }
     } else {
       alert("ERROR: Las contraseñas no coinciden");

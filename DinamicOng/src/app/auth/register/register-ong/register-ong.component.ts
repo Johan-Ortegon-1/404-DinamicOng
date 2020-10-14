@@ -33,6 +33,8 @@ export class RegisterOngComponent implements OnInit {
       if(result == null) {
         alert('ERROR: Ya existe un usuario con ese correo, por favor ingrese otro');
       } else {
+        localStorage.setItem('uid', result.user.uid);
+        localStorage.setItem('rol', 'Ong');
         this.router.navigate(['/ong']);
       }
     } else {

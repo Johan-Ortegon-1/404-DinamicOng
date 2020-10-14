@@ -11,14 +11,13 @@ import { Usuario } from './../../models/usuario';
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
-  user = 'user';
-  password = 'password';
+  user = '';
+  password = '';
 
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    /*
-    if (localStorage.getItem('uid')) {
+   if (localStorage.getItem('uid')) {
       const rol = localStorage.getItem('rol');
       if (rol == 'Ong') {
         this.router.navigate(['/ong']);
@@ -26,7 +25,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/voluntario']);
       }
 
-    }*/
+    }
 
   }
 

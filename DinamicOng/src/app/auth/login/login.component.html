@@ -1,8 +1,14 @@
-<p>login works!</p>
-<div>
+<div class="container" id="border">
+  <img src="../../../assets/logotipo ONG.png" [routerLink]="['']">
   <form class="formu" (ngSubmit)="doLogin()">
-    <input class="inputs" type="text" [(ngModel)]="user" name="user" placeholder="usuario">
+    <input class="inputs" type="text" [(ngModel)]="user" name="user" placeholder="correo">
+    <br>
     <input class="inputs" type="password" [(ngModel)]="password" name="pass" placeholder="contraseña">
+    <br>
+    <div class="left">
+      <a [routerLink] = "['/register']">No tienes una cuenta? Registrate</a>
+    </div>
+    <br>
     <button class="boton" type="submit" id="login">Login</button>
   </form>
 </div>

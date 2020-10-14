@@ -1,53 +1,66 @@
-.nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  background-color: white;
-  border-bottom: solid;
-  width: 100%;
-}
-
-#logo {
-  height: 75px;
-  width: 90px;
-}
-
-.vcenter {
-  margin-top: auto;
-}
-
-ul {
-  list-style:none;
-  overflow: hidden;
-}
-
-li {
-  float: left;
-}
-
-.selected a {
-  color: red;
-  cursor:default;
-}
-
-li a {
-  display: block;
+h1 {
   text-align: center;
-  padding: 16px;
-  cursor:pointer;
-  color: black;
 }
 
-a {
-  cursor:pointer;
-  text-decoration: none;
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
 }
 
-.icon-menu li a {
-  padding: 5px;
-
+textarea {
+  height: 120px;
+  resize: none;
 }
 
-li:hover * {
+img {
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+picsum-img-wrapper {
+  padding: 15px;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.error {
   color: red;
 }

@@ -1,3 +1,4 @@
+import { Voluntario } from './../../models/voluntario';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -15,6 +16,9 @@ export class VoluntarioService {
 
   obtenerImagenPerfil(id: string) {
     return this.firestorage.storage.ref().child('ImagenPerfil-' + id).getDownloadURL();
+  }
+  buscarVoluntario() {
+    return this.firestore.collection("usuarios", ref => ref.where('rol', '==', 'Voluntario')).snapshotChanges();
   }
 
 }

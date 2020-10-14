@@ -1,6 +1,6 @@
+import { MostrarBusquedaVoluntarioComponent } from './mostrar-busqueda-voluntario/mostrar-busqueda-voluntario.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { OngRoutingModule } from './ong-routing.module';
 import { OngComponent } from './ong.component';
 import { NavbarOngComponent } from './shared/navbar-ong/navbar-ong.component';
@@ -13,8 +13,7 @@ import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciat
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
-
-
+import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
 @NgModule({
   declarations: [
     OngComponent,
@@ -25,7 +24,9 @@ import { AdministrarVoluntariosComponent } from './administrar-voluntarios/admin
     VerMiPerfilComponent,
     CrearIniciativaComponent,
     VerIniciativaComponent,
-    AdministrarVoluntariosComponent
+    AdministrarVoluntariosComponent,
+    MostrarBusquedaVoluntarioComponent,
+    VerVoluntarioComponent
   ],
   imports: [
     CommonModule,
