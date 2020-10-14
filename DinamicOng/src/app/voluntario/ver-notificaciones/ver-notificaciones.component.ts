@@ -113,8 +113,12 @@ export class VerNotificacionesComponent implements OnInit {
     return false;
   }
 
-  navVerOng(aux: AuxAdministrar) {
+  verOng(aux: AuxAdministrar) {
+    this.router.navigate(['/voluntario/ver-ong/' + aux.idOng]);
+  }
 
+  verIniciativa(aux: AuxAdministrar) {
+    this.router.navigate(['/voluntario/iniciativa/' + aux.idIniciativa]);
   }
 
 

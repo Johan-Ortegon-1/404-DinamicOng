@@ -6,16 +6,16 @@
             <div class="form-group row container" id="border" style='text-align: center;'
                 style="display:flex; flex-direction: row; justify-content: center; align-items: center">
                 <div class="col-sm-1">
-                    <img [src]="aux.rutaImagenOng">
+                    <a (click)="verOng(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
                 </div>
 
                 <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
                     class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
                     notifications</mat-icon>
                 <p class="titulo">Nombre de la Ong:</p>
-                <label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreOng}} </label>
+                <a (click)="verOng(aux)"> <label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreOng}} </label> </a>
                 <p>Nombre de la iniciativa:</p>
-                <label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreIniciativa}} </label>
+                <a (click)="verIniciativa(aux)"><label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreIniciativa}} </label></a>
                 <p class="col-sm-1">Estado:</p>
                 <p *ngIf="!aux.contestado">La ONG aun no ha contestado</p>
                 <div *ngIf="aux.contestado">
