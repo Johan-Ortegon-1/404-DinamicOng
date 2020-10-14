@@ -21,7 +21,7 @@ const routes: Routes = [
       { path: 'administrar-voluntarios' , component: AdministrarVoluntariosComponent},
       { path: 'buscar-voluntario' , component: BuscarVoluntarioComponent},
       { path: 'mostrar-busqueda-voluntario' , component: MostrarBusquedaVoluntarioComponent},
-      { path: 'ver-voluntario' , component: VerVoluntarioComponent}
+      { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent}
     ]
   }
 ];

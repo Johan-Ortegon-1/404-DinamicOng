@@ -29,14 +29,10 @@ export class MostrarBusquedaVoluntarioComponent implements OnInit {
       });
     });
     this.voluntarios = voluntarios2;
-    console.log("estos son lo voluntarios")
-    console.log(this.voluntarios);
   }
 
   navVerVoluntario( voluntario: Voluntario) {
-    localStorage.setItem('id', voluntario.id);
-    console.log("llego a ver vol");
-    this.router.navigate([ "/ong/ver-voluntario"]);
+    this.router.navigate([ "/ong/ver-voluntario/" + voluntario.id]);
   }
 
 }

@@ -11,8 +11,8 @@ import { Usuario } from './../../models/usuario';
   providers: [AuthService]
 })
 export class LoginComponent implements OnInit {
-  user = 'user';
-  password = 'password';
+  user = '';
+  password = '';
 
   constructor(private router: Router, private auth: AuthService) { }
 

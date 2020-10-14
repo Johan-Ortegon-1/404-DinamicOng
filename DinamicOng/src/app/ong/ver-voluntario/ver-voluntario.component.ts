@@ -19,7 +19,7 @@ export class VerVoluntarioComponent implements OnInit {
   constructor(private voluntarioService: VoluntarioService, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.voluntario.id = localStorage.getItem('id');
+    this.voluntario.id = this.route.snapshot.paramMap.get('id');
     this.obtenerVoluntarioActual();
   }
 
