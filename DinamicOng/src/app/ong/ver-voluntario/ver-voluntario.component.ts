@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IniciativaService } from 'src/app/iniciativa/services/iniciativa.service';
+import { Iniciativa } from 'src/app/models/iniciativa';
 import { Voluntario } from 'src/app/models/voluntario';
 import { VoluntarioService } from 'src/app/voluntario/services/voluntario.service';
 
@@ -12,7 +13,7 @@ import { VoluntarioService } from 'src/app/voluntario/services/voluntario.servic
 export class VerVoluntarioComponent implements OnInit {
 
   public voluntario: Voluntario = new Voluntario();
-  //public iniciativas: Iniciativa[]=[];
+  public participaciones: Iniciativa[]=[];
   public telefonoNuevo = '';
   public errorTelefonos = '';
 
@@ -32,27 +33,28 @@ export class VerVoluntarioComponent implements OnInit {
       console.log(this.voluntario);
 
       //llenado de las iniciativas
-      /*let cont = 0;
-      for (let iter of this.ong.iniciativas) {
-        this.llenarListaIniciativas(iter, cont);
+      let cont = 0;
+      for (let iter of this.voluntario.participaciones) {
+        this.llenarListaParticipaciones(iter, cont);
         cont = cont + 1;
       }
-      this.ongService.obtenerImagenPerfil(this.ong.id).then(url => {
-        this.ong.imagenPerfil = url;
-      }); */
     });
   }
 
- /* llenarListaIniciativas(idiniciativa: string, cont: number) {
+  llenarListaParticipaciones(idiniciativa: string, cont: number) {
     console.log('Llenando lista: ' + idiniciativa);
     let nuevaIniciativa = new Iniciativa();
     this.iniciativaService.consultarIniciativaByID(idiniciativa).then(resp => {
       nuevaIniciativa = resp.data() as Iniciativa;
-      this.iniciativas.push(nuevaIniciativa);
-      this.iniciativas[cont].imagenes = this.iniciativaService.obtenerImagenesIniciativa(nuevaIniciativa.id);
+      this.participaciones.push(nuevaIniciativa);
+      this.participaciones[cont].imagenes = this.iniciativaService.obtenerImagenesIniciativa(nuevaIniciativa.id);
 
     }, error => {
       console.log(error);
     });
-  } */
+  }
+  navVerIniciativa(id: string){
+    //redirige a ver iniciativa de otra ong aun no implementada
+    //this.router.navigate(["/ong/iniciativa/" + id]);
+  }
 }

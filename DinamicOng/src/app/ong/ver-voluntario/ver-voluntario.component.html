@@ -73,5 +73,30 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <h1 class="col-sm-12">Mis Participaciones</h1>
+    <table class="table table-bordered">
+      <tbody>
+        <tr *ngFor="let ini of participaciones">
+          <td>
+            <div class="row">
+              <div class="col-sm-2">
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let item of ini.imagenes">
+                        <div class="picsum-img-wrapper">
+                            <img class="big" (click)='navVerIniciativa(ini.id)' [src]="item">
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+              </div>
+              <div class="col-sm-4">
+               <a (click)='navVerIniciativa(ini.id)'>{{ini.nombre}}</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
 </div>
 
