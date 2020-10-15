@@ -19,38 +19,34 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
    if (localStorage.getItem('uid')) {
       const rol = localStorage.getItem('rol');
-      if (rol == 'Ong') {
+      if (rol === 'Ong') {
         this.router.navigate(['/ong']);
-      } else if (rol == 'Voluntario') {
+      } else if (rol === 'Voluntario') {
         this.router.navigate(['/voluntario']);
       }
-
     }
-
   }
 
   doLogin() {
     console.log(this.user + ' - ' + this.password);
-    this.auth.login(this.user, this.password).then(response=> {
+    this.auth.login(this.user, this.password).then(response => {
       if (response) {
-        this.auth.buscarRolByCorreo(this.user).subscribe((data:any) => {
+        this.auth.buscarRolByCorreo(this.user).subscribe((data: any) => {
           data.map(elem => {
-            let usr = elem.payload.doc.data();
+            const usr = elem.payload.doc.data();
             localStorage.setItem('uid', usr.id);
-            if(usr.rol == 'Ong') {
+            if (usr.rol === 'Ong') {
               localStorage.setItem('rol', 'Ong');
               this.router.navigate(['/ong']);
               console.log('nav ong');
-            }
-            else {
+            } else {
               localStorage.setItem('rol', 'Voluntario');
               this.router.navigate(['/voluntario']);
               console.log('nav voluntario');
             }
           });
         });
-      }
-      else {
+      } else {
         alert('error en log in');
       }
     });

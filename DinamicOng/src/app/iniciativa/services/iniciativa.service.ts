@@ -129,10 +129,8 @@ export class IniciativaService {
     solicitud.contestado = false;
     solicitud.aceptado = false;
     solicitud.idIniciativa = iniciativa.id;
-    console.log('id iniciativa', solicitud.idIniciativa);
     solicitud.idOng = iniciativa.idOng;
 
-    console.log('id iniciativa', solicitud.idOng);
     solicitud.idVoluntario = idVol;
     const idSol = this.crearSolicitud(solicitud);
     iniciativa.solicitudes.push(idSol);
@@ -163,5 +161,4 @@ export class IniciativaService {
   consultarTodasSolicitudes() {
     return this.firestore.collection('solicitudes').snapshotChanges();
   }
-
 }

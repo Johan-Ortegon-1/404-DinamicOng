@@ -18,7 +18,12 @@ export class VoluntarioService {
     return this.firestorage.storage.ref().child('ImagenPerfil-' + id).getDownloadURL();
   }
   buscarVoluntario() {
-    return this.firestore.collection("usuarios", ref => ref.where('rol', '==', 'Voluntario')).snapshotChanges();
+    return this.firestore.collection('usuarios', ref => ref.where('rol', '==', 'Voluntario')).snapshotChanges();
+  }
+
+  updateVoluntario(voluntario: Voluntario) {
+    const param = JSON.parse(JSON.stringify(voluntario));
+    this.firestore.collection('usuarios').doc(voluntario.id).update(param);
   }
 
 }

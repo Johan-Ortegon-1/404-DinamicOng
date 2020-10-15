@@ -38,7 +38,6 @@ export class VerNotificacionesComponent implements OnInit {
   ngOnInit(): void {
     this.obtenerVoluntarioActual();
   }
-
   obtenerVoluntarioActual() {
     if (this.str.includes('voluntario')) {
       const idVoluntario = localStorage.getItem('uid');
@@ -50,7 +49,6 @@ export class VerNotificacionesComponent implements OnInit {
       });
     }
   }
-
   obtenerTodasSolicitudes() {
     let iniciativas: Iniciativa[] = [];
     this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
@@ -65,7 +63,6 @@ export class VerNotificacionesComponent implements OnInit {
       });
     });
   }
-
   obtenerOng(solicitudActual: Solicitud) {
     this.ongService.consultarOngByID(solicitudActual.idOng).then(resp => {
       this.ong = resp.data() as Ong;
@@ -78,7 +75,6 @@ export class VerNotificacionesComponent implements OnInit {
       });
     });
   }
-
   obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string) {
     this.iniciativaService.consultarIniciativaByID(solicitudActual.idIniciativa).then(resp => {
       this.iniciativa = resp.data() as Iniciativa;
@@ -86,7 +82,6 @@ export class VerNotificacionesComponent implements OnInit {
       this.construirPresentacionDatos(solicitudActual, urlImagen);
     });
   }
-
   construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string) {
     let nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
 
@@ -103,23 +98,16 @@ export class VerNotificacionesComponent implements OnInit {
     nuevoAuxiliar.rutaImagenOng = urlImagen;
     this.auxiliares.push(nuevoAuxiliar);
   }
-
-
-
   filtrarSolicitud(solicituidActual: Solicitud): boolean {
     if (solicituidActual.idVoluntario === this.voluntario.id) {
       return true;
     }
     return false;
   }
-
   verOng(aux: AuxAdministrar) {
     this.router.navigate(['/voluntario/ver-ong/' + aux.idOng]);
   }
-
   verIniciativa(aux: AuxAdministrar) {
     this.router.navigate(['/voluntario/iniciativa/' + aux.idIniciativa]);
   }
-
-
 }
