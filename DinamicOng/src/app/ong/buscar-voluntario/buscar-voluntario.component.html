@@ -1,0 +1,23 @@
+<div class="container" id="border">
+
+  <form (ngSubmit)='buscarVoluntario()' #testForm="ngForm" ngNativeValidate>
+
+    <div class="row">
+      <h1 class="col-sm-12">Buscar Voluntario</h1>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+      <div class="col-sm-10">
+        <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="voluntarioBuscar.nombre" required
+          placeholder="Ingrese el nombre del voluntario">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-10"></div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary" type="submit">Buscar Voluntario</button>
+      </div>
+    </div>
+  </form>
+</div>

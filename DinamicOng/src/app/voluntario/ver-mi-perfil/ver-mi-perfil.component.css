@@ -1,0 +1,215 @@
+h1 {
+  text-align: left;
+  font-weight: 500;
+  font-size: 40px;
+}
+h2{
+
+  text-align: center;
+  font-size: 30px;
+}
+
+#border {
+  border-radius: 5px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+textarea {
+  height: 120px;
+  resize: none;
+  font-size: 30px;
+
+}
+
+img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+}
+
+.margin {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+picsum-img-wrapper {
+  padding: 0;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.small {
+  font-size: 22px;
+}
+
+.small-td {
+  width: 10%;
+}
+
+.info {
+  color: blue;
+  margin-bottom: 10px;
+}
+
+.error {
+  color: red;
+}
+
+button{
+  width: auto;
+  float: right;
+  text-align: center;
+}
+
+.primera{
+  width: auto;
+  height: auto;
+  margin : 10px;
+  padding: 20px;
+  margin-top: 50px;
+  display:flex ;
+}
+
+.seccion{
+  width: 1000px;
+  height: auto;
+  margin: 30px;
+  display: -webkit-flex;
+}
+
+
+.foto{
+  /* width: 200px;
+  height: 200px;
+  float: center;
+  margin-left: 30px;
+  margin-top: 20px;
+  border: solid;
+  border-color: black; */
+  width: auto;
+  height: 205px;
+  display: block;
+  margin-left: 20px;
+  margin-right: 20px;
+  border: solid;
+  border-width:medium ;
+  border-color: black;
+}
+
+.nombre{
+  width: 700px;
+  height: 100px;
+  float: left;
+  margin-top: 50px;
+  margin-right: 50px;
+  padding-top:30px;
+}
+
+textarea{
+  margin: 20px;
+  width: 950px;
+  height: 220px;
+  font-size: 30px;
+  border: none;
+}
+
+.ubicacion{
+  width: 600px;
+  height: 600px;
+  margin: 10px;
+  margin-left: 200px;
+  border:solid;
+  border-color: black;
+}
+
+.seccionx{
+
+  margin-left: 30px;
+}
+
+.seccionx textarea{
+  margin: 20px;
+  width: 900px;
+  height: auto;
+  font-size: 27px;
+}
+h2{
+
+  text-align: center;
+  font-size: 30px;
+}
+
+table{
+  width: auto;
+  margin:auto;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 4px solid black;
+  border-collapse: collapse;
+  
+}
+
+tr:nth-child(odd) {
+  background-color:white;
+  color:black;
+  border: solid;
+  font-size: larger;
+}
+tr:nth-child(even) {
+  background-color:white;
+  color:black;
+  border: solid;
+}
+th {
+  font-size: 25px;
+  color :white;
+  background-color:gray;
+  border: 4px solid;
+}
+
+th,td{
+  width: 200px;
+  height: 10px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.tabla{
+  width: auto;
+  height: auto;
+  margin-left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.botonedit{
+  cursor: pointer;
+  background-color: #272c2f ;
+  width: auto;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 10px 10px 10px 10px;
+  box-shadow: 2px 2px 2px #43494d;
+}

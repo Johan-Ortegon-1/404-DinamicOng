@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ong',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OngComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    // if (localStorage.getItem('uid') == null) {
+    //   this.router.navigate(['']);
+    // } else if (localStorage.getItem('rol') == 'Voluntario') {
+    //   this.router.navigate(['/voluntario']);
+    // }
   }
 
 }

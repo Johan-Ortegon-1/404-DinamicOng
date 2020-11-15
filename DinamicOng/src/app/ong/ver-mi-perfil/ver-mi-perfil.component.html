@@ -1,0 +1,52 @@
+<div class="container" id="border">
+  <div>
+    <button class="botonedit">Editar perfil</button>
+  </div>
+    <!--Principal -->
+    <div class="primera">
+      <div class="foto ">
+        <div class="picsum-img-wrapper">
+          <img [src]="ong.imagenPerfil">
+        </div>
+      </div>
+      <div class="nombre">
+        <h2>{{ong.nombre}}</h2>
+      </div>
+    </div>
+    <!--Informacion de ong-->
+    <div class="seccion">
+      <h1>Misión</h1>
+      <textarea readonly>
+        {{ong.mision}}
+      </textarea>
+    </div>
+    <div class="seccion">
+      <h1>Visión</h1>
+      <textarea readonly>
+        {{ong.vision}}
+      </textarea>
+    </div>
+    <!--Informacion media-->
+    <div class="seccionx">
+      <h1>Correo</h1>
+      <textarea class="normal" readonly>{{ong.correo}}</textarea>
+    </div>
+    <div class="seccion">
+      <div class="tabla">
+        <h1>Telefonos</h1>
+        <table class="table table-light">
+          <thead>
+            <tr>
+              <th>Teléfono</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tele of telefonos">
+              <td>{{tele}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--Ubicacion -->
+  </div>

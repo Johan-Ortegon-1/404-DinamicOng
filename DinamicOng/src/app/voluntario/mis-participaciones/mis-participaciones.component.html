@@ -1,0 +1,36 @@
+<div class="container" id="border">
+
+  <div class="center">
+    <h1>Mis Participaciones</h1>
+  </div>
+
+  <table class="table table-bordered wtable centerTable">
+    <tbody>
+      <tr *ngFor="let inic of participaciones">
+        <td>
+          <div class="row">
+            <div class="col-sm-7 row">
+              <div class="col-sm-1">
+                <a (click) = "redirigir(1, inic.iniciativa.idOng)"><img class="small vcenter" [src]="inic.creador.imagenPerfil"></a>
+              </div>
+              <div class="col-sm-8">
+                <strong>Ong:</strong>
+                <br>
+                <a (click) = "redirigir(1, inic.iniciativa.idOng)">{{inic.creador.nombre}}</a>
+              </div>
+            </div>
+            <div class="col-sm-5">
+              <a (click) = "redirigir(2, inic.iniciativa.id)">
+                <strong>Iniciativa:</strong>
+                <br>
+                {{inic.iniciativa.nombre}}
+              </a>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>

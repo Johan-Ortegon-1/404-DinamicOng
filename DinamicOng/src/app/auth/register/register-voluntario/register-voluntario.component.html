@@ -1,0 +1,201 @@
+<div class="container" id="border">
+
+    <form (ngSubmit)='registrar()' #testForm="ngForm" ngNativeValidate>
+
+        <div class="row">
+            <label class="col-sm-10 col-form-label info">* Todos los campos son obligatorios</label>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="imagen">Imagen de Perfil: </label>
+                    <div class="col-sm-10">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="imagen" accept="image/*"
+                                (change)="uploadImage($event)" required>
+                            <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
+                        </div>
+
+                        <div class="row">
+                            <img [src]='preview'>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="voluntario.nombre"
+                            required placeholder="Ingrese su nombre">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="correo">Correo: </label>
+                    <div class="col-sm-10">
+                        <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" name="correo"
+                            id="correo" type="email" [(ngModel)]="voluntario.correo" required
+                            placeholder="Ingrese su correo">
+                        <small id="emailHelp" class="form-text text-muted">Formato: ejemplo@ejemplo.com.co</small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Ubicación: </label>
+
+                    <div class="col-sm-3">
+                        <label for="pais">País </label>
+                        <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="voluntario.ubicacion.pais"
+                            required placeholder="País">
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="ciudad">Ciudad </label>
+                        <input class="form-control" name="ciudad" id="ciudad" type="text"
+                            [(ngModel)]="voluntario.ubicacion.ciudad" required placeholder="Ciudad">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="direccion">Dirección </label>
+                        <input class="form-control" name="direccion" id="direccion" type="text"
+                            [(ngModel)]="voluntario.ubicacion.direccion" required placeholder="Dirección">
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">Teléfonos: </label>
+                    <div class="col-sm-8">
+                        <input class="form-control" name="telefono" id="telefono" type="number"
+                            [(ngModel)]="telefonoNuevo" placeholder="Ingrese un teléfono">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr *ngFor="let tel of voluntario.telefonos">
+                                    <td>
+                                        {{tel}}
+                                    </td>
+                                    <td class="small-td">
+                                        <a (click)="deleteTelefono(tel)">
+                                            <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                                remove_circle</mat-icon>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="error">{{errorTelefonos}}</p>
+                    </div>
+                    <div class="col-sm-2">
+                        <a (click)="addTelefono()">
+                            <mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!--DIVISION DERECHA DEL FORMULARIO-->
+            <div class="col-sm-6">
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma </label>
+                    <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo">
+                        <option *ngFor="let idioma of opcidiomas">{{idiomas[idioma]}}</option>
+                    </select>
+                    <a (click)="addIdioma()">
+                        <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                    </a>
+                </div>
+
+                <div class="col-sm-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr *ngFor="let idioma of voluntario.idiomas">
+                                <td>
+                                    {{idioma}}
+                                </td>
+                                <td class="small-td">
+                                    <a (click)="deleteIdioma(idioma)">
+                                        <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                            remove_circle</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="error">{{errorIdiomas}}</p>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="habilida">Habilidad</label>
+                    <input type="text" name="habilida" [(ngModel)]="this.habilidadNuevaNombre">
+                    <label class="col-form-label lable-area" for="listaAreas">Area</label>
+                    <select id="listaAreas" name="lista-idiomas" [(ngModel)]="this.habilidadNuevaArea">
+                        <option *ngFor="let areaC of opcAreas">{{areasConoc[areaC]}}</option>
+                    </select>
+                    <a (click)="addArea()">
+                        <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                    </a>
+                </div>
+
+                <div class="col-sm-8">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr *ngFor="let habilidad of voluntario.habilidades">
+                                <td>
+                                    {{habilidad.nombre}} - {{habilidad.area}}
+                                </td>
+                                <td class="small-td">
+                                    <a (click)="deleteArea(habilidad)">
+                                        <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                            remove_circle</mat-icon>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="error">{{errorArea}}</p>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="fechaNacimiento">Fecha de nacimiento</label>
+                    <input type="Date" name="fechaNacimiento" [(ngModel)]="this.fechaNacimiento">
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="contrasena">Contraseña: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" name="contrasena" id="contrasena"
+                            [(ngModel)]="contrasena" required placeholder="Ingrese su contraseña">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="confirmContrasena">Confirmar Contraseña: </label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="password" name="confirmContrasena" id="confirmContrasena"
+                            [(ngModel)]="confirmContrasena" required placeholder="Confirme su contraseña">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-7"></div>
+                    <div class="col-sm-2">
+                        <a [routerLink]='["/register"]'> <button class="btn btn-primary" type="button">Cancelar</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary" type="submit"
+                            [disabled]='voluntario.telefonos.length == 0'>Registrarse</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </form>
+</div>

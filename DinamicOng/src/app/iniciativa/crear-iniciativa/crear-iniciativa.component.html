@@ -1,0 +1,163 @@
+<div class="container" id="border">
+
+  <form (ngSubmit) = 'crearIniciativa()' #testForm="ngForm" ngNativeValidate>
+
+        <div class="row">
+          <h1 class="col-sm-12">Nueva Iniciativa</h1>
+        </div>
+
+        <div class="row">
+          <label class="col-sm-10 col-form-label info">* Todos los campos son obligatorios</label>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+          <div class="col-sm-10">
+            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="iniciativaNueva.nombre" required placeholder="Ingrese el nombre de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="descripcion">Descripción: </label>
+          <div class="col-sm-10">
+            <textarea class="form-control" name="descripcion" id="descripcion" [(ngModel)]="iniciativaNueva.descripcion" required placeholder="Ingrese la descripcion de la Iniciativa"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="cantMin">Cantidad de voluntarios mínima: </label>
+          <div class="col-sm-6">
+            <input class="form-control" max="{{iniciativaNueva.cantidadMaxVoluntarios}}" min="1" name="cantMin" id="cantMin" type="number" [(ngModel)]="iniciativaNueva.cantidadMinVoluntarios" required placeholder="Ingrese la cantidad mínima de voluntarios que requiere la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label" for="cantMax">Cantidad de voluntarios máxima: </label>
+          <div class="col-sm-6">
+            <input class="form-control" min="{{iniciativaNueva.cantidadMinVoluntarios}}" name="cantMax" id="cantMax" type="number" [(ngModel)]="iniciativaNueva.cantidadMaxVoluntarios" required placeholder="Ingrese la cantidad máxima de voluntarios que requiere la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="fechaInicio">Fecha de Inicio: </label>
+          <div class="col-sm-3">
+            <input class="form-control" min="{{hoy}}" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaNueva.fechaInicio" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="fechaFin">Fecha de Finalización: </label>
+          <div class="col-sm-3">
+            <input class="form-control" min="{{iniciativaNueva.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaNueva.fechaFinalizacion" required placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Ubicación: </label>
+
+          <div class="col-sm-3">
+            <label for="pais">País </label>
+            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="iniciativaNueva.ubicacion.pais" required placeholder="País">
+          </div>
+          <div class="col-sm-3">
+            <label for="ciudad">Ciudad </label>
+            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="iniciativaNueva.ubicacion.ciudad" required placeholder="Ciudad">
+          </div>
+          <div class="col-sm-4">
+            <label for="direccion">Dirección </label>
+            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="iniciativaNueva.ubicacion.direccion" required placeholder="Dirección">
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Areas de conocimiento relacionadas: </label>
+          <div class="col-sm-4">
+            <select id="areasConoc" name="areasConoc" class="form-control" [(ngModel)]="areaNueva">
+              <option *ngFor="let areaC of opcAreas">{{areasConoc[areaC]}}</option>
+            </select>
+            <p class="error">{{errorArea}}</p>
+          </div>
+          <div class="col-sm-1">
+            <a (click)="addAreaConoc()"><mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
+          </div>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <tbody>
+                <tr *ngFor="let areaC of iniciativaNueva.areasConocimientoRelacionadas">
+                  <td>
+                    {{areaC}}
+                  </td>
+                  <td class="small-td">
+                    <a (click)="deleteAreaConoc(areaC)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Idiomas deseables: </label>
+          <div class="col-sm-4">
+            <select id="idiomas" name="idiomas" class="form-control" [(ngModel)]="idiomaNuevo">
+              <option *ngFor="let idioma of opcidiomas">{{idiomas[idioma]}}</option>
+            </select>
+            <p class="error">{{errorIdioma}}</p>
+          </div>
+          <div class="col-sm-1">
+            <a (click)="addIdioma()"><mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
+          </div>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <tbody>
+                <tr *ngFor="let idioma of iniciativaNueva.idiomasDeseables">
+                  <td>
+                    {{idioma}}
+                  </td>
+                  <td class="small-td">
+                    <a (click)="deleteIdioma(idioma)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="imagen">Imagenes: </label>
+          <div class="col-sm-10">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="imagen" accept="image/*" (change)="uploadImage($event)">
+              <label class="custom-file-label" for="imagen">Selecciona las imagenes de la iniciativa</label>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="margin">
+
+          <ngb-carousel>
+            <ng-template ngbSlide *ngFor="let item of preview">
+              <div class="picsum-img-wrapper">
+                <img [src]="item">
+              </div>
+            </ng-template>
+          </ngb-carousel>
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-1">
+            <a [routerLink] = "['/ong/ver-iniciativas']"> <button class="btn btn-primary" type="button">Cancelar</button> </a>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary" type="submit"
+            [disabled]='iniciativaNueva.areasConocimientoRelacionadas.length == 0 || iniciativaNueva.idiomasDeseables.length == 0 || iniciativaNueva.imagenes.length == 0'>
+              Crear Iniciativa
+            </button>
+          </div>
+        </div>
+  </form>
+</div>

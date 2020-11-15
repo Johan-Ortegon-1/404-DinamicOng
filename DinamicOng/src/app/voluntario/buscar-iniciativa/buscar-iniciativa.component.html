@@ -1,0 +1,112 @@
+<div class="container" id="border">
+
+  <form (ngSubmit) = 'buscarIniciativa()' #testForm="ngForm" ngNativeValidate>
+
+        <div class="row">
+          <h1 class="col-sm-12">Buscar Iniciativa</h1>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
+          <div class="col-sm-10">
+            <input class="form-control" name="nombre" id="nombre" type="text" [(ngModel)]="iniciativaBuscar.nombre" required placeholder="Ingrese el nombre de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="fechaInicio">Fecha de Inicio: </label>
+          <div class="col-sm-10">
+            <input class="form-control" name="fechaInicio" id="fechaInicio" type="date" [(ngModel)]="iniciativaBuscar.fechaInicio" placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label" for="fechaFin">Fecha de fin: </label>
+          <div class="col-sm-10">
+            <input class="form-control" min="{{iniciativaBuscar.fechaInicio}}" name="fechaFin" id="fechaFin" type="date" [(ngModel)]="iniciativaBuscar.fechaFinalizacion" placeholder="Ingrese la fecha de Inicio de la Iniciativa">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Ubicación: </label>
+
+          <div class="col-sm-3">
+            <label for="pais">País </label>
+            <input class="form-control" name="pais" id="pais" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.pais" placeholder="País">
+          </div>
+          <div class="col-sm-3">
+            <label for="ciudad">Ciudad </label>
+            <input class="form-control" name="ciudad" id="ciudad" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.ciudad" placeholder="Ciudad">
+          </div>
+          <div class="col-sm-4">
+            <label for="direccion">Dirección </label>
+            <input class="form-control" name="direccion" id="direccion" type="text" [(ngModel)]="iniciativaBuscar.ubicacion.direccion" placeholder="Dirección">
+          </div>
+
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Areas de conocimiento relacionadas: </label>
+          <div class="col-sm-4">
+            <select id="areasConoc" name="areasConoc" class="form-control" [(ngModel)]="areaNueva">
+              <option *ngFor="let areaC of opcAreas">{{areasConoc[areaC]}}</option>
+            </select>
+            <p class="error">{{errorArea}}</p>
+          </div>
+          <div class="col-sm-1">
+            <a (click)="addAreaConoc()"><mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
+          </div>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <tbody>
+                <tr *ngFor="let areaC of iniciativaBuscar.areasConocimientoRelacionadas">
+                  <td>
+                    {{areaC}}
+                  </td>
+                  <td class="small-td">
+                    <a (click)="deleteAreaConoc(areaC)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Idiomas deseables: </label>
+          <div class="col-sm-4">
+            <select id="idiomas" name="idiomas" class="form-control" [(ngModel)]="idiomaNuevo">
+              <option *ngFor="let idioma of opcidiomas">{{idiomas[idioma]}}</option>
+            </select>
+            <p class="error">{{errorIdioma}}</p>
+          </div>
+          <div class="col-sm-1">
+            <a (click)="addIdioma()"><mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon></a>
+          </div>
+          <div class="col-sm-4">
+            <table class="table table-bordered">
+              <tbody>
+                <tr *ngFor="let idioma of iniciativaBuscar.idiomasDeseables">
+                  <td>
+                    {{idioma}}
+                  </td>
+                  <td class="small-td">
+                    <a (click)="deleteIdioma(idioma)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-1">
+            <a> <button class="btn btn-primary" type="button">Cancelar</button> </a>
+          </div>
+          <div class="col-sm-2">
+            <button class="btn btn-primary" type="submit">Buscar Iniciativa</button>
+          </div>
+        </div>
+  </form>
+</div>

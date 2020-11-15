@@ -1,0 +1,82 @@
+<div class="container" id="border">
+  <div>
+    <button class="botonedit">Editar perfil</button>
+  </div>
+  <!--Principal -->
+  <div class="primera">
+    <div class="foto ">
+      <div class="picsum-img-wrapper">
+        <img [src]=voluntario.imagenPerfil>
+      </div>
+    </div>
+    <div class="nombre">
+      <h2>{{voluntario.nombre}}</h2>
+    </div>
+  </div>
+  <!--Informacion de habilidades-->
+  <div class="seccion">
+    <div class="tabla">
+      <h1>Habilidades</h1>
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Área de Conocimiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let con of conocimientos">
+            <td>{{con.nombre}}</td>
+            <td>{{con.area}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Informacion media-->
+  <div class="seccionx">
+    <h1>Correo</h1>
+    <textarea class="normal" readonly>{{voluntario.correo}}</textarea>
+  </div>
+  <div class="seccion">
+    <div class="tabla">
+      <h1>Telefonos</h1>
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tele of telefonos">
+            <td>{{tele}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <!--Ubicacion -->
+  <!--Informacion final-->
+  <div class="seccion">
+    <div class="tabla">
+      <h1>Idiomas</h1>
+      <table class="table table-light">
+        <thead>
+          <tr>
+            <th>Idiomas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let idi of idim">
+            <td>{{idi}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="seccionx">
+    <h1>Fecha nacimiento</h1>
+    <textarea readonly>{{voluntario.fechaNacimiento}}</textarea>
+  </div>
+
+</div>

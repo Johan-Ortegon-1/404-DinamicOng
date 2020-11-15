@@ -1,0 +1,128 @@
+.center * {
+  text-align: center;
+}
+h1{
+text-align: center; 
+font-size: 40px; 
+}
+
+.info {
+  color: blue;
+}
+
+.vcenter {
+  display: block;
+  margin-top: auto;
+}
+
+.centerTable {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.big {
+  font-size: 35px;
+  text-align: left;
+}
+
+.not-visible {
+  background-color: #00000000;
+  border-color: #00000000;
+}
+
+a {
+  cursor: pointer;
+}
+
+.btext {
+  font-size: large;
+}
+
+.wtable {
+  width: 80%;
+}
+
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+label, h1 {
+  font-weight: bold;
+}
+
+.row {
+  margin-bottom: 15px;
+}
+
+.big {
+  max-width: 400px;
+  max-height: 400px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.small {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.xsmall {
+  max-width: 40px;
+  max-height: 40px;
+}
+
+.right {
+  text-align: right;
+}
+
+ngb-carousel {
+  width: 60%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #00000010;
+  border-radius: 30px;
+}
+
+.stars-outer {
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 20px;
+}
+
+.stars-outer::before {
+  content: "\f006 \f006 \f006 \f006 \f006";
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+}
+
+.stars-inner::before {
+  content: "\f005 \f005 \f005 \f005 \f005";
+  color: #f8ce0b;
+}
+
+  
+  #buttona{
+    color: white;
+    background-color: #4CAF50;
+    float: right;
+  }
+  #buttonr{
+    color: white;
+    background-color:#f44336;
+    float:right;
+  }
+  p{
+    margin-top: 13px;
+     
+  }
+  
