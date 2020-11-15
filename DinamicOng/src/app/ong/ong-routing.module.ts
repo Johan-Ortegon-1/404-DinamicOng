@@ -1,7 +1,6 @@
 import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
 import { OngComponent } from './ong.component';
@@ -9,6 +8,7 @@ import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciat
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario.component';
 import { MostrarBusquedaVoluntarioComponent } from './mostrar-busqueda-voluntario/mostrar-busqueda-voluntario.component';
+import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-iniciativa.component';
 const routes: Routes = [
   {
     path: '',

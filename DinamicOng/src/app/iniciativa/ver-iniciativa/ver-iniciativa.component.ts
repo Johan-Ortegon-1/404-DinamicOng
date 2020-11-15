@@ -198,7 +198,7 @@ export class VerIniciativaComponent implements OnInit {
     if (str.includes('voluntario')) {
       this.router.navigate(['/voluntario/ver-ong/' + id]);
     } else if (str.includes('ong')) {
-      //this.router.navigate(['/ong/ver-ong' + id]);
+      //this.router.navigate(['/ong/ver-ong/' + id]);
     }
 
   }
