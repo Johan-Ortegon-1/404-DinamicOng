@@ -1,11 +1,15 @@
+
+<!-- Contenedor del componente navbar-voluntario -->
 <div class="nav">
   <div class="container">
     <div class="row">
 
+      <!-- Logo de la aplicación -->
       <div class="col-sm-1">
         <a ><img id="logo" src="../../../assets/logotipo ONG.png"></a>
       </div>
 
+      <!-- Enlaces de navegación -->
       <div class="col-sm-7 vcenter">
         <ul class="menu">
           <li [ngClass]="{'selected': selected[0] == true}"><a [routerLink]="['/voluntario']">Inicio</a></li>
@@ -15,6 +19,7 @@
         </ul>
       </div>
 
+      <!-- Iconos de navegación -->
       <div class="col-sm-3 vcenter">
         <ul class="icon-menu">
           <li><a [routerLink]="['/voluntario/buscar-iniciativa']"><mat-icon aria-hidden="false" aria-label="add user">search</mat-icon></a></li>

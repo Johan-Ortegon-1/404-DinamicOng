@@ -52,7 +52,7 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
   buscarIniciativa() {
     let iniciativas: Iniciativa[] = [];
 
-    this.var = this.iniciativaService.buscarIniciativa().subscribe((data:any) => {
+    this.var = this.iniciativaService.buscarIniciativas().subscribe((data:any) => {
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {

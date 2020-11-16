@@ -1,75 +1,19 @@
 import { Ubicacion } from './ubicacion';
 
+// Clase que representa el modelo de un Usuario
 export class Usuario {
-  public id: string;
-  public nombre: string;
-  public correo: string;
-  public telefonos: Array<string>;
-  public rol: string;
-  public ubicacion: Ubicacion;
-  public imagenPerfil: string;
+  public id: string; // Identificador único del usuario
+  public nombre: string; // Nombre y apellido del usuario
+  public correo: string; // Correo del usuario
+  public telefonos: Array<string>; // Lista de telefonos que maneja el usuario
+  public rol: string; // Rol que tiene el usuario (ONG o Voluntario)
+  public ubicacion: Ubicacion; // Ubicación del usuario, un objeto de tipo Ubicación
+  public imagenPerfil: string; // URL de la imagen que tiene el usuario
 
+  // Metodo constructor para crear un objeto de clase Voluntario
+  // Se inicializan listas y valores necesarios
   constructor() {
     this.telefonos = [];
     this.ubicacion = new Ubicacion();
   }
-
-  /* constructor(id: string, nombre: string, correo: string, telefonos: Array<string>, rol: string, ubicacion: Ubicacion, img: string) {
-    this.nombre = nombre;
-    this.correo = correo;
-    this.id = id;
-    this.telefonos = telefonos;
-    this.rol = rol;
-    this.ubicacion = ubicacion;
-    this.imagenPerfil = img;
-  }
-
-  get getNombre(): string {
-    return this.nombre;
-  }
-
-  set setNombre(nom: string) {
-    this.nombre = nom;
-  }
-
-  get getCorreo(): string {
-    return this.correo;
-  }
-
-  set setCorreo(correo: string) {
-    this.correo = correo;
-  }
-
-  get getId(): string {
-    return this.id;
-  }
-
-  set setId(id: string) {
-    this.id = id;
-  }
-
-  get getTelefonos(): Array<string> {
-    return this.telefonos;
-  }
-
-  set setTelefonos(telefonos: Array<string>) {
-    this.telefonos = telefonos;
-  }
-
-  get getRol(): string {
-    return this.rol;
-  }
-
-  set setRol(rol: string) {
-    this.rol = rol;
-  }
-
-  get getImagenPerfil(): string {
-    return this.imagenPerfil;
-  }
-
-  set setImagenPerfil(img: string) {
-    this.imagenPerfil = img;
-  } */
-
 }

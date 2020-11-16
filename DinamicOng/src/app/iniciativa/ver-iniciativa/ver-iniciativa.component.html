@@ -1,9 +1,12 @@
+<!-- Contenedor del componente ver-iniciativa -->
 <div class="container" id="border">
 
+    <!-- Elemento que muestra el nombre de la iniciativa y se oculta cuando la Ong que la crea no está en la pantalla -->
     <div class="center" [hidden]="!creatorOng">
       <h1>{{iniciativa.nombre}}</h1>
     </div>
 
+    <!-- Elemento que muestra el nombre de la iniciativa, nombre y foto de la Ong que crea y se oculta cuando la Ong que la crea está en la pantalla -->
     <div class="row" [hidden]='creatorOng'>
       <h1 class="col-sm-9">{{iniciativa.nombre}}</h1>
       <div class="col-sm-1 right">
@@ -12,6 +15,7 @@
       <a (click)="navOng(creador.id)"><h1 class="col-sm-1">{{creador.nombre}}</h1></a>
     </div>
 
+    <!-- Elemento que muestra la descripción de la iniciativa -->
     <div class="row">
       <label class="col-sm-2">Descripción: </label>
       <div class="col-sm-10">
@@ -19,6 +23,7 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra el promedio de calificaciones de la iniciativa solo cuando hay y ya empezó la iniciativa -->
     <div class="row" [hidden]="!empezo || iniciativa.valoraciones.length == 0">
       <label class="col-sm-2">Valoración: </label>
       <div class="col-sm-10 row">
@@ -29,6 +34,7 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra la cantidad de voluntarios (mínima y máxima) de una iniciativa -->
     <div class="row">
       <label class="col-sm-3">Cantidad de voluntarios de: </label>
       <div class="col-sm-1">
@@ -40,6 +46,7 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra las fechas (de inicio y fin) de la iniciativa -->
     <div class="row">
       <label class="col-sm-2">Fecha de Inicio: </label>
       <div class="col-sm-2">
@@ -51,6 +58,7 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra la ubicación de la iniciativa -->
     <div class="row">
       <label class="col-sm-2">Ubicación: </label>
 
@@ -78,6 +86,7 @@
 
     </div>
 
+    <!-- Elemento que muestra las áreas de conocimiento de la iniciativa -->
     <div class="row">
       <label class="col-sm-2 col-form-label">Areas de conocimiento relacionadas: </label>
       <div class="col-sm-4">
@@ -93,6 +102,7 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra los idiomas deseables de la iniciativa -->
     <div class="row">
       <label class="col-sm-2 col-form-label">Idiomas deseables: </label>
 
@@ -109,10 +119,10 @@
       </div>
     </div>
 
+    <!-- Elemento que muestra las imagenes de la iniciativa -->
     <div class="row">
       <label class="col-sm-2 col-form-label">Imagenes: </label>
     </div>
-
     <div class="margin">
 
       <ngb-carousel>
@@ -125,12 +135,14 @@
 
     </div>
 
+    <!-- Elemento que muestra los voluntarios inscritos de la iniciativa -->
     <div class="row">
       <label class="col-sm-2 col-form-label">Voluntarios inscritos: </label>
     </div>
 
     <table class="table table-bordered wtable centerTable">
       <tbody>
+        <tr *ngIf="iniciativa.participantes.length == 0"><td>Aún no hay voluntarios inscritos</td></tr>
         <tr *ngFor="let part of participantes">
           <td>
             <div class="row">
@@ -142,11 +154,13 @@
       </tbody>
     </table>
 
+    <!-- Elemento que muestra las calificaciones de la iniciativa y se muestra solo cuando ya empezó la iniciativa-->
     <table class="table table-bordered wtable centerTable" [hidden]="!empezo">
       <thead>
         <th>Comentarios</th>
       </thead>
       <tbody>
+        <tr *ngIf="iniciativa.valoraciones.length == 0"><td>Aún no hay comentarios</td></tr>
         <tr *ngFor="let val of iniciativa.valoraciones">
           <td>
             <div class="row">
@@ -160,7 +174,7 @@
           </td>
         </tr>
       </tbody>
-      <tfoot [hidden]="!participante || comento">
+      <tfoot [hidden]="!participante || comento"> <!-- Elemento que permite valorar la iniciativa a los participantes-->
         <td>
           <form (submit)="comentar()" #testForm="ngForm" ngNativeValidate>
             <div class="form-group row">
@@ -189,10 +203,12 @@
       <div class="col-sm-8" [hidden]="solicito || participante || !hayCupos">
       </div>
       <div class="col-sm-10"[hidden]="!solicito && !participante"></div>
+      <!-- Botón para contactar la Ong, solo a voluntarios no inscritos -->
       <div class="col-sm-2">
         <a><button class="btn btn-primary" type="button">Contactar ONG</button></a>
       </div>
 
+      <!-- Botón para solicitar unirse, solo a voluntarios no inscritos y que no hayan mandado ya solicitud -->
       <div class="col-sm-2" [hidden]="solicito || participante || !hayCupos">
         <button (click)="solicitarUnirse()" class="btn btn-primary" type="button">Solicitar Unirse</button>
       </div>
@@ -201,6 +217,7 @@
     <div class="row" [hidden]="!creatorOng">
       <div class="col-sm-10">
       </div>
+      <!-- Botón para editar la iniciativa, solo a la Ong creadora -->
       <div class="col-sm-2">
         <a><button class="btn btn-primary" type="button">Editar Iniciativa</button></a>
       </div>
