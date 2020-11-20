@@ -1,3 +1,4 @@
+<!-- Contenedor del componente del register de un Voluntario -->
 <div class="container" id="border">
 
     <form (ngSubmit)='registrar()' #testForm="ngForm" ngNativeValidate>
@@ -9,7 +10,7 @@
         <div class="row">
 
             <div class="col-sm-6">
-
+                <!-- Elemento para subir una imagen de perfil -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="imagen">Imagen de Perfil: </label>
                     <div class="col-sm-10">
@@ -18,14 +19,14 @@
                                 (change)="uploadImage($event)" required>
                             <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                         </div>
-
+                        <!-- Elemento para mostrar una previsualización de la imagen de perfil -->
                         <div class="row">
                             <img [src]='preview'>
                         </div>
 
                     </div>
                 </div>
-
+                <!-- Elemento para ingresar el nombre de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="nombre">Nombre: </label>
                     <div class="col-sm-10">
@@ -33,7 +34,7 @@
                             required placeholder="Ingrese su nombre">
                     </div>
                 </div>
-
+                <!-- Elemento para ingresar el correo de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="correo">Correo: </label>
                     <div class="col-sm-10">
@@ -43,7 +44,7 @@
                         <small id="emailHelp" class="form-text text-muted">Formato: ejemplo@ejemplo.com.co</small>
                     </div>
                 </div>
-
+                <!-- Elemento para ingresar la ubicación de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Ubicación: </label>
 
@@ -64,7 +65,7 @@
                     </div>
 
                 </div>
-
+                <!-- Elemento para ingresar los teléfonos de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">Teléfonos: </label>
                     <div class="col-sm-8">
@@ -99,7 +100,7 @@
 
             <!--DIVISION DERECHA DEL FORMULARIO-->
             <div class="col-sm-6">
-
+                <!-- Elemento para ingresar los idiomas de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="listaIdioma">Idioma </label>
                     <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo">
@@ -128,7 +129,7 @@
                     </table>
                     <p class="error">{{errorIdiomas}}</p>
                 </div>
-
+                <!-- Elemento para ingresar las habilidades de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="habilida">Habilidad</label>
                     <input type="text" name="habilida" [(ngModel)]="this.habilidadNuevaNombre">
@@ -159,12 +160,12 @@
                     </table>
                     <p class="error">{{errorArea}}</p>
                 </div>
-
+                <!-- Elemento para ingresar la fecha de nacimiento de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="fechaNacimiento">Fecha de nacimiento</label>
                     <input type="Date" name="fechaNacimiento" [(ngModel)]="this.fechaNacimiento">
                 </div>
-
+                <!-- Elemento para ingresar loa contraseña de un Voluntario -->
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="contrasena">Contraseña: </label>
                     <div class="col-sm-10">
@@ -172,7 +173,7 @@
                             [(ngModel)]="contrasena" required placeholder="Ingrese su contraseña">
                     </div>
                 </div>
-
+                
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="confirmContrasena">Confirmar Contraseña: </label>
                     <div class="col-sm-10">
@@ -180,7 +181,7 @@
                             [(ngModel)]="confirmContrasena" required placeholder="Confirme su contraseña">
                     </div>
                 </div>
-
+                <!-- Conjunto de botones para confirmar o cancelar el registro de un Voluntario -->
                 <div class="row">
                     <div class="col-sm-7"></div>
                     <div class="col-sm-2">

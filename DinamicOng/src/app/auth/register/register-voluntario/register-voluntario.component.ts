@@ -7,39 +7,46 @@ import { AreasConocimiento } from 'src/app/models/enumAreasConocimiento';
 import { Idiomas } from 'src/app/models/enumIdiomas';
 import { Router } from '@angular/router';
 
+// Clase que representa el componente del Register de una Ong
 @Component({
   selector: "app-register-voluntario",
   templateUrl: "./register-voluntario.component.html",
   styleUrls: ["./register-voluntario.component.css"],
 })
 export class RegisterVoluntarioComponent implements OnInit {
-  public ong: Ong;
-  public voluntario: Voluntario;
+  public ong: Ong; // Objeto que se llenará mediante el registro
+  public voluntario: Voluntario; // Objeto que se llenará mediante el registro
 
-  public contrasena: string;
-  public confirmContrasena: string;
+  public contrasena: string; // Contraseña ingresada por el usuario
+  public confirmContrasena: string; // Constraña de verificación ingresada por el usuario
 
-  public opcAreas = [];
-  public areasConoc = AreasConocimiento;
+  public opcAreas = []; // Secuencia de habilidades ingresadas por el usuario
+  public areasConoc = AreasConocimiento; // Secuencia de areas de conocimiento ingresadas por el usuario
 
-  public opcidiomas = [];
-  public idiomas = Idiomas;
+  public opcidiomas = []; // Secuencia de idiomas adicionales ingresadas por el usuario
+  public idiomas = Idiomas; // Variable para el manejo del idioma en la lista despleglable
 
-  public preview: string;
-  public telefonoNuevo = '';
-  public idiomaNuevo = '';
+  public preview: string; // Variable temporal
+  public telefonoNuevo = ''; // Variable para el manejo de nuevos telefonos
+  public idiomaNuevo = ''; // Variable para el manejo de nuevos idiomas
 
-  public habilidadNuevaNombre = '';
-  public habilidadNuevaArea = '';
+  public habilidadNuevaNombre = ''; // Variable para el manejo de un nuevo nombro de habilidad
+  public habilidadNuevaArea = ''; // Variable para el manejo de un nuevo nombre de un area de conocimiento
 
-  public errorTelefonos = '';
-  public errorIdiomas = '';
-  public errorArea = '';
+  public errorTelefonos = ''; // Variable para el manejo de errores al ingresar telefonos
+  public errorIdiomas = ''; // Variable para el manejo de errores al ingresar Idiomas
+  public errorArea = ''; // Variable para el manejo de errores al ingresar areas
 
-  public fechaNacimiento: Date;
-
+  public fechaNacimiento: Date; // Variable para el manejo de fechas de nacimiento
+  
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - authSvc: Objeto que permite el acceso al servicio de Autenticación y Registro
+  // - router: Objeto que permite la navegación entre componentes por la URL
   constructor(private authSvc: AuthService, private router: Router) {}
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializa el objeto Voluntario y Ong
   ngOnInit(): void {
     this.ong = new Ong();
     this.voluntario = new Voluntario();
@@ -47,6 +54,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     this.opcidiomas = Object.keys(this.idiomas);
   }
 
+  // Metodo para consolidar el registro de un voluntario en la Base de datos
   async registrar() {
     if (this.contrasena === this.confirmContrasena) {
       this.voluntario.fechaNacimiento = this.fechaNacimiento;
@@ -70,6 +78,9 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para guardar la imagen de perfil de la Ong y en la previsualización
+  // Parametros:
+  // - $event: Evento resultante de un input file que contiene la imagen
   uploadImage($event) {
     if ($event.target.files && $event.target.files[0]) {
       this.voluntario.imagenPerfil = $event.target.files[0];
@@ -84,6 +95,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para agregar un teléfono a la lista de teléfonos del Voluntario
   addTelefono() {
     if (this.telefonoNuevo !== "" && this.telefonoNuevo != null) {
       if (this.voluntario.telefonos.indexOf(this.telefonoNuevo) === -1) {
@@ -104,6 +116,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para eliminar un télefono de la lista de télefonos del Voluntario
   deleteTelefono(tel: string) {
     const i = this.voluntario.telefonos.indexOf(tel);
 
@@ -112,6 +125,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para agregar un idioma
   addIdioma() {
     if (this.idiomaNuevo !== '' && this.idiomaNuevo != null) {
       if (this.voluntario.idiomas.indexOf(this.idiomaNuevo) === -1) {
@@ -126,6 +140,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para eliminar un idioma agregado
   deleteIdioma(idiomaElimianr: string) {
     const i = this.voluntario.idiomas.indexOf(idiomaElimianr);
 
@@ -134,6 +149,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para Agregar un area
   addArea() {
     if (this.habilidadNuevaNombre !== '' && this.habilidadNuevaNombre != null) {
       if (this.habilidadNuevaArea !== '' && this.habilidadNuevaArea != null) {
@@ -158,6 +174,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
+  // Metodo para eliminar un area
   deleteArea(areaEliminar: Conocimiento) {
     const i = this.voluntario.habilidades.indexOf(areaEliminar);
 
