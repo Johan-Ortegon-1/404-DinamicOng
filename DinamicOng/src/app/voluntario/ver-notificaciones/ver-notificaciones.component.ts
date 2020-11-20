@@ -17,27 +17,32 @@ import { AuxAdministrar } from '../../models/auxAdministrar';
   templateUrl: './ver-notificaciones.component.html',
   styleUrls: ['./ver-notificaciones.component.css']
 })
+// Clase que representa el componente del Register de una Ong
 export class VerNotificacionesComponent implements OnInit {
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
     private router: Router, private configC: NgbCarouselConfig, private voluntarioService: VoluntarioService, private ongService: OngService) { }
 
   public vol: Voluntario = new Voluntario();
-  public ong1: Ong = new Ong();
-  public ong2: Ong = new Ong();
-  public solicitudes: Solicitud[] = [];
+  public ong1: Ong = new Ong(); // Objeto que se llenará mediante el registro
+  public ong2: Ong = new Ong(); // Objeto que se llenará mediante el registro
+  public solicitudes: Solicitud[] = []; // Secuecia para almacenar las solucitudes a desplegar
 
   /**Version final */
-  public ruta = this.router.url;
-  public str = String(this.ruta);
-  public voluntario = new Voluntario();
-  public ong = new Ong();
-  public iniciativa = new Iniciativa();
-  public auxiliares: AuxAdministrar[] = [];
+  public ruta = this.router.url; // Objeto que que permitir[a la navegacion]
+  public str = String(this.ruta); // Variable auxiliar para almacenar la ruta
+  public voluntario = new Voluntario(); // Objeto que se llenará mediante el registro
+  public ong = new Ong(); // Objeto que se llenará mediante el registro
+  public iniciativa = new Iniciativa(); // Objeto que se llenará mediante el registro
+  public auxiliares: AuxAdministrar[] = []; // Secuecia para almacenar estructuras auxiliares
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializa el objeto Ong
   ngOnInit(): void {
     this.obtenerVoluntarioActual();
   }
+
+  // Metodo para obtener el voluntario del cual quiero saber sus notificaciones
   obtenerVoluntarioActual() {
     if (this.str.includes('voluntario')) {
       const idVoluntario = localStorage.getItem('uid');
@@ -49,6 +54,7 @@ export class VerNotificacionesComponent implements OnInit {
       });
     }
   }
+  // Metodo para obtener las solucitudes de un Voluntario
   obtenerTodasSolicitudes() {
     let iniciativas: Iniciativa[] = [];
     this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
@@ -63,6 +69,10 @@ export class VerNotificacionesComponent implements OnInit {
       });
     });
   }
+
+  // Metodo para obtener la ong correspondiente a una solicitud
+  // Parámetros:
+  // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
   obtenerOng(solicitudActual: Solicitud) {
     this.ongService.consultarOngByID(solicitudActual.idOng).then(resp => {
       this.ong = resp.data() as Ong;
@@ -75,6 +85,11 @@ export class VerNotificacionesComponent implements OnInit {
       });
     });
   }
+
+  // Metodo para obtener la iniciativa correspondiente a una solicitud
+  // Parámetros:
+  // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+  // - urlImagen: Objeto que permite obtener la url de la imagen asociada
   obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string) {
     this.iniciativaService.consultarIniciativaByID(solicitudActual.idIniciativa).then(resp => {
       this.iniciativa = resp.data() as Iniciativa;
@@ -82,6 +97,11 @@ export class VerNotificacionesComponent implements OnInit {
       this.construirPresentacionDatos(solicitudActual, urlImagen);
     });
   }
+
+  // Metodo para construir la presentacion de datos
+  // Parámetros:
+  // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+  // - urlImagen: Objeto que permite obtener la url de la imagen asociada
   construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string) {
     let nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
 
@@ -98,15 +118,22 @@ export class VerNotificacionesComponent implements OnInit {
     nuevoAuxiliar.rutaImagenOng = urlImagen;
     this.auxiliares.push(nuevoAuxiliar);
   }
+
+  // Metodo para filtar las solicitudes por el voluntario actual
+  // Parámetros:
+  // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
   filtrarSolicitud(solicituidActual: Solicitud): boolean {
     if (solicituidActual.idVoluntario === this.voluntario.id) {
       return true;
     }
     return false;
   }
+
+  // Metodo para cambiar de pagina y visualizar un Ong
   verOng(aux: AuxAdministrar) {
     this.router.navigate(['/voluntario/ver-ong/' + aux.idOng]);
   }
+  // Metodo para cambiar de pagina y visualizar una iniciativa
   verIniciativa(aux: AuxAdministrar) {
     this.router.navigate(['/voluntario/iniciativa/' + aux.idIniciativa]);
   }

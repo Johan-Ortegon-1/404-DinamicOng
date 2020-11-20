@@ -7,7 +7,7 @@ import { AreasConocimiento } from 'src/app/models/enumAreasConocimiento';
 import { Idiomas } from 'src/app/models/enumIdiomas';
 import { Router } from '@angular/router';
 
-// Clase que representa el componente del Register de una Ong
+// Clase que representa el componente del Register de un Voluntario
 @Component({
   selector: "app-register-voluntario",
   templateUrl: "./register-voluntario.component.html",
@@ -78,7 +78,7 @@ export class RegisterVoluntarioComponent implements OnInit {
     }
   }
 
-  // Metodo para guardar la imagen de perfil de la Ong y en la previsualización
+  // Metodo para guardar la imagen de perfil del voluntario y en la previsualización
   // Parametros:
   // - $event: Evento resultante de un input file que contiene la imagen
   uploadImage($event) {

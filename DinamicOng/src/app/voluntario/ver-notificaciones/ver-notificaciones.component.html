@@ -1,5 +1,6 @@
+<!-- Contenedor del componente de Ver Notificaciones -->
 <div class="container cont" id="border">
-
+    <!-- Elemento Mostrar el buzon -->
     <div class="row">
         <h1 class="col-sm-12">Mi buzón</h1>
         <div *ngFor="let aux of auxiliares" class="container">
@@ -8,7 +9,7 @@
                 <div class="col-sm-1">
                     <a (click)="verOng(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
                 </div>
-
+                <!-- Elemento para ver una notificacion -->
                 <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
                     class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
                     notifications</mat-icon>
@@ -18,6 +19,7 @@
                 <a (click)="verIniciativa(aux)"><label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreIniciativa}} </label></a>
                 <p class="col-sm-1">Estado:</p>
                 <p *ngIf="!aux.contestado">La ONG aun no ha contestado</p>
+                <!-- Elemento para ver el estado de una notificacion -->
                 <div *ngIf="aux.contestado">
                     <p *ngIf="aux.aceptado">Has Sido Aceptado!</p>
                     <p *ngIf="!aux.aceptado">NO Has Sido Aceptado!</p>
