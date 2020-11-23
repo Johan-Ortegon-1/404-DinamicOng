@@ -44,7 +44,7 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
   buscarIniciativa() {
     let iniciativas: Iniciativa[] = [];
 
-    this.var = this.iniciativaService.buscarIniciativa().subscribe((data:any) => {
+    this.var = this.iniciativaService.buscarIniciativas().subscribe((data:any) => {
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {

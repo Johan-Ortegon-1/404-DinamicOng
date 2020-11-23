@@ -20,8 +20,8 @@ const routes: Routes = [
       { path: 'iniciativa/:id', component: VerIniciativaComponent },
       { path: 'participaciones', component: MisParticipacionesComponent },
       { path: 'ver-notificaciones', component: VerNotificacionesComponent },
-      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) }
-      {path: 'recomendaciones-voluntario', component: RecomendacionesVoluntarioComponent}
+      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) },
+      {path: 'recomendaciones-voluntario', component: RecomendacionesVoluntarioComponent},
     ]
   }
 ]
