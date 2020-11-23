@@ -23,12 +23,12 @@ export class AdministrarVoluntariosComponent implements OnInit {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
-  public ong: Ong;
-  public uid: string;
-  public iniciativas: Iniciativa[] = [];
-  public voluntarios: Voluntario[] = [];
-  public solicitudes: Solicitud[] = [];
-  public solis: AuxAdministrar[] = [];
+  public ong: Ong; // Objeto que representa la ONG que administrará la postulación
+  public uid: string;//String donde se indicará el id de la sesión
+  public iniciativas: Iniciativa[] = [];// Secuecia para almacenar las iniciativas de la ONG
+  public voluntarios: Voluntario[] = [];// Secuecia para almacenar los voluntarios postulados
+  public solicitudes: Solicitud[] = [];// Secuecia para almacenar las solicitudes por parte de los voluntarios
+  public solis: AuxAdministrar[] = []; // Secuecia para almacenar estructuras auxiliares
 
   public aux: AuxAdministrar = new AuxAdministrar();
   // Metodo que se ejecuta al iniciar el componente
