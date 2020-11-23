@@ -19,13 +19,5 @@ export class AppComponent {
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
 
-    /* if (localStorage.getItem('uid') != null) {
-      if (localStorage.getItem('rol') == 'Ong') {
-        this.router.navigate(['/ong']);
-      } else if (localStorage.getItem('rol') == 'Voluntario') {
-        this.router.navigate(['/voluntario']);
-      }
-    } */
-
   }
 }

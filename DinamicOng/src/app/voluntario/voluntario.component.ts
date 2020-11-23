@@ -17,14 +17,17 @@ export class VoluntarioComponent implements OnInit {
 
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
-    /*
+
     if (localStorage.getItem('uid') == null) {
       this.router.navigate(['']);
     } else if (localStorage.getItem('rol') == 'Ong') {
       this.router.navigate(['/ong']);
     }
-    */
-    this.router.navigate(['voluntario/recomendaciones-voluntario']);
+
+    if (this.router.url == '/voluntario') {
+      this.router.navigate(['/voluntario/recomendaciones-voluntario']);
+    }
+
   }
 
 }
