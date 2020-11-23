@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 export class VerMiPerfilComponent implements OnInit {
 
   public voluntario: Voluntario; // Objeto donde se almacena el voluntario actual
-  public uid: string;// Strinf donde se almacena el id de la sesión
+  public uid: string;// String donde se almacena el id de la sesión
   public conocimientos: Conocimiento[] = [];// Arreglo donde se almacena la lista de conomientos de un voluntario
   public conocimiento: Conocimiento;//Objeto donde se almacena un conocimiento del voluntario
   public prueb: string;
