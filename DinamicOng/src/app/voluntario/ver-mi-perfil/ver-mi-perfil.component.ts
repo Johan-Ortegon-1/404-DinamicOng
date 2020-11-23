@@ -13,20 +13,22 @@ import { Router } from '@angular/router';
   templateUrl: './ver-mi-perfil.component.html',
   styleUrls: ['./ver-mi-perfil.component.css']
 })
+// Clase que representa el componente ver mi perfil de un Voluntario
+
 export class VerMiPerfilComponent implements OnInit {
 
-  public voluntario: Voluntario;
-  public uid: string;
-  public conocimientos: Conocimiento[] = [];
-  public conocimiento: Conocimiento;
+  public voluntario: Voluntario; // Objeto donde se almacena el voluntario actual
+  public uid: string;// Strinf donde se almacena el id de la sesión
+  public conocimientos: Conocimiento[] = [];// Arreglo donde se almacena la lista de conomientos de un voluntario
+  public conocimiento: Conocimiento;//Objeto donde se almacena un conocimiento del voluntario
   public prueb: string;
-  public idim: string[];
-  public telefonos: string[];
+  public idim: string[];//Arreglo donde se almacenan los idiomas que habla el voluntario
+  public telefonos: string[];//Arreglo donde se almacenan los teléfonos del voluntario
   constructor(private voluntarioServices: VoluntarioService, private configC: NgbCarouselConfig,  private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
-
+ // Método que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.voluntario = new Voluntario();
     this.uid = localStorage.getItem('uid');
@@ -49,7 +51,7 @@ export class VerMiPerfilComponent implements OnInit {
 
     });
   }
-
+// Método que lleva a la página de edición del perfil
   editarPerfil(): void
   {
     this.router.navigate(['/voluntario/editar-perfil']);
