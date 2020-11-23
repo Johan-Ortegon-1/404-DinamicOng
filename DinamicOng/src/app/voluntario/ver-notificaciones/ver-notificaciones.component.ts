@@ -17,7 +17,7 @@ import { AuxAdministrar } from '../../models/auxAdministrar';
   templateUrl: './ver-notificaciones.component.html',
   styleUrls: ['./ver-notificaciones.component.css']
 })
-// Clase que representa el componente del Register de una Ong
+// Clase que representa el componente ver notificaciones de un Voluntario
 export class VerNotificacionesComponent implements OnInit {
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
