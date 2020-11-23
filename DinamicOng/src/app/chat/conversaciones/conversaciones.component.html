@@ -1,0 +1,39 @@
+<!-- Contenedor del componente conversaciones -->
+<div class="container">
+
+  <div>
+    <input class="form-control" type="text" placeholder="Buscar" [(ngModel)]="filtro" (keyup)="filtrar()"/>
+  </div>
+
+  <div class="slide " id="convs">
+
+    <a (click)="redirigir(item.id)" *ngFor="let item of conversacionesView">
+      <div class="flex conversacion">
+        <img [src]="item.imagen" class="perfil"/>
+        <div class="nom">
+          <div class="flex">
+            <strong class="nombre">{{item.nombre}}</strong>
+            <div class="fecha">
+              {{item.fecha}}
+            </div>
+          </div>
+          <p>{{item.mensaje}}</p>
+        </div>
+      </div>
+    </a>
+
+    <!-- <div class="flex conversacion">
+      <img src="https://www.tuexperto.com/wp-content/uploads/2015/07/perfil_01.jpg" class="perfil"/>
+      <div class="nom">
+        <div class="flex">
+          <strong class="nombre">José Antonio del rosario</strong>
+          <div class="fecha">
+            21/11/2020
+          </div>
+        </div>
+        <p>Hola como vas que más, que cuentas!</p>
+      </div>
+    </div> -->
+
+
+</div>

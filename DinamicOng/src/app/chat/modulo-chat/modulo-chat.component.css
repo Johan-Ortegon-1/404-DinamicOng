@@ -16,15 +16,15 @@
   margin-left: auto;
 }
 
+.seleccion {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 30%;
+}
+
 .big {
   font-size: 35px;
   text-align: left;
-}
-
-.flex {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
 }
 
 .not-visible {
@@ -52,10 +52,6 @@ label, h1 {
   font-weight: bold;
 }
 
-.row {
-  margin-bottom: 15px;
-}
-
 .big {
   max-width: 400px;
   max-height: 400px;
@@ -75,40 +71,5 @@ label, h1 {
 }
 
 .right {
-  margin-right: 0;
-  margin-left: auto;
-}
-
-ngb-carousel {
-  width: 60%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #00000010;
-  border-radius: 30px;
-}
-
-.stars-outer {
-  display: inline-block;
-  position: relative;
-  font-family: FontAwesome;
-  font-size: 20px;
-}
-
-.stars-outer::before {
-  content: "\f006 \f006 \f006 \f006 \f006";
-}
-
-.stars-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-}
-
-.stars-inner::before {
-  content: "\f005 \f005 \f005 \f005 \f005";
-  color: #f8ce0b;
+  text-align: right;
 }

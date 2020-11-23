@@ -18,7 +18,8 @@ const routes: Routes = [
       {path: 'ver-ong/:id', component: VerOngComponent} ,
       { path: 'iniciativa/:id', component: VerIniciativaComponent },
       { path: 'participaciones', component: MisParticipacionesComponent },
-      { path: 'ver-notificaciones', component: VerNotificacionesComponent }
+      { path: 'ver-notificaciones', component: VerNotificacionesComponent },
+      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) }
     ]
   }
 ]

@@ -1,5 +1,9 @@
 #border {
-  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%; padding-bottom: 50px;
+}
+
+td {
+  cursor: pointer;
 }
 
 .center {

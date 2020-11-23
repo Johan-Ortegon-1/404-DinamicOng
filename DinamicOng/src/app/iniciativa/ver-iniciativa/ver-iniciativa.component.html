@@ -7,12 +7,14 @@
     </div>
 
     <!-- Elemento que muestra el nombre de la iniciativa, nombre y foto de la Ong que crea y se oculta cuando la Ong que la crea está en la pantalla -->
-    <div class="row" [hidden]='creatorOng'>
-      <h1 class="col-sm-9">{{iniciativa.nombre}}</h1>
-      <div class="col-sm-1 right">
-        <a (click)="navOng(creador.id)"><img class="xsmall" [src] = "creador.imagenPerfil"></a>
+    <div class="flex" [hidden]='creatorOng'>
+      <h1 class="">{{iniciativa.nombre}}</h1>
+      <div class="flex right">
+        <div class="">
+          <a (click)="navOng(creador.id)"><img class="xsmall" [src] = "creador.imagenPerfil"></a>
+        </div>
+        <a (click)="navOng(creador.id)"><h1>{{creador.nombre}}</h1></a>
       </div>
-      <a (click)="navOng(creador.id)"><h1 class="col-sm-1">{{creador.nombre}}</h1></a>
     </div>
 
     <!-- Elemento que muestra la descripción de la iniciativa -->
@@ -144,7 +146,7 @@
       <tbody>
         <tr *ngIf="iniciativa.participantes.length == 0"><td>Aún no hay voluntarios inscritos</td></tr>
         <tr *ngFor="let part of participantes">
-          <td>
+          <td (click)="redirigir(part.id)">
             <div class="row">
               <img class="col-sm-2 small vcenter" [src]="part.imagenPerfil">
               <div class="col-sm-10 vcenter btext">{{part.nombre}}</div>
@@ -205,7 +207,7 @@
       <div class="col-sm-10"[hidden]="!solicito && !participante"></div>
       <!-- Botón para contactar la Ong, solo a voluntarios no inscritos -->
       <div class="col-sm-2">
-        <a><button class="btn btn-primary" type="button">Contactar ONG</button></a>
+        <a><button class="btn btn-primary" type="button" (click)="contactarOng()">Contactar ONG</button></a>
       </div>
 
       <!-- Botón para solicitar unirse, solo a voluntarios no inscritos y que no hayan mandado ya solicitud -->

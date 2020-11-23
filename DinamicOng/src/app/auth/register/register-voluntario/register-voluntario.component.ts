@@ -62,7 +62,7 @@ export class RegisterVoluntarioComponent implements OnInit {
         );
       } else {
         localStorage.setItem('uid', result.user.uid);
-        localStorage.setItem('rol', 'voluntario');
+        localStorage.setItem('rol', 'Voluntario');
         this.router.navigate(['/voluntario']);
       }
     } else {
