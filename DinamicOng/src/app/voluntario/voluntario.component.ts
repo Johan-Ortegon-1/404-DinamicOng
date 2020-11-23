@@ -18,6 +18,7 @@ export class VoluntarioComponent implements OnInit {
       this.router.navigate(['/ong']);
     }
     */
+    this.router.navigate(['voluntario/recomendaciones-voluntario']);
   }
 
 }

@@ -84,11 +84,16 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
       arrFiltro[0] = false;
     }
 
-    if(iniciativa.fechaInicio >= this.iniciativaBuscar.fechaInicio && iniciativa.fechaInicio <= this.iniciativaBuscar.fechaFinalizacion) {
-      arrFiltro[1] = true;
+    if(this.iniciativaBuscar.fechaInicio != null || this.iniciativaBuscar.fechaFinalizacion != null) {
+      if(iniciativa.fechaInicio >= this.iniciativaBuscar.fechaInicio && iniciativa.fechaInicio <= this.iniciativaBuscar.fechaFinalizacion) {
+        arrFiltro[1] = true;
+      }
+      else {
+        arrFiltro[1] = false;
+      }
     }
     else {
-      arrFiltro[1] = false;
+        arrFiltro[1] = true;
     }
 
     if(Object.entries(this.iniciativaBuscar.ubicacion).length !== 0) {

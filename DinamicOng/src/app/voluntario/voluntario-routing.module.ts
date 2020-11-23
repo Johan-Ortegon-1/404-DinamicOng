@@ -8,6 +8,7 @@ import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.co
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { VerOngComponent } from './ver-ong/ver-ong.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
+import { RecomendacionesVoluntarioComponent } from './recomendaciones-voluntario/recomendaciones-voluntario.component';
 
 const routes: Routes = [
   { path: '', component: VoluntarioComponent,
@@ -18,7 +19,8 @@ const routes: Routes = [
       {path: 'ver-ong/:id', component: VerOngComponent} ,
       { path: 'iniciativa/:id', component: VerIniciativaComponent },
       { path: 'participaciones', component: MisParticipacionesComponent },
-      { path: 'ver-notificaciones', component: VerNotificacionesComponent }
+      { path: 'ver-notificaciones', component: VerNotificacionesComponent },
+      {path: 'recomendaciones-voluntario', component: RecomendacionesVoluntarioComponent}
     ]
   }
 ]
