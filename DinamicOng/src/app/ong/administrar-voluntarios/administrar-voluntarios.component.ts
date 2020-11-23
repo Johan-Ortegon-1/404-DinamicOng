@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './administrar-voluntarios.component.html',
   styleUrls: ['./administrar-voluntarios.component.css']
 })
+//Clase que representa el componente de administrar voluntarios por parte de una ONG
 export class AdministrarVoluntariosComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
@@ -30,14 +31,18 @@ export class AdministrarVoluntariosComponent implements OnInit {
   public solis: AuxAdministrar[] = [];
 
   public aux: AuxAdministrar = new AuxAdministrar();
-
+  // Metodo que se ejecuta al iniciar el componente
+  // Se obtiene toda la información referente a la postulación (Información del voluntario y de la iniciativa)
   ngOnInit(): void {
     this.llenar();
   }
+  // Metodo para aceptar un Voluntario postulado a una convocatoria
+  // Parámetros:
+  // - id: String con el cual se busca la solicitud en la base de datos de solicitudes
   aceptar(id: string) {
     let iniciativa: string;
     let voluntario: string;
-    // actualizar solicitudes temporales
+    // En este ciclo se actualizan las solicitudes temporales
     for (const iter of this.solis) {
       if (id === iter.id) {
         iter.contestado = true;
@@ -45,7 +50,7 @@ export class AdministrarVoluntariosComponent implements OnInit {
         voluntario = iter.idVoluntario;
       }
     }
-    // actualizar solicitudes en Firebase
+    //  En este ciclo se actualizan las solicitudes en Firebase
     for (const iter2 of this.solicitudes) {
       if (id === iter2.id) {
         iter2.contestado = true;
@@ -53,13 +58,13 @@ export class AdministrarVoluntariosComponent implements OnInit {
         this.iniciativaService.updateSolicitud(iter2);
       }
     }
-    // actualizar la iniciativa
+    // En estos ciclos se actualiza la información de la iniciativa, agregando el voluntario
     let index = 0;
     for (const iter3 of this.iniciativas) {
       if (iniciativa === iter3.id) {
         iter3.participantes.push(voluntario);
         for (const ini of this.solicitudes) {
-          if (ini.idIniciativa === iniciativa ) {
+          if (ini.idIniciativa === iniciativa) {
             iter3.solicitudes.splice(index, 1);
             this.iniciativaService.updateIniciativa(iter3);
           }
@@ -67,19 +72,21 @@ export class AdministrarVoluntariosComponent implements OnInit {
         }
       }
     }
-    // actualizar la participacion del usuario
+    // En este ciclo se actualiza la participacion del voluntario, agregando la iniciativa a las participaciones de este
     for (const vol of this.voluntarios) {
       if (voluntario === vol.id) {
-          vol.participaciones.push(iniciativa);
-          this.voluntarioService.updateVoluntario(vol);
+        vol.participaciones.push(iniciativa);
+        this.voluntarioService.updateVoluntario(vol);
       }
     }
   }
-
+  // Método para rechazar un Voluntario postulado a una convocatoria
+  // Parámetros:
+  // - id: String con el cual se busca la solicitud en la base de datos de solicitudes
   rechazar(id: string) {
     let iniciativa: string;
     let voluntario: string;
-    // actualizar solicitudes temporales
+    //En este ciclo se actualizan las solicitudes temporales
     for (const iter of this.solis) {
       if (id === iter.id) {
         iter.contestado = true;
@@ -87,17 +94,21 @@ export class AdministrarVoluntariosComponent implements OnInit {
         voluntario = iter.idVoluntario;
       }
     }
+    //En este ciclo se actualizan las solicitudes en firebase
+
     for (const iter2 of this.solicitudes) {
       if (id === iter2.id) {
         iter2.contestado = true;
         this.iniciativaService.updateSolicitud(iter2);
       }
     }
+    // En estos ciclos se actualiza la información de la iniciativa
+
     let index = 0;
     for (const iter3 of this.iniciativas) {
       if (iniciativa === iter3.id) {
         for (const ini of this.solicitudes) {
-          if (ini.idIniciativa === iniciativa ) {
+          if (ini.idIniciativa === iniciativa) {
             iter3.solicitudes.splice(index, 1);
             this.iniciativaService.updateIniciativa(iter3);
           }
@@ -107,17 +118,18 @@ export class AdministrarVoluntariosComponent implements OnInit {
     }
   }
 
+  // Metodo para obtener la información de las postulaciones a la convocatoria
   llenar() {
-    // Obtencion del id de sesion
+    // Se obtiene el id de la sesion
     this.uid = localStorage.getItem('uid');
-    // Buscar la en la DB la ong
+    // Se Busca la ONG en la base de datos
     this.ongService.consultarOngByID(this.uid).then(resp => {
       this.ong = resp.data() as Ong;
-      // Por la ong recorre las iniciativas
+      // Se recorren las iniciativas de la ONG
       this.ong.iniciativas.forEach(item => {
         this.iniciativaService.consultarIniciativaByID(item).then(resp2 => {
           const ini = resp2.data() as Iniciativa;
-          // revisa todas las solicitudes pendientes que tiene
+          // Se revisan todas las solicitudes pendientes que se tengan
           let sol = new Solicitud();
           ini.solicitudes.forEach(item3 => {
             this.iniciativaService.consultarSolicitudByID(item3).then(resp3 => {
