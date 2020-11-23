@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
-import { OngService } from '../services/ong.service';
 import { Ong } from 'src/app/models/ong';
+import { OngService } from '../services/ong.service';
+import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
-  selector: 'app-ver-mi-perfil',
-  templateUrl: './ver-mi-perfil.component.html',
-  styleUrls: ['./ver-mi-perfil.component.css']
+  selector: 'app-editar-perfil',
+  templateUrl: './editar-perfil.component.html',
+  styleUrls: ['./editar-perfil.component.css']
 })
-export class VerMiPerfilComponent implements OnInit {
-
+export class EditarPerfilComponent implements OnInit {
   public ong: Ong;
   public uid: string;
   public mision: string;
   public vision: string;
   public telefonos: string[];
-  constructor(private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) {
+  
+  constructor(private authSvc: AuthService, private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) { 
     configC.interval = 5000;
     configC.pauseOnHover = true;
-   }
+  }
 
   ngOnInit(): void {
     this.ong = new Ong();
@@ -44,4 +45,15 @@ export class VerMiPerfilComponent implements OnInit {
     this.router.navigate(['/ong/editar-perfil']);
   }
 
+  cancelar(): void
+  {
+    this.router.navigate(['/ong/ver-perfil']);
+  }
+  
+  async actualizar()
+  {
+    console.log("ong cambiada: ", this.ong);
+    this.authSvc.updateOng(this.ong);
+    this.router.navigate(['/ong/ver-perfil']);
+  }
 }

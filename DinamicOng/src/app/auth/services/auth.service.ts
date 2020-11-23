@@ -7,6 +7,8 @@ import { Voluntario } from 'src/app/models/voluntario';
 import { Usuario } from '../../models/usuario';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { User } from 'firebase';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +69,25 @@ export class AuthService {
     }
   }
 
+  // Metodo para actualizar un Usuario
+  // Parámetros:
+  // - usuario: Objeto de clase Usuario cuya información se va a actualizar
+  updateOng(usuario: Ong) {
+    /*if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }*/
+    var user = firebase.auth().currentUser;
+    user.updateEmail(usuario.correo).then(function() {
+      
+    }).catch(function(error) {
+      console.log("ERROR AL ACTUALIZAR EMAIL DE ONG")
+    });
+
+    usuario.imagenPerfil = '';
+    const param = JSON.parse(JSON.stringify(usuario));
+    this.firestore.collection('usuarios').doc(usuario.id).update(param);
+  }
+
   // Metodo para registrar un voluntario
   // Parámetros:
   // - voluntario: Objeto de clase Voluntario el cual se va a registrar
@@ -86,6 +107,29 @@ export class AuthService {
       console.error(error);
       return null;
     }
+  }
+
+  // Metodo para actualizar un Usuario
+  // Parámetros:
+  // - usuario: Objeto de clase Usuario cuya información se va a actualizar
+  updateVoluntario(usuario: Voluntario) {
+    /*if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }*/
+
+    var user = firebase.auth().currentUser;
+
+    user.updateEmail(usuario.correo).then(function() {
+      
+    }).catch(function(error) {
+      console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO")
+    });
+
+    
+
+    usuario.imagenPerfil = '';
+    const param = JSON.parse(JSON.stringify(usuario));
+    this.firestore.collection('usuarios').doc(usuario.id).update(param);
   }
 
   // Metodo para subir imagenes a Firestorage

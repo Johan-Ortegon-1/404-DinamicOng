@@ -6,6 +6,7 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Conocimiento } from '../../models/conocimiento';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ver-mi-perfil',
@@ -21,7 +22,7 @@ export class VerMiPerfilComponent implements OnInit {
   public prueb: string;
   public idim: string[];
   public telefonos: string[];
-  constructor(private voluntarioServices: VoluntarioService, private configC: NgbCarouselConfig) {
+  constructor(private voluntarioServices: VoluntarioService, private configC: NgbCarouselConfig,  private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
@@ -47,6 +48,11 @@ export class VerMiPerfilComponent implements OnInit {
       });
 
     });
+  }
+
+  editarPerfil(): void
+  {
+    this.router.navigate(['/voluntario/editar-perfil']);
   }
 
 }

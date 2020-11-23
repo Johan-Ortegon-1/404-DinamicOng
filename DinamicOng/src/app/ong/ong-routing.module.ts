@@ -9,6 +9,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario.component';
 import { MostrarBusquedaVoluntarioComponent } from './mostrar-busqueda-voluntario/mostrar-busqueda-voluntario.component';
 import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-iniciativa.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'iniciativa/:id', component: VerIniciativaComponent},
       { path: 'ver-iniciativas', component: VerIniciativasComponent},
       { path: 'ver-perfil' , component: VerMiPerfilComponent},
+      { path: 'editar-perfil' , component: EditarPerfilComponent},
       { path: 'administrar-voluntarios' , component: AdministrarVoluntariosComponent},
       { path: 'buscar-voluntario' , component: BuscarVoluntarioComponent},
       { path: 'mostrar-busqueda-voluntario' , component: MostrarBusquedaVoluntarioComponent},

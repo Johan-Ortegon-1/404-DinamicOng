@@ -13,6 +13,7 @@ import { MostrarBusquedaComponent } from './mostrar-busqueda/mostrar-busqueda.co
 import { VerOngComponent } from './ver-ong/ver-ong.component';
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
+import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificacio
     VerOngComponent,
     MisParticipacionesComponent,
     VerMiPerfilComponent,
-    VerNotificacionesComponent
+    VerNotificacionesComponent,
+    EditarPerfilComponent
   ],
   imports: [
     CommonModule,

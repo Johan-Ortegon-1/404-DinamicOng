@@ -1,0 +1,59 @@
+<form (ngSubmit) = 'actualizar()' #testForm="ngForm" ngNativeValidate>
+    <div class="container" id="border">
+        <!--Principal -->
+        <div class="primera">
+            <div class="foto ">
+                <div class="picsum-img-wrapper">
+                    <img [src]="ong.imagenPerfil">
+                </div>
+            </div>
+            <div class="nombre">
+                <h2>{{ong.nombre}}</h2>
+                <input type="text" name="nombreOng" [(ngModel)]="ong.nombre" required value={{ong.nombre}}>
+            </div>
+        </div>
+        <!--Informacion de ong-->
+        <div class="seccion">
+            <h1>Misión</h1>
+            <textarea [(ngModel)]="ong.mision" required name="txtAMision">
+            {{ong.mision}}
+            </textarea>
+            
+        </div>
+        <div class="seccion">
+            <h1>Visión</h1>
+            <textarea [(ngModel)]="ong.vision" required name="txtAVision">
+            {{ong.vision}}
+            </textarea>
+        </div>
+        <!--Informacion media-->
+        <div class="seccionx">
+            <h1>Correo</h1>
+            <textarea required [(ngModel)]="ong.correo" class="normal" name="txtACorreo">{{ong.correo}}</textarea>
+        </div>
+        <div class="seccion">
+            <div class="tabla">
+                <h1>Telefonos</h1>
+                <table class="table table-light">
+                    <thead>
+                        <tr>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tele of telefonos">
+                            <td>{{tele}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Ubicacion -->
+        <!--Botnoes de confirmacion y cancelacion -->
+        <div>
+            <button class="botonedit" (click)="cancelar()">Cancelar</button>
+            <button type="submit" class="botonedit">Guardar</button>
+        </div>
+    </div>
+    
+</form>
