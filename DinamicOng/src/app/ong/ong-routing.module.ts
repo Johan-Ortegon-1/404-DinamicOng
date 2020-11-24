@@ -1,7 +1,6 @@
 import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CrearIniciativaComponent } from './crear-iniciativa/crear-iniciativa.component';
 import { VerIniciativasComponent } from './ver-iniciativas/ver-iniciativas.component';
 import { AdministrarVoluntariosComponent } from './administrar-voluntarios/administrar-voluntarios.component';
 import { OngComponent } from './ong.component';
@@ -9,6 +8,7 @@ import { VerIniciativaComponent } from '../iniciativa/ver-iniciativa/ver-iniciat
 import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario.component';
 import { MostrarBusquedaVoluntarioComponent } from './mostrar-busqueda-voluntario/mostrar-busqueda-voluntario.component';
+import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-iniciativa.component';
 const routes: Routes = [
   {
     path: '',
@@ -21,7 +21,8 @@ const routes: Routes = [
       { path: 'administrar-voluntarios' , component: AdministrarVoluntariosComponent},
       { path: 'buscar-voluntario' , component: BuscarVoluntarioComponent},
       { path: 'mostrar-busqueda-voluntario' , component: MostrarBusquedaVoluntarioComponent},
-      { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent}
+      { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent},
+      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) }
     ]
   }
 ];

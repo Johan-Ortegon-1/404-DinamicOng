@@ -1,6 +1,6 @@
 <div class="container" id="border">
   <div>
-    <button>Editar perfil</button>
+    <button class="botonedit">Editar perfil</button>
   </div>
   <!--Principal -->
   <div class="primera">
@@ -21,7 +21,7 @@
         <thead>
           <tr>
             <th>Nombre</th>
-            <th>Area</th>
+            <th>Área de Conocimiento</th>
           </tr>
         </thead>
         <tbody>
@@ -35,8 +35,6 @@
   </div>
   <!--Informacion media-->
   <div class="seccionx">
-    <h1>Fecha de creación</h1>
-    <textarea class="normal" readonly></textarea>
     <h1>Correo</h1>
     <textarea class="normal" readonly>{{voluntario.correo}}</textarea>
   </div>
@@ -58,10 +56,6 @@
     </div>
   </div>
   <!--Ubicacion -->
-  <h1>Ubicación </h1>
-  <div class="ubicacion">
-
-  </div>
   <!--Informacion final-->
   <div class="seccion">
     <div class="tabla">
@@ -82,7 +76,7 @@
   </div>
   <div class="seccionx">
     <h1>Fecha nacimiento</h1>
-    <textarea class="normal" readonly>{{voluntario.fechaNacimiento}}</textarea>
+    <textarea readonly>{{voluntario.fechaNacimiento}}</textarea>
   </div>
 
 </div>

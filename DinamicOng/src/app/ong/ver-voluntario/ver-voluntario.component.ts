@@ -4,6 +4,8 @@ import { IniciativaService } from 'src/app/iniciativa/services/iniciativa.servic
 import { Iniciativa } from 'src/app/models/iniciativa';
 import { Voluntario } from 'src/app/models/voluntario';
 import { VoluntarioService } from 'src/app/voluntario/services/voluntario.service';
+import { ChatService } from '../../chat/services/chat.service';
+import { Conversacion } from '../../models/conversacion';
 
 @Component({
   selector: 'app-ver-voluntario',
@@ -17,7 +19,8 @@ export class VerVoluntarioComponent implements OnInit {
   public telefonoNuevo = '';
   public errorTelefonos = '';
 
-  constructor(private voluntarioService: VoluntarioService, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) { }
+  constructor(private voluntarioService: VoluntarioService, private iniciativaService: IniciativaService,
+    private route: ActivatedRoute, private router: Router, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.voluntario.id = this.route.snapshot.paramMap.get('id');
@@ -56,5 +59,23 @@ export class VerVoluntarioComponent implements OnInit {
   navVerIniciativa(id: string){
     //redirige a ver iniciativa de otra ong aun no implementada
     //this.router.navigate(["/ong/iniciativa/" + id]);
+  }
+
+  // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá
+  contactarOng() {
+    this.chatService.obtenerConversacionByIdOngIdVol(localStorage.getItem('uid'), this.voluntario.id).then(resp => {
+      if (resp.empty) {
+        let conversacion = new Conversacion();
+        conversacion.idVoluntario = this.voluntario.id;
+        conversacion.idOng = localStorage.getItem('uid');
+        let id = this.chatService.crearConversacion(conversacion);
+        this.router.navigate(['/ong/chat/' + id]);
+      } else {
+        resp.forEach(c => {
+          let aux = c.data() as Conversacion;
+          this.router.navigate(['/ong/chat/' + aux.id]);
+        });
+      }
+    });
   }
 }

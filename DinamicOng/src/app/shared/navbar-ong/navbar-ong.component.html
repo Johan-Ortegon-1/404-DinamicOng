@@ -1,11 +1,15 @@
+
+<!-- Contenedor del componente navbar-ong -->
 <div class="nav">
   <div class="container">
     <div class="row">
 
+      <!-- Logo de la aplicación -->
       <div class="col-sm-1">
         <a ><img id="logo" src="../../../assets/logotipo ONG.png"></a>
       </div>
 
+      <!-- Enlaces de navegación -->
       <div class="col-sm-7 vcenter">
         <ul class="menu">
           <li [ngClass]="{'selected': selected[0] == true}"><a>Inicio</a></li>
@@ -13,16 +17,14 @@
           <li [ngClass]="{'selected': selected[2] == true}"><a [routerLink] = "['/ong/ver-iniciativas']">Mis Iniciciativas</a></li>
           <li [ngClass]="{'selected': selected[3] == true}"><a [routerLink] = "['/ong/administrar-voluntarios']">Administrar Voluntarios</a></li>
         </ul>
-        <!-- [routerLink] = "['/ong/ver-perfil']"
-        [routerLink] = "['/ong/ver-iniciativas']"
-        [routerLink] = "['/ong/administrar-voluntarios']" -->
 
       </div>
 
+      <!-- Iconos de navegación -->
       <div class="col-sm-3 vcenter">
         <ul class="icon-menu">
           <li><a [routerLink]="['/ong/buscar-voluntario']"><mat-icon aria-hidden="false" aria-label="add user">search</mat-icon></a></li>
-          <li><a><mat-icon aria-hidden="false" aria-label="add user">forum</mat-icon></a></li>
+          <li><a [routerLink]="['/ong/chat']"><mat-icon aria-hidden="false" aria-label="add user">forum</mat-icon></a></li>
           <li><a><mat-icon aria-hidden="false" aria-label="add user">notifications</mat-icon></a></li>
           <li><a (click)="logout()"><mat-icon aria-hidden="false" aria-label="add user">logout</mat-icon></a></li>
         </ul>

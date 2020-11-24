@@ -8,24 +8,32 @@ import { Router } from '@angular/router';
   templateUrl: './register-ong.component.html',
   styleUrls: ['./register-ong.component.css']
 })
+
+// Clase que representa el componente del Register de una Ong
 export class RegisterOngComponent implements OnInit {
 
-  public ong: Ong;
+  public ong: Ong; // Objeto que se llenará mediante el registro
 
-  public contrasena: string;
-  public confirmContrasena: string;
+  public contrasena: string; // Contraseña ingresada por el usuario
+  public confirmContrasena: string; // Constraña de verificación ingresada por el usuario
 
-  public preview: string;
-  public telefonoNuevo = '';
-  public errorTelefonos = '';
+  public preview: string; // URL para mostrar la previsualización de la imagen de perfil de la Ong
+  public telefonoNuevo = ''; // Teléfono nuevo para registrar en los telefonos de la Ong
+  public errorTelefonos = ''; // Mensaje de error a mostrarle al usuario
 
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - authSvc: Objeto que permite el acceso al servicio de Autenticación y Registro
+  // - router: Objeto que permite la navegación entre componentes por la URL
   constructor(private authSvc: AuthService, private router: Router) { }
 
-
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializa el objeto Ong
   ngOnInit(): void {
     this.ong = new Ong();
   }
 
+  // Metodo para realizar el registro de la Ong
   async registrar() {
     if (this.contrasena === this.confirmContrasena) {
       const result = (await this.authSvc.registerOng(this.ong, this.contrasena));
@@ -42,6 +50,9 @@ export class RegisterOngComponent implements OnInit {
     }
   }
 
+  // Metodo para guardar la imagen de perfil de la Ong y en la previsualización
+  // Parametros:
+  // - $event: Evento resultante de un input file que contiene la imagen
   uploadImage($event) {
 
     if ($event.target.files && $event.target.files[0]) {
@@ -58,6 +69,7 @@ export class RegisterOngComponent implements OnInit {
     }
   }
 
+  // Metodo para agregar un teléfono a la lista de teléfonos de la Ong
   addTelefono() {
 
     if (this.telefonoNuevo !== '' && this.telefonoNuevo != null) {
@@ -82,6 +94,7 @@ export class RegisterOngComponent implements OnInit {
     }
   }
 
+  // Metodo para eliminar un télefono de la lista de télefonos de la Ong
   deleteTelefono(tel: string) {
     const i = this.ong.telefonos.indexOf( tel );
 

@@ -6,20 +6,18 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+// Clase que representa el componente del Modulo de Registro
 export class RegisterComponent implements OnInit {
 
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - router: Objeto que permite la navegación entre componentes por la URL
   constructor(private router: Router) { }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
-    /*
-    if (localStorage.getItem('uid') != null) {
-      if (localStorage.getItem('rol') == 'Ong') {
-        this.router.navigate(['/ong']);
-      } else if (localStorage.getItem('rol') == 'Voluntario') {
-        this.router.navigate(['/voluntario']);
-      }
-    }
-    */
+
   }
 
 }

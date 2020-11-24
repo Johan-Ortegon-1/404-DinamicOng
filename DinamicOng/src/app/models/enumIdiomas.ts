@@ -1,3 +1,4 @@
+// Enumerado de los idiomas que maneja la aplicación
 export enum Idiomas {
   Espanol = 'Español',
   Ingles = 'Inglés',

@@ -12,26 +12,44 @@ import { IniciativaService } from '../../iniciativa/services/iniciativa.service'
   templateUrl: './mis-participaciones.component.html',
   styleUrls: ['./mis-participaciones.component.css']
 })
+
+// Clase que representa el componente de mis-participaciones
 export class MisParticipacionesComponent implements OnInit {
 
-  public participaciones = [];
+  public participaciones = []; // Lista de las iniciativas en las que el voluntario ha participado
 
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - voluntarioService: Objeto que permite el manejo de los voluntarios
+  // - ongService: Objeto que permite el manejo de las Ong's
+  // - iniciativaService: Objeto que permite el manejo de las iniciativass
+  // - router: Objeto que permite la navegación entre componentes por la URL
   constructor(private voluntarioService: VoluntarioService, private ongService: OngService,
     private router: Router, private iniciativaService: IniciativaService) { }
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializan atributos y listas
   ngOnInit(): void {
     const idVol = localStorage.getItem('uid');
     this.participaciones = this.obtenerParticipaciones(idVol);
   }
 
+  // Metodo que redirige dependiendo del tipo
+  // Parámetros:
+  // - tipo: Representa si se debe redireccionar a ver-ong o a la iniciativa
+  // - id: Identificador de la iniciativa o de la Ong
   redirigir(tipo: number, id: string) {
     if (tipo == 1) {
-      //Ver ONG
+      this.router.navigate(['/voluntario/ver-ong/' + id]);
     } else if (tipo == 2) {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
     }
   }
 
+  // Metodo que obtiene las iniciativas en las que el voluntario ha participado
+  // Parámetros:
+  // - id: Identificador del voluntario
+  // Retorno: Lista con las iniciativas en las que ha participado el voluntario
   obtenerParticipaciones(id: string) {
     let iniciativas = [];
     this.voluntarioService.consultarVoluntarioByID(id).then(resp => {

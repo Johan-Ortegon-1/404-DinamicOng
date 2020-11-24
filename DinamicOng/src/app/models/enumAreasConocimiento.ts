@@ -1,3 +1,5 @@
+
+// Enumerado de las Areas de Conocimiento que maneja la aplicación
 export enum AreasConocimiento {
   Ingenieria = 'Ingeniería',
   CienciasBasicas = 'Ciencias Básicas',

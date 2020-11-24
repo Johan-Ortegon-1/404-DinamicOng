@@ -6,22 +6,18 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+// Clase que representa el componente del Modulo Global de la Aplicación
 export class AppComponent {
   title = 'DinamicOng';
 
-  // Constructor con la variable router para realizar la navegación mediante el rol
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - router: Objeto que permite la navegación entre componentes por la URL
   constructor(private router: Router) {}
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
 
-    //this.router.navigate(['/login']);
-    /*
-    if (localStorage.getItem('uid') != null) {
-      if (localStorage.getItem('rol') == 'Ong') {
-        this.router.navigate(['/ong']);
-      } else if (localStorage.getItem('rol') == 'Voluntario') {
-        this.router.navigate(['/voluntario']);
-      }
-    }*/
   }
 }

@@ -11,15 +11,28 @@ import { Solicitud } from '../../models/solicitud';
 @Injectable({
   providedIn: 'root'
 })
+
+// Clase que representa el servicio para poder realizar acciones sobre las iniciativas
 export class IniciativaService {
 
+  // Metodo constructor para crear un objeto del servicio
+  // Parámetros:
+  // - firestore: Objeto que permite el manejo de los datos con la base de datos de Firebase Firestore
+  // - firestorage: Objeto que permite el manejo de las imagenes con Firebase Firestorage
+  // - ongService: Objeto que permite realizar acciones sobre las Ong's
+  // - voluntarioService: Objeto que permite realizar acciones sobre los voluntarios
   constructor(private firestore: AngularFirestore, private firestorage: AngularFireStorage,
     private ongService: OngService, private voluntarioService: VoluntarioService) { }
 
-  buscarIniciativa() {
+  // Metodo que realiza el query para poder consultar las iniciativas en Firestore
+  // Retorno: Un objeto Observador para poder suscribirse y recibir las iniciativas
+  buscarIniciativas() {
     return this.firestore.collection("iniciativas").snapshotChanges();
   }
 
+  // Metodo que crea una iniciativa en Firestore
+  // Parámetros:
+  // - iniciativa: Iniciativa a crear
   crearIniciativa(iniciativa: Iniciativa) {
     if (localStorage.getItem('uid') != null) {
       const idOng = localStorage.getItem('uid');
@@ -46,28 +59,28 @@ export class IniciativaService {
     }
   }
 
+  // Metodo que obtiene la fecha de hoy
+  // Parámetros:
+  // - formato: Número entre 1 y 2 que define el formato con el que se obtendrá la fecha
+  // Retorno: Un string con la fecha de hoy
   obtenerFechaHoy(formato: number) {
     const dateOb = new Date();
-    // adjust 0 before single digit date
     const date = ("0" + dateOb.getDate()).slice(-2);
-
-    // current month
     const month = ("0" + (dateOb.getMonth() + 1)).slice(-2);
-
-    // current year
     const year = dateOb.getFullYear();
-
     let result = null;
-
     if (formato == 1) {
       result = date + '/' + month + '/' + year;
     } else if (formato == 2) {
       result = year + '-' + month + '-' + date;
     }
-
     return result;
   }
 
+  // Metodo que indica si una fecha es menor a la de hoy (ya pasó esa fecha)
+  // Parámetros:
+  // - f1: fecha a comparar
+  // Retorno: Bandera que indica si la fecha ya pasó
   compararFechaMenorIgualHoy(f1: Date) {
     const fecha1 = new Date(f1);
     const fecha2 = new Date(this.obtenerFechaHoy(2));
@@ -78,7 +91,9 @@ export class IniciativaService {
     }
   }
 
-  // Función para subir imagenes a Firestorage
+  // Metodo para subir las imagenes de una iniciativa a Firestorage
+  // Parámetros:
+  // - iniciativa: Iniciativa a la que se le subiran las imagenes
   subirImagenesIniciativa(iniciativa: Iniciativa) {
     console.log(iniciativa);
     let n = 1;
@@ -88,15 +103,26 @@ export class IniciativaService {
     });
   }
 
+  // Metodo que consulta una Iniciativa en Firestore segun el id
+  // Parámetros:
+  // - id: Identificador de la iniciativa a consultar
+  // Retorno: La iniciativa o null
   consultarIniciativaByID(id: string) {
     return this.firestore.collection('iniciativas').doc(id).ref.get();
   }
 
+  // Metodo que actualiza una iniciativa
+  // Parámetros:
+  // - iniciativa: Iniciativa a actualizar
   updateIniciativa(iniciativa: Iniciativa) {
     const param = JSON.parse(JSON.stringify(iniciativa));
     this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
   }
 
+  // Metodo que obtiene las URL's de las imagenes de una iniciativa de Firestorage
+  // Parámetros:
+  // - id: Identificador de la iniciativa
+  // Retorno: Una lista con las URL's de las imagenes
   obtenerImagenesIniciativa(id: string) {
     let ulrs: Array<string> = [];
     const storageRef = this.firestorage.storage.ref().child(id);
@@ -110,6 +136,10 @@ export class IniciativaService {
     return ulrs;
   }
 
+  // Metodo que obtiene los participantes según los id's
+  // Parámetros:
+  // - ids: Lista con los id's de los voluntarios a consultar
+  // Retorno: Lista con los objetos de voluntarios
   obtenerParticipantes(ids: Array<string>): Array<Voluntario> {
     let participantes = [];
     ids.forEach(id => {
@@ -124,21 +154,27 @@ export class IniciativaService {
     return participantes;
   }
 
+  // Metodo que realiza la solicitud de postulación
+  // Parámetros:
+  // - iniciativa: Iniciativa a la que se postula
+  // - idVol: Identificador del voluntario que realiza la solicitud
   solicitarUnirse(iniciativa: Iniciativa, idVol: string) {
     let solicitud = new Solicitud();
     solicitud.contestado = false;
     solicitud.aceptado = false;
     solicitud.idIniciativa = iniciativa.id;
-    console.log('id iniciativa', solicitud.idIniciativa);
     solicitud.idOng = iniciativa.idOng;
 
-    console.log('id iniciativa', solicitud.idOng);
     solicitud.idVoluntario = idVol;
     const idSol = this.crearSolicitud(solicitud);
     iniciativa.solicitudes.push(idSol);
     this.updateIniciativa(iniciativa);
   }
 
+  // Metodo que crea la solicitud de postulación en Firestore
+  // Parámetros:
+  // - solicitud: Objeto de la solicitud a ingresar a Firestore
+  // Retorno: El identificador de la solicitud creada
   crearSolicitud(solicitud: Solicitud): string {
     const id = this.firestore.createId();
     solicitud.id = id;
@@ -147,21 +183,35 @@ export class IniciativaService {
     return id;
   }
 
+  // Metodo que consulta una solicitud de un voluntario a una iniciativa
+  // Parámetros:
+  // - idVol: Identificador del voluntario
+  // - idInic: Identificador de la iniciativa
+  // Retorno: La solicitud que coincida con esa búsqueda o null
   consultarSolicitud(idVol: string, idInic: string) {
     return this.firestore.collection('solicitudes').ref.where('idVoluntario', '==', idVol)
       .where('idIniciativa', '==', idInic).get();
   }
 
+  // Metodo que consulta una solicitud con el id
+  // Parámetros:
+  // - id: Identificador de la solicitud
+  // Retorno: La solicitud que coincida con esa búsqueda o null
   consultarSolicitudByID(id: string) {
     return this.firestore.collection('solicitudes').doc(id).ref.get();
   }
+
+  // Metodo que actualiza una solicitud
+  // Parámetros:
+  // - solicitud: Solicitud a actualizar
   updateSolicitud(solicitud: Solicitud){
     const param = JSON.parse(JSON.stringify(solicitud));
     this.firestore.collection('solicitudes').doc(solicitud.id).update(param);
   }
 
+  // Metodo que consulta todas las solicitudes de Firestore
+  // Retorno: Un objeto Observador para poder suscribirse y recibir las solicitudes
   consultarTodasSolicitudes() {
     return this.firestore.collection('solicitudes').snapshotChanges();
   }
-
 }

@@ -21,6 +21,12 @@
   text-align: left;
 }
 
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
 .not-visible {
   background-color: #00000000;
   border-color: #00000000;
@@ -69,7 +75,8 @@ label, h1 {
 }
 
 .right {
-  text-align: right;
+  margin-right: 0;
+  margin-left: auto;
 }
 
 ngb-carousel {

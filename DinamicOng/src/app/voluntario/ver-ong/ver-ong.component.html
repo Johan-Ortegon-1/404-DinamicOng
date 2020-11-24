@@ -73,10 +73,10 @@
   </div>
 
   <div class="row">
-      <h1 class="col-sm-12">Mis Iniciativas</h1>
+      <h1 class="col-sm-12">Iniciativas</h1>
       <table class="table table-bordered">
         <tbody>
-          <tr *ngFor="let ini of iniciativas">
+          <tr (click)="redirigir(ini.id)" *ngFor="let ini of iniciativas">
             <td>
               <div class="row">
                 <div class="col-sm-2">
@@ -97,4 +97,9 @@
         </tbody>
       </table>
   </div>
+
+  <div class="pull-right">
+    <a><button class="btn btn-primary" type="button" (click)="contactarOng()">Contactar ONG</button></a>
+  </div>
+
 </div>

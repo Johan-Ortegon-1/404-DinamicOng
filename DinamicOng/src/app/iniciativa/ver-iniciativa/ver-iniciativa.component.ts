@@ -7,36 +7,50 @@ import { Ong } from '../../models/ong';
 import { OngService } from '../../ong/services/ong.service';
 import { Voluntario } from '../../models/voluntario';
 import { Valoracion } from '../../models/valoracion';
+import { ChatService } from '../../chat/services/chat.service';
+import { Conversacion } from '../../models/conversacion';
 
 @Component({
   selector: 'app-ver-iniciativa',
   templateUrl: './ver-iniciativa.component.html',
   styleUrls: ['./ver-iniciativa.component.css']
 })
+
+// Clase que representa el componente de ver-iniciativa
 export class VerIniciativaComponent implements OnInit {
 
-  public iniciativa: Iniciativa;
-  public puntaje: number;
-  public id: string;
-  public participantes: Array<Voluntario>;
-  public imagenes: Array<string>;
-  public creador: Ong;
-  public valoracionNueva: Valoracion;
+  public iniciativa: Iniciativa; // Objeto de la iniciativa a mostrar
+  public puntaje: number; // Puntaje promedio de la iniciativa
+  public id: string; // Identificador de la iniciativa
+  public participantes: Array<Voluntario>; // Lista de objetos Voluntario que representa los participantes de la iniciativa
+  public imagenes: Array<string>; // Lista de las URL's de las imagenes de la iniciativa
+  public creador: Ong; // Objeto de la Ong creadora
+  public valoracionNueva: Valoracion; // Objeto Valoracion que identifica la nueva valoración que podría dar un voluntario
 
-  public isOng: boolean;
-  public creatorOng: boolean;
-  public participante: boolean;
-  public empezo: boolean;
-  public comento: boolean;
-  public solicito: boolean;
-  public hayCupos: boolean;
+  public isOng: boolean; // Bandera que indica si el usuario que ingresó es una Ong
+  public creatorOng: boolean; // Bandera que indica si el usuario que ingresó es la Ong Creadora
+  public participante: boolean; // Bandera que indica si el usuario que ingresó es un voluntario inscrito
+  public empezo: boolean; // Bandera que indica si la iniciativa ya empezó
+  public comento: boolean; // Bandera que indica si el voluntario inscrito ya comentó la iniciativa
+  public solicito: boolean; // Bandera que indica si el voluntario no inscrito ya solicitó unirse a la iniciativa
+  public hayCupos: boolean; // Bandera que indica si hay cupos disponibles en la iniciativa
 
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - iniciativaService: Objeto que permite el acceso al servicio de las iniciativas
+  // - routeActive: Objeto que permite obtener parametros de la URL
+  // - configC: Objeto que permite la configuración del carrusel de la previsualización de las imagenes
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  // - ongService: Objeto que permite el acceso al servicio de las Ong's
+  // - chatService: Objeto que permite el acceso al servicio de las conversaciones
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
-    private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) {
+    private router: Router, private configC: NgbCarouselConfig, private ongService: OngService, private chatService: ChatService) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializan atributos y listas
   ngOnInit(): void {
     this.valoracionNueva = new Valoracion();
     this.creador = new Ong();
@@ -54,6 +68,7 @@ export class VerIniciativaComponent implements OnInit {
 
   }
 
+  // Metodo que obtiene el objeto de la iniciativa y realiza la lógica de identificación de usuario (banderas)
   obtenerIniciativa() {
     this.iniciativaService.consultarIniciativaByID(this.id).then(resp => {
 
@@ -137,6 +152,7 @@ export class VerIniciativaComponent implements OnInit {
     });
   }
 
+  // Metodo que calcula la valoración en promedio y llena las estrellas
   calcularValoracion() {
     let res = 0;
     this.iniciativa.valoraciones.forEach(v => {
@@ -149,10 +165,15 @@ export class VerIniciativaComponent implements OnInit {
     document.getElementById('estrella').style.width = '' + res + '%';
   }
 
+  // Metodo que obtiene los objetos de los voluntarios inscritos
   obtenerParticipantes() {
     this.participantes = this.iniciativaService.obtenerParticipantes(this.iniciativa.participantes);
   }
 
+  // Metodo que obtiene el objeto de un voluntario inscrito mediante el id
+  // Parámetros:
+  // - id: Identificador del voluntario
+  // Retorno: Objeto del voluntario inscrito
   obtenerParticipanteById(id: string): Voluntario {
     let participante = new Voluntario();
     for (let p of this.participantes) {
@@ -164,13 +185,16 @@ export class VerIniciativaComponent implements OnInit {
     return participante;
   }
 
+  // Metodo que inserta la valoración nueva
   comentar() {
       this.valoracionNueva.idValorador = localStorage.getItem('uid');
       this.iniciativa.valoraciones.push(this.valoracionNueva);
       this.iniciativaService.updateIniciativa(this.iniciativa);
       this.comento = true;
+      this.calcularValoracion();
   }
 
+  // Metodo que identifica si un voluntario inscrito ya comentó/valoró la iniciativa
   yaComento(idPart: string) {
     for (let val of this.iniciativa.valoraciones) {
       if (val.idValorador == idPart) {
@@ -180,6 +204,7 @@ export class VerIniciativaComponent implements OnInit {
     }
   }
 
+  // Metodo que crea la solicitud de postulación de un voluntario no inscrito
   solicitarUnirse() {
 
     if (this.iniciativa.participantes.length < this.iniciativa.cantidadMaxVoluntarios) {
@@ -192,15 +217,43 @@ export class VerIniciativaComponent implements OnInit {
     }
   }
 
+  // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá
+  contactarOng() {
+    this.chatService.obtenerConversacionByIdOngIdVol(this.creador.id, localStorage.getItem('uid')).then(resp => {
+      if (resp.empty) {
+        let conversacion = new Conversacion();
+        conversacion.idOng = this.creador.id;
+        conversacion.idVoluntario = localStorage.getItem('uid');
+        let id = this.chatService.crearConversacion(conversacion);
+        this.router.navigate(['/voluntario/chat/' + id]);
+      } else {
+        resp.forEach(c => {
+          let aux = c.data() as Conversacion;
+          this.router.navigate(['/voluntario/chat/' + aux.id]);
+        });
+      }
+    });
+  }
+
+  // Metodo que permite navegar hacia la vista de la Ong
   navOng(id: string) {
     const ruta = this.router.url;
     const str = String(ruta);
     if (str.includes('voluntario')) {
       this.router.navigate(['/voluntario/ver-ong/' + id]);
     } else if (str.includes('ong')) {
-      //this.router.navigate(['/ong/ver-ong' + id]);
+      //this.router.navigate(['/ong/ver-ong/' + id]);
     }
+  }
 
+  redirigir(id: string) {
+    const ruta = this.router.url;
+    const str = String(ruta);
+    if (str.includes('voluntario')) {
+      //this.router.navigate(['/voluntario/ver-voluntario/' + id]);
+    } else if (str.includes('ong')) {
+      this.router.navigate(['/ong/ver-voluntario/' + id]);
+    }
   }
 
 }
