@@ -26,7 +26,7 @@ import { RecomendacionesVoluntarioComponent } from './recomendaciones-voluntario
     MisParticipacionesComponent,
     VerMiPerfilComponent,
     VerNotificacionesComponent,
-    EditarPerfilComponent
+    EditarPerfilComponent,
     RecomendacionesVoluntarioComponent
   ],
   imports: [
