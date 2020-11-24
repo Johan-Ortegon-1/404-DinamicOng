@@ -1,0 +1,26 @@
+<!-- Contenedor del componente chat -->
+<div class="container">
+
+  <!-- Representa el header de la conversación, que contiene la imagen de perfil y el nombre del usuario con el que se conversa  -->
+  <div class="flex header">
+    <a (click)="redirigir(destinatario.id)"><img [src]="destinatario.imagenPerfil" class="perfil"/></a>
+    <strong class="nombre">{{destinatario.nombre}}</strong>
+  </div>
+
+  <!-- Representa la vista de los mensajes de la conversación en una caja scrolleable -->
+  <div class="slide chatView" id = 'chatView'>
+
+    <div class="msg" *ngFor="let item of mensajesView" [ngClass]="{'propio pull-right': item.propio == true, 'pull-left': item.propio == false}">
+      <div class="cont">{{item.contenido}}</div>
+      <div class="fecha">{{item.fecha}}</div>
+    </div>
+
+  </div>
+
+  <!-- Representa una caja de texto para introducir y enviar el mensaje deseado -->
+  <div class="chatBox flex">
+    <input class="form-control inputMsg" type="text" placeholder="Escribe un mensaje aquí" [(ngModel)]="mensaje" (keyup.enter)='enviar()'/>
+    <button class="not-visible" type='submit' (click)="enviar()"><mat-icon class="big" aria-hidden="false" aria-label="add user">send</mat-icon></button>
+  </div>
+
+</div>

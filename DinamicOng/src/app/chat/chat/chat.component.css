@@ -1,0 +1,72 @@
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.perfil {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-left: 10px;
+}
+
+.nombre {
+  margin-left: 10px;
+  margin-top: 5px;
+  font-size: 20px;
+}
+
+.header {
+  border-bottom: solid red;
+  padding-bottom: 5px;
+}
+
+.slide {
+  height: 400px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.chatView {
+  margin-top: 10px;
+}
+
+.msg {
+  padding: 10px;
+  margin: 5px 10px 0;
+  min-width: 60%;
+  max-width: 70%;
+  border-radius: 10px;
+  background-color: rgb(252, 217, 217);
+}
+
+.cont {
+  font-size: 18px;
+}
+
+.fecha {
+  text-align: right;
+}
+
+.propio {
+  background-color: rgb(244, 107, 107);
+}
+
+.chatBox {
+  margin-top: 10px;
+}
+
+.inputMsg {
+  width: 92%;
+}
+
+.not-visible {
+  background-color: #00000000;
+  border-color: #00000000;
+  margin-left: 5px;
+}
+
+a {
+  cursor: pointer;
+}

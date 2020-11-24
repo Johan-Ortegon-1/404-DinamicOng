@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Usuario } from './../../models/usuario';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,10 @@ import { Usuario } from './../../models/usuario';
   styleUrls: ['./login.component.css'],
   providers: [AuthService]
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   user = '';
   password = '';
+  public suscripcion: Subscription;
 
   constructor(private router: Router, private auth: AuthService) { }
 
@@ -27,11 +29,15 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
+  }
+
   doLogin() {
     console.log(this.user + ' - ' + this.password);
     this.auth.login(this.user, this.password).then(response => {
       if (response) {
-        this.auth.buscarRolByCorreo(this.user).subscribe((data: any) => {
+        this.suscripcion = this.auth.buscarRolByCorreo(this.user).subscribe((data: any) => {
           data.map(elem => {
             const usr = elem.payload.doc.data();
             localStorage.setItem('uid', usr.id);

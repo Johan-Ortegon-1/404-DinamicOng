@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "DinamicOng"
+  "defaultProject": "DinamicOng",
+  "cli": {
+    "analytics": "2467520b-b3af-4895-aac9-701ae0fdeb98"
+  }
 }

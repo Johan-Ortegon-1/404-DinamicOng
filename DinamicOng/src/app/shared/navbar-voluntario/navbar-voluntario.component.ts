@@ -45,7 +45,7 @@ export class NavbarVoluntarioComponent implements OnInit {
 
     const ruta = this.route.url;
 
-    if (ruta == '/voluntario/inicio') {
+    if (ruta == '/voluntario/recomendaciones-voluntario') {
       this.selected[0] = true;
     } else if (ruta == '/voluntario/mi-perfil') {
       this.selected[1] = true;

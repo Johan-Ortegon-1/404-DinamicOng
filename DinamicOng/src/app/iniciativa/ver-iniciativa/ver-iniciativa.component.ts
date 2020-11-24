@@ -7,6 +7,8 @@ import { Ong } from '../../models/ong';
 import { OngService } from '../../ong/services/ong.service';
 import { Voluntario } from '../../models/voluntario';
 import { Valoracion } from '../../models/valoracion';
+import { ChatService } from '../../chat/services/chat.service';
+import { Conversacion } from '../../models/conversacion';
 
 @Component({
   selector: 'app-ver-iniciativa',
@@ -40,8 +42,9 @@ export class VerIniciativaComponent implements OnInit {
   // - configC: Objeto que permite la configuración del carrusel de la previsualización de las imagenes
   // - router: Objeto que permite la navegación entre componentes por la URL
   // - ongService: Objeto que permite el acceso al servicio de las Ong's
+  // - chatService: Objeto que permite el acceso al servicio de las conversaciones
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
-    private router: Router, private configC: NgbCarouselConfig, private ongService: OngService) {
+    private router: Router, private configC: NgbCarouselConfig, private ongService: OngService, private chatService: ChatService) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
@@ -214,6 +217,24 @@ export class VerIniciativaComponent implements OnInit {
     }
   }
 
+  // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá
+  contactarOng() {
+    this.chatService.obtenerConversacionByIdOngIdVol(this.creador.id, localStorage.getItem('uid')).then(resp => {
+      if (resp.empty) {
+        let conversacion = new Conversacion();
+        conversacion.idOng = this.creador.id;
+        conversacion.idVoluntario = localStorage.getItem('uid');
+        let id = this.chatService.crearConversacion(conversacion);
+        this.router.navigate(['/voluntario/chat/' + id]);
+      } else {
+        resp.forEach(c => {
+          let aux = c.data() as Conversacion;
+          this.router.navigate(['/voluntario/chat/' + aux.id]);
+        });
+      }
+    });
+  }
+
   // Metodo que permite navegar hacia la vista de la Ong
   navOng(id: string) {
     const ruta = this.router.url;
@@ -223,7 +244,16 @@ export class VerIniciativaComponent implements OnInit {
     } else if (str.includes('ong')) {
       //this.router.navigate(['/ong/ver-ong/' + id]);
     }
+  }
 
+  redirigir(id: string) {
+    const ruta = this.router.url;
+    const str = String(ruta);
+    if (str.includes('voluntario')) {
+      //this.router.navigate(['/voluntario/ver-voluntario/' + id]);
+    } else if (str.includes('ong')) {
+      this.router.navigate(['/ong/ver-voluntario/' + id]);
+    }
   }
 
 }
