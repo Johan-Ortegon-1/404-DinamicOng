@@ -48,12 +48,42 @@
                 </table>
             </div>
         </div>
+
+        <div class="seccion">
+            <div class="tabla">
+                <h1>Telefonos</h1>
+                <table class="table table-light">
+                    <thead>
+                        <tr>
+                            <th>Teléfono</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tele of telefonos">
+                            <input type="text" value="{{tele}}">
+                        </tr>
+                    </tbody>
+                </table>
+                <label>NUevo telefono burdo: {{nuevoTelefono}}</label>
+                <input type="text" [(ngModel)]="nuevoTelefono" name="nTelefono">
+            </div>
+        </div>
         <!--Ubicacion -->
+        <div class="seccion">
+            <h1>Ubicación</h1>
+        </div>
+        <div class="seccion">
+            <h2>Pais: </h2>
+            <input type="text" [(ngModel)]="ong.ubicacion.pais" required name="txtPais">
+            <h2>Ciudad: </h2>
+            <input type="text" [(ngModel)]="ong.ubicacion.ciudad" required name="txtCiudad">
+            <h2>Dirección: </h2>
+            <input type="text" [(ngModel)]="ong.ubicacion.direccion" required name="txtDireccion">
+        </div>
         <!--Botnoes de confirmacion y cancelacion -->
-        <div>
+        <div class="seccion">
             <button class="botonedit" (click)="cancelar()">Cancelar</button>
             <button type="submit" class="botonedit">Guardar</button>
         </div>
     </div>
-    
 </form>

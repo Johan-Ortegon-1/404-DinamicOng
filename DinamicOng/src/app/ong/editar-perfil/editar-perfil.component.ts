@@ -16,6 +16,7 @@ export class EditarPerfilComponent implements OnInit {
   public mision: string;
   public vision: string;
   public telefonos: string[];
+  public nuevoTelefono = 'Nuevo telefono';
   
   constructor(private authSvc: AuthService, private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) { 
     configC.interval = 5000;
@@ -32,6 +33,7 @@ export class EditarPerfilComponent implements OnInit {
     this.mision= this.ong.mision;
     this.vision= this.ong.vision;
     this.telefonos = this.ong.telefonos;
+    
 
     this.ongServices.obtenerImagenPerfil(this.uid).then(url => {
       this.ong.imagenPerfil = url;
@@ -52,6 +54,7 @@ export class EditarPerfilComponent implements OnInit {
   
   async actualizar()
   {
+    this.ong.telefonos.push(this.nuevoTelefono);
     console.log("ong cambiada: ", this.ong);
     this.authSvc.updateOng(this.ong);
     this.router.navigate(['/ong/ver-perfil']);
