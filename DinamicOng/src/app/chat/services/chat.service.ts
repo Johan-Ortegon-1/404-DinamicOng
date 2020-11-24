@@ -61,6 +61,8 @@ export class ChatService {
   }
 
   // Metodo que obtiene la fecha y hora de hoy
+  // Parámetros:
+  // format: numero entre 1 (dd/mm/yyyy hh:mm:ss) y 2 (yyyy-mm-dd hh:mm:ss) que indica el formato con el que se desea la fecha y hora de hoy
   // Retorno: Un string con la fecha de hoy
   obtenerFechaHoraHoy(format: number) {
     const dateOb = new Date();
@@ -84,6 +86,10 @@ export class ChatService {
     return result;
   }
 
+  // Metodo que convierte una fecha hora al formato dd/mm/yyyy hh:mm
+  // Parámetros:
+  // fh: fecha hora a convertir
+  // Retorno: Un string con la fecha hora convertida
   convertirFechaHora(fh: Date) {
     const date = ("0" + fh.getDate()).slice(-2);
     const month = ("0" + (fh.getMonth() + 1)).slice(-2);
@@ -97,6 +103,10 @@ export class ChatService {
     return result;
   }
 
+  // Metodo que convierte una fecha al formato dd/mm/yyyy
+  // Parámetros:
+  // fh: fecha a convertir
+  // Retorno: Un string con la fecha convertida
   convertirFecha(f: Date) {
     const date = ("0" + f.getDate()).slice(-2);
     const month = ("0" + (f.getMonth() + 1)).slice(-2);
