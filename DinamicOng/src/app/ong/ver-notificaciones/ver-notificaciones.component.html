@@ -10,15 +10,15 @@
                     <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
                     class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
                     notifications</mat-icon>
-                    Te has postulado a una iniciativa!
+                    Un voluntario se postuló a tu iniciativa!
                 </div>
                 <div class="col-md-2">
-                    <a (click)="verOng(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
+                    <a (click)="verVoluntario(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
                 </div>
                 <!-- Elemento para ver una notificacion -->
                 <div class="row">
-                    <label class="col-md-6" for="a_nombre">Nombre de la Ong:</label>
-                    <a class="col-md-6" (click)="verOng(aux)" id="a_nombre"> <P>{{aux.nombreOng}}</P> </a>
+                    <label class="col-md-6" for="a_nombre">Nombre del voluntario:</label>
+                    <a class="col-md-6" (click)="verVoluntario(aux)" id="a_nombre"> <P>{{aux.nombreVoluntaro}}</P> </a>
                 </div>
                 <div class="row">
                     <label class="col-md-6" for="a_iniciativa">Nombre de la iniciativa:</label>
@@ -27,11 +27,16 @@
                 <!-- Elemento para ver el estado de una notificacion -->
                 <div class="row">
                     <label class="col-md-5" for="a_estado">Estado de la solicitud:</label>
-                    <p class="col-md-5" *ngIf="!aux.contestado" id="a_estado">Aun no ha contestado</p>
+                    <p class="col-md-5" *ngIf="!aux.contestado" id="a_estado">Aun no has contestado</p>
+                    <a [routerLink]="['/ong/administrar-voluntarios']">
+                        <mat-icon *ngIf="!aux.contestado" _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
+                        class="mat-icon notranslate material-icons mat-icon-no-color col-md-2" data-mat-icon-type="font">
+                        border_color</mat-icon>
+                    </a>
                 </div>
                 <div class="row" *ngIf="aux.contestado">
-                    <p class="col-md-6" *ngIf="aux.aceptado">Has sido aceptado!</p>
-                    <p class="col-md-6" *ngIf="!aux.aceptado">Rechazado</p>
+                    <p class="col-md-6" *ngIf="aux.aceptado">Lo Aceptaste!</p>
+                    <p class="col-md-6" *ngIf="!aux.aceptado">Lo rechazaste</p>
                 </div>
             </div>
         </div>
