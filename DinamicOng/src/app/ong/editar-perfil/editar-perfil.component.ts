@@ -17,6 +17,8 @@ export class EditarPerfilComponent implements OnInit {
   public vision: string;
   public telefonos: string[];
   public nuevoTelefono = 'Nuevo telefono';
+   public errorTelefonos = '';
+   public preview: string;
   
   constructor(private authSvc: AuthService, private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) { 
     configC.interval = 5000;
@@ -33,6 +35,7 @@ export class EditarPerfilComponent implements OnInit {
     this.mision= this.ong.mision;
     this.vision= this.ong.vision;
     this.telefonos = this.ong.telefonos;
+    
     
 
     this.ongServices.obtenerImagenPerfil(this.uid).then(url => {
@@ -54,9 +57,53 @@ export class EditarPerfilComponent implements OnInit {
   
   async actualizar()
   {
-    this.ong.telefonos.push(this.nuevoTelefono);
     console.log("ong cambiada: ", this.ong);
     this.authSvc.updateOng(this.ong);
     this.router.navigate(['/ong/ver-perfil']);
   }
+  addTelefono() {
+
+    if (this.nuevoTelefono !== '' && this.nuevoTelefono != null) {
+
+      if (this.ong.telefonos.indexOf(this.nuevoTelefono) == -1) {
+
+        const str  = String(this.nuevoTelefono);
+        if (!str.includes('-')) {
+          this.ong.telefonos.push(this.nuevoTelefono);
+          this.nuevoTelefono = '';
+          this.errorTelefonos = '';
+        } else {
+          this.errorTelefonos = 'Ingrese solo números';
+        }
+
+      } else {
+        this.errorTelefonos = 'El teléfono ya existe, ingrese un teléfono distinto';
+      }
+
+    } else {
+      this.errorTelefonos = 'Ingrese un teléfono';
+    }
+  }
+  deleteTelefono(tel: string) {
+    const i = this.ong.telefonos.indexOf( tel );
+
+    if ( i !== -1 ) {
+      this.ong.telefonos.splice( i, 1 );
+    }
+}
+uploadImage($event) {
+
+  if ($event.target.files && $event.target.files[0]) {
+
+    this.ong.imagenPerfil = $event.target.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => {
+      this.preview = event.target.result;
+    }
+
+    reader.readAsDataURL($event.target.files[0]);
+  }
+}
 }

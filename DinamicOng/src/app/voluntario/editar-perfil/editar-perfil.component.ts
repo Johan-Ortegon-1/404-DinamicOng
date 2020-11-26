@@ -5,6 +5,8 @@ import { VoluntarioService } from '../services/voluntario.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { Idiomas } from 'src/app/models/enumIdiomas';
+
 
 @Component({
   selector: "app-editar-perfil",
@@ -19,6 +21,13 @@ export class EditarPerfilComponent implements OnInit {
   public prueb: string;
   public idim: string[];
   public telefonos: string[];
+  public nuevoTelefono = 'Nuevo telefono';
+  public errorTelefonos = '';
+  public idiomaNuevo = '';
+  public errorIdiomas = '';
+  public idiomas = Idiomas;
+
+
 
   constructor(
     private authSvc: AuthService,
@@ -33,17 +42,14 @@ export class EditarPerfilComponent implements OnInit {
   ngOnInit(): void {
     this.voluntario = new Voluntario();
     this.uid = localStorage.getItem("uid");
-
-    this.voluntarioServices.obtenerImagenPerfil(this.uid).then((url) => {
-      this.voluntario.imagenPerfil = url;
-    });
-
+    
     this.voluntarioServices.consultarVoluntarioByID(this.uid).then((resp) => {
       this.voluntario = resp.data() as Voluntario;
       this.prueb = this.voluntario.nombre;
       this.conocimientos = this.voluntario.habilidades;
       this.idim = this.voluntario.idiomas;
       this.telefonos = this.voluntario.telefonos;
+      this.idim = Object.keys(this.idiomas);
 
       this.voluntarioServices.obtenerImagenPerfil(this.uid).then((url) => {
         this.voluntario.imagenPerfil = url;
@@ -66,4 +72,58 @@ export class EditarPerfilComponent implements OnInit {
     this.authSvc.updateVoluntario(this.voluntario);
     this.router.navigate(['/voluntario/mi-perfil']);
   }
+  deleteTelefono(tel: string) {
+    const i = this.voluntario.telefonos.indexOf( tel );
+
+    if ( i !== -1 ) {
+      this.voluntario.telefonos.splice( i, 1 );
+    }
+}
+addTelefono() {
+
+  if (this.nuevoTelefono !== '' && this.nuevoTelefono != null) {
+
+    if (this.voluntario.telefonos.indexOf(this.nuevoTelefono) == -1) {
+
+      const str  = String(this.nuevoTelefono);
+      if (!str.includes('-')) {
+        this.voluntario.telefonos.push(this.nuevoTelefono);
+        this.nuevoTelefono = '';
+        this.errorTelefonos = '';
+      } else {
+        this.errorTelefonos = 'Ingrese solo números';
+      }
+
+    } else {
+      this.errorTelefonos = 'El teléfono ya existe, ingrese un teléfono distinto';
+    }
+
+  } else {
+    this.errorTelefonos = 'Ingrese un teléfono';
+  }
+}
+
+addIdioma() {
+  if (this.idiomaNuevo !== '' && this.idiomaNuevo != null) {
+    if (this.voluntario.idiomas.indexOf(this.idiomaNuevo) === -1) {
+      this.voluntario.idiomas.push(this.idiomaNuevo);
+      this.idiomaNuevo = '';
+      this.errorIdiomas = '';
+    } else {
+      this.errorIdiomas = 'El idioma ya existe, ingrese uno distinto';
+    }
+  } else {
+    this.errorIdiomas = 'Ingrese un idioma';
+  }
+}
+
+deleteIdioma(idiomaElimianr: string) {
+  const i = this.voluntario.idiomas.indexOf(idiomaElimianr);
+
+  if (i !== -1) {
+    this.voluntario.idiomas.splice(i, 1);
+  }
+}
+
+
 }
