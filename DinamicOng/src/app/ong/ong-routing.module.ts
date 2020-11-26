@@ -1,3 +1,4 @@
+import { RecomendacionesOngComponent } from './recomendaciones-ong/recomendaciones-ong.component';
 import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -22,7 +23,8 @@ const routes: Routes = [
       { path: 'buscar-voluntario' , component: BuscarVoluntarioComponent},
       { path: 'mostrar-busqueda-voluntario' , component: MostrarBusquedaVoluntarioComponent},
       { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent},
-      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) }
+      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) },
+      { path: 'recomendaciones-ong' , component: RecomendacionesOngComponent}
     ]
   }
 ];

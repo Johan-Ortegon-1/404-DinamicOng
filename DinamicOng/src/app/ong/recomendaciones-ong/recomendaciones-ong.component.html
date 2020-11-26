@@ -1,0 +1,42 @@
+<div class="container" id="border">
+  <table class="table table-bordered">
+    <tbody>
+      <tr *ngFor="let voluntario of voluntarios">
+        <td>
+          <div class="">
+            <div class="row">
+              <div class="col-sm-1">
+                <img (click)='navVerVol(voluntario.id)' [src]="voluntario.imagenPerfil">
+              </div>
+              <div class="col-sm-3">
+                <a (click)='navVerVol(voluntario.id)'>{{voluntario.nombre}}</a>
+              </div>
+            </div>
+            <div class="row">
+              <label class="col-sm-2" for="fechaInicio">fecha nacimiento: </label>
+              <div class="col-sm-10">
+                {{voluntario.fechaNacimiento}}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 row">
+                <label class="col-sm-3">Idiomas: </label>
+                <div class="col-sm-3" *ngFor='let idioma of voluntario.idiomas'>
+                  {{idioma}}
+                </div>
+              </div>
+              <div class="col-sm-6 row">
+                <label class="col-sm-3">habilidades: </label>
+                <div class="col-sm-3" *ngFor='let habilidad of voluntario.habilidades'>
+                  {{habilidad.area}}
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
