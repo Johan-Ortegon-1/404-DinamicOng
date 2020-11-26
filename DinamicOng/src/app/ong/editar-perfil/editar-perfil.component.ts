@@ -19,6 +19,7 @@ export class EditarPerfilComponent implements OnInit {
   public nuevoTelefono = 'Nuevo telefono';
    public errorTelefonos = '';
    public preview: string;
+   public b :boolean=false;
   
   constructor(private authSvc: AuthService, private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) { 
     configC.interval = 5000;
@@ -102,8 +103,11 @@ uploadImage($event) {
     reader.onload = (event: any) => {
       this.preview = event.target.result;
     }
+    this.b=true;
 
     reader.readAsDataURL($event.target.files[0]);
   }
 }
+
+
 }

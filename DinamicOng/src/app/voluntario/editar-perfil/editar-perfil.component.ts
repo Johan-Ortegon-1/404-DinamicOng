@@ -26,6 +26,7 @@ export class EditarPerfilComponent implements OnInit {
   public idiomaNuevo = '';
   public errorIdiomas = '';
   public idiomas = Idiomas;
+  public i =0;
 
 
 
@@ -104,7 +105,8 @@ addTelefono() {
 }
 
 addIdioma() {
-  if (this.idiomaNuevo !== '' && this.idiomaNuevo != null) {
+  this.i=this.i+1;
+  if (this.idiomaNuevo !== '' && this.idiomaNuevo != null&& this.i >= 1) {
     if (this.voluntario.idiomas.indexOf(this.idiomaNuevo) === -1) {
       this.voluntario.idiomas.push(this.idiomaNuevo);
       this.idiomaNuevo = '';

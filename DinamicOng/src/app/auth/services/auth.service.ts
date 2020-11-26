@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {first} from 'rxjs/operators';
-import {AngularFireAuth} from '@angular/fire/auth';
-import {AngularFirestore} from '@angular/fire/firestore';
+import { first } from 'rxjs/operators';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Ong } from 'src/app/models/ong';
 import { Voluntario } from 'src/app/models/voluntario';
 import { Usuario } from '../../models/usuario';
@@ -73,19 +73,40 @@ export class AuthService {
   // Parámetros:
   // - usuario: Objeto de clase Usuario cuya información se va a actualizar
   updateOng(usuario: Ong) {
-    /*if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
-      this.subirImagenPerfil(usuario);
-    }*/
-    var user = firebase.auth().currentUser;
-    user.updateEmail(usuario.correo).then(function() {
-      
-    }).catch(function(error) {
-      console.log("ERROR AL ACTUALIZAR EMAIL DE ONG")
-    });
+    var bcorreo = true;
+    console.log("LOOKA T MASDSDASDASDASD" + usuario.imagenPerfil);
+    this.updateImagenONG(usuario);
 
+
+    var user = firebase.auth().currentUser;
+    console.log("a111111111111" + usuario.correo);
+    user.updateEmail(usuario.correo).then(function () {
+
+
+    }).catch(function (error) {
+      console.log("ERROR AL ACTUALIZAR EMAIL DE ONG")
+      var user=firebase.auth().currentUser;
+      var emailUser = user.email;
+      usuario.correo=emailUser;
+      // mensaje de error
+
+    });
+    console.log("HELOOOOOOOOOOO"+usuario);
+    console.log("Correososos"+user.email);
     usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));
     this.firestore.collection('usuarios').doc(usuario.id).update(param);
+  }
+  // Metodo que crea un usuario en Firestore
+  // Parámetros:
+  // - usuario: Objeto de clase Usuario el cual se va a crear en Firestore
+  updateImagenONG(usuario: Usuario) {
+    if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }
+    usuario.imagenPerfil = '';
+    const param = JSON.parse(JSON.stringify(usuario));
+    this.firestore.collection('usuarios').doc(usuario.id).set(param);
   }
 
   // Metodo para registrar un voluntario
@@ -97,7 +118,7 @@ export class AuthService {
     try {
       const user = (await this.register(voluntario.correo, contrasena));
       if (user != null) {
-        // Insertar info ONG
+        // Insertar info voluntario
         voluntario.id = user.user.uid;
         this.createUsuario(voluntario);
       }
@@ -119,13 +140,13 @@ export class AuthService {
 
     var user = firebase.auth().currentUser;
 
-    user.updateEmail(usuario.correo).then(function() {
-      
-    }).catch(function(error) {
+    user.updateEmail(usuario.correo).then(function () {
+
+    }).catch(function (error) {
       console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO")
     });
 
-    
+
 
     usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));

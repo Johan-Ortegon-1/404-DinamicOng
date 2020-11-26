@@ -2,18 +2,22 @@
     <div class="container" id="border">
         <!--Principal -->
         <div class="primera">
+            
             <div class="foto ">
-                <div class="picsum-img-wrapper">
+                <div class="row" *ngIf="b">
+                    <img [src]='preview'>
+                </div>
+                <div class="picsum-img-wrapper" *ngIf="!b">
                     <img [src]="ong.imagenPerfil">
                 </div>
-                <!--Intento cambio de imagen de perfil
+
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="imagen" accept="image/*" name="imagen"
-                        [(ngModel)]="ong.imagenPerfil" required value={{ong.imagenPerfil}}
+                        [(ngModel)]="ong.imagenPerfil"  value={{ong.imagenPerfil}}
                         (change)="uploadImage($event)">
                     <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                 </div>
-                -->
+
 
             </div>
 
@@ -62,25 +66,25 @@
                 </div>
             </div>
         </div>
-            <div class="secciont">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr *ngFor="let tel of telefonos">
-                            <td>
-                                {{tel}}
-                            </td>
-                            <td class="small-td">
-                                <a (click)="deleteTelefono(tel)">
-                                    <mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle
-                                    </mat-icon>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="secciont">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr *ngFor="let tel of telefonos">
+                        <td>
+                            {{tel}}
+                        </td>
+                        <td class="small-td">
+                            <a (click)="deleteTelefono(tel)">
+                                <mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle
+                                </mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        
+
 
         <!--Ubicacion -->
         <div class="seccion">

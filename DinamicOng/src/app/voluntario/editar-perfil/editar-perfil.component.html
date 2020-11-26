@@ -91,12 +91,13 @@
         </div>
         <div class="secciont">
             <div class="form-row">
-                <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo" required
-                    name="lista_idioma">
+                <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo"                    name="lista_idioma">
+                    <option>idioma</option>
                     <option *ngFor="let idioma of idim">{{idiomas[idioma]}}</option>
                 </select>
                 <a (click)="addIdioma()">
                     <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                    
                 </a>
             </div>
 
