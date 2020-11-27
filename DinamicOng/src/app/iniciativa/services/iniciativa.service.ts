@@ -102,6 +102,23 @@ export class IniciativaService {
       n++;
     });
   }
+  // Metodo para subir las imagenes de una iniciativa a Firestorage
+  // Parámetros:
+  // - iniciativa: Iniciativa a la que se le subiran las imagenes
+  updateImagenesIniciativa(iniciativa: Iniciativa, cantidad: number) {
+    let n = cantidad + 1 ; 
+    iniciativa.imagenes.forEach(element => {
+      this.firestorage.upload('/' + iniciativa.id + '/ImagenIniciativa_' + n, element);
+      n++;
+    });
+  }
+  eliminarImagenesIniciativa(iniciativa: Iniciativa, eliminar: Array<string> )
+  {
+    eliminar.forEach(element => {
+      console.log("No se elimina"); 
+      //this.firestore.collection('iniciativas').doc(iniciativa.id).collection('imagenes').doc().delete();
+    });
+  }
 
   // Metodo que consulta una Iniciativa en Firestore segun el id
   // Parámetros:
@@ -115,10 +132,30 @@ export class IniciativaService {
   // Parámetros:
   // - iniciativa: Iniciativa a actualizar
   updateIniciativa(iniciativa: Iniciativa) {
+    
     const param = JSON.parse(JSON.stringify(iniciativa));
     this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
+    
   }
-
+  // Metodo que actualiza una iniciativa
+  // Parámetros:
+  // - iniciativa: Iniciativa a actualizar
+  updateIniciativa2(iniciativa: Iniciativa,cantidad: number, eliminar: Array<string> ) {
+    
+    const param = JSON.parse(JSON.stringify(iniciativa));
+    this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
+    const idOng = localStorage.getItem('uid');
+    const id = this.firestore.createId();
+    const doc = this.firestore.collection('iniciativas').doc(id);
+    this.ongService.consultarOngByID(idOng).then(item => {
+      this.updateImagenesIniciativa(iniciativa,cantidad);
+      this.eliminarImagenesIniciativa(iniciativa, eliminar)
+      const param = JSON.parse(JSON.stringify(iniciativa));
+      doc.set(param);
+    }, error => {
+      console.log(error);
+    });
+  }
   // Metodo que obtiene las URL's de las imagenes de una iniciativa de Firestorage
   // Parámetros:
   // - id: Identificador de la iniciativa
@@ -135,6 +172,30 @@ export class IniciativaService {
     });
     return ulrs;
   }
+
+
+  obtenerImagenesDescargadas(id: string) {
+    let ulrs: Array<string> = [];
+    let blobs = [];
+    const storageRef = this.firestorage.storage.ref().child(id);
+    storageRef.listAll().then(resp => {
+      resp.items.forEach(imgRef => {
+        imgRef.getDownloadURL().then(url => {
+          ulrs.push(url);
+          var xhr = new XMLHttpRequest();
+          xhr.responseType = 'blob';
+          xhr.onload = function(event) {
+            var blob = xhr.response;
+            blobs.push(blob); 
+          };
+          xhr.open('GET', url);
+          xhr.send();
+        });
+      });
+    });
+    return blobs;
+  }
+
 
   // Metodo que obtiene los participantes según los id's
   // Parámetros:

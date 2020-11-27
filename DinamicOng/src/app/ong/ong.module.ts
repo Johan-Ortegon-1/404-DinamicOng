@@ -16,6 +16,8 @@ import { NavbarOngComponent } from '../shared/navbar-ong/navbar-ong.component';
 import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-iniciativa.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
+import { EditarIniciativaComponent } from '../iniciativa/editar-iniciativa/editar-iniciativa.component';
+
 @NgModule({
   declarations: [
     OngComponent,
@@ -30,6 +32,7 @@ import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificacio
     VerVoluntarioComponent,
     EditarPerfilComponent,
     VerNotificacionesComponent
+    EditarIniciativaComponent
   ],
   imports: [
     CommonModule,
