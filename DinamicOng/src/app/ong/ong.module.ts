@@ -31,7 +31,7 @@ import { EditarIniciativaComponent } from '../iniciativa/editar-iniciativa/edita
     MostrarBusquedaVoluntarioComponent,
     VerVoluntarioComponent,
     EditarPerfilComponent,
-    VerNotificacionesComponent
+    VerNotificacionesComponent,
     EditarIniciativaComponent
   ],
   imports: [
