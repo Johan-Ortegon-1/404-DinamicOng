@@ -150,7 +150,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     });
     setTimeout(() => {
       this.conversacionesView = this.conversacionesFiltradas;
-      console.log(this.conversacionesFiltradas);
+      //console.log(this.conversacionesFiltradas);
     }, 1000);
   }
 
