@@ -71,6 +71,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
         return 1;
       }
     });
+
   }
 
   // Metodo que filtra las conversaciones para manejar unicamente las del usuario,
@@ -86,9 +87,9 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
 
     this.conversacionesOriginal.forEach(conversacion => {
       let i = cont;
-      cont ++;
       let aux;
       if (rol == 'Ong' && conversacion.idOng == id) {
+        cont ++;
         this.voluntarioService.consultarVoluntarioByID(conversacion.idVoluntario).then(resp => {
           const vol = resp.data() as Voluntario;
           this.voluntarioService.obtenerImagenPerfil(conversacion.idVoluntario).then(resp2 => {
@@ -118,6 +119,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
           });
         });
       } else if (rol == 'Voluntario' && conversacion.idVoluntario == id) {
+        cont ++;
         this.ongService.consultarOngByID(conversacion.idOng).then(resp => {
           const ong = resp.data() as Ong;
           this.ongService.obtenerImagenPerfil(conversacion.idOng).then(resp2 => {
@@ -148,7 +150,8 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     });
     setTimeout(() => {
       this.conversacionesView = this.conversacionesFiltradas;
-    }, 800);
+      console.log(this.conversacionesFiltradas);
+    }, 1000);
   }
 
   // Metodo que filtra las conversaciones según lo ingresado en el input de búsqueda
