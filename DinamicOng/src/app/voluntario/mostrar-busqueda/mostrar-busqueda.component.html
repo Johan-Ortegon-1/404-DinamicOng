@@ -1,10 +1,13 @@
+<!-- Contenedor del componente mostrar-busqueda -->
 <div class="container" id="border">
   <table class="table table-bordered">
     <tbody>
+      <!-- Etiqueta que muetra la lista de iniciativas a mostrar -->
       <tr *ngFor="let iniciativa of iniciativas">
         <td>
           <div class="">
             <div class="row">
+              <!-- Etiqueta que sirve como boton para navegar a la inciativa -->
               <div class="col-sm-1 click" (click) = 'navVerIni(iniciativa.id)'>
                 <ngb-carousel>
                   <ng-template ngbSlide *ngFor="let item of iniciativa.imagenes">
@@ -14,14 +17,17 @@
                   </ng-template>
                 </ngb-carousel>
               </div>
+              <!-- Etiqueta que sirve como boton para navegar a la inciativa -->
               <div class="col-sm-7 click" (click) = 'navVerIni(iniciativa.id)'>
-                {{iniciativa.nombre}}
+                Iniciativa: {{iniciativa.nombre}}
               </div>
               <div class="col-sm-1">
+                <!-- Imagen que sirve como boton para navegar a la Ong -->
                 <img (click)='navVerOng(iniciativa)' [src]="iniciativa.imagenPerfil">
               </div>
               <div class="col-sm-3">
-                <a (click)='navVerOng(iniciativa)'>{{iniciativa.nombreOng}}</a>
+                <!-- Etiqueta que sirve como boton para navegar a la Ong -->
+                <a (click)='navVerOng(iniciativa)'>Ong: {{iniciativa.nombreOng}}</a>
               </div>
             </div>
             <div class="row">

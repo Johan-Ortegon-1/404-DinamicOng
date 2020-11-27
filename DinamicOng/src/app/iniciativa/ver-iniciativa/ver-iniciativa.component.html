@@ -146,7 +146,7 @@
       <tbody>
         <tr *ngIf="iniciativa.participantes.length == 0"><td>Aún no hay voluntarios inscritos</td></tr>
         <tr *ngFor="let part of participantes">
-          <td (click)="redirigir(part.id)">
+          <td (click)="redirigir(part.id)" class="pointer">
             <div class="row">
               <img class="col-sm-2 small vcenter" [src]="part.imagenPerfil">
               <div class="col-sm-10 vcenter btext">{{part.nombre}}</div>

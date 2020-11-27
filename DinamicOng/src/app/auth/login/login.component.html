@@ -1,5 +1,8 @@
+<!-- Contenedor del componente login -->
 <div class="container" id="border">
+  <!-- Logo de la aplicacion -->
   <img src="../../../assets/logotipo ONG.png" [routerLink]="['']">
+  <!-- Formulario donde se pide correo y contraseña -->
   <form class="formu" (ngSubmit)="doLogin()">
     <input class="inputs" type="text" [(ngModel)]="user" name="user" placeholder="correo">
     <br>
@@ -9,6 +12,7 @@
       <a [routerLink] = "['/register']">No tienes una cuenta? Registrate</a>
     </div>
     <br>
+    <!-- Boton que acciona la funcion doLogin() -->
     <button class="boton" type="submit" id="login">Login</button>
   </form>
 </div>

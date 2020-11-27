@@ -11,6 +11,7 @@ import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificacio
 import { RecomendacionesVoluntarioComponent } from './recomendaciones-voluntario/recomendaciones-voluntario.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { VerSeguidosComponent } from './ver-seguidos/ver-seguidos.component';
+import { VerVoluntarioComponent } from './../ong/ver-voluntario/ver-voluntario.component';
 
 const routes: Routes = [
   { path: '', component: VoluntarioComponent,
@@ -26,6 +27,7 @@ const routes: Routes = [
       { path: 'ver-notificaciones', component: VerNotificacionesComponent },
       { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) },
       {path: 'recomendaciones-voluntario', component: RecomendacionesVoluntarioComponent},
+      { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent },
     ]
   }
 ]

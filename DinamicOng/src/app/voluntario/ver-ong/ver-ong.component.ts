@@ -15,6 +15,7 @@ import { Voluntario } from 'src/app/models/voluntario';
   templateUrl: './ver-ong.component.html',
   styleUrls: ['./ver-ong.component.css']
 })
+// Clase que representa el componente para mostrar el usuario Ong desde el usuario voluntario
 export class VerOngComponent implements OnInit {
 
   public ong:Ong = new Ong();
@@ -23,17 +24,35 @@ export class VerOngComponent implements OnInit {
   public errorTelefonos = '';
   public seguido: boolean = false;
   public estado: string = 'Seguir';
+  public isOng: boolean;
 
-
+  // Metodo constructor para crear un objeto del componente
+  // Parametros:
+  // - ongService: Objeto que permite llamar los servicios relacionadas a la Ong
+  // - iniciativaService: Objeto que permite llamar las servicios relacionadas a la iniciativa
+  // - route: Objeto que permite obtener Parametros de la ruta
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  // - chatService: Objeto que permite llamar los servicios relacionados al chat
   constructor(private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute,
     private router: Router, private chatService: ChatService,private voluntarioService: VoluntarioService) { }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.ong.id = this.route.snapshot.paramMap.get('id');
+    const ruta = this.router.url;
+    const str = String(ruta);
+
+    if (str.includes('ong')) {​​​​​​
+      this.isOng = true;
+    }​​​​​​
+    else {​​​​​​
+      this.isOng = false;
+    }​​​​​​
     this.obtenerOngActual();
     this.preguntar();
   }
 
+  // Metodo que se ejecuta para obtener la informacion de la Ong y mostrala en la vista
   obtenerOngActual() {
     this.ongService.consultarOngByID(this.ong.id).then(resp => {
       this.ong= resp.data() as Ong;
@@ -51,6 +70,10 @@ export class VerOngComponent implements OnInit {
     });
   }
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Parametros:
+  // - idiniciativa: string que identifica a una iniciativa
+  // - cont: number que dice la posicion en el arreglo de iniciativas
   llenarListaIniciativas(idiniciativa: string, cont: number) {
     console.log('Llenando lista: ' + idiniciativa);
     let nuevaIniciativa = new Iniciativa();
@@ -82,9 +105,14 @@ export class VerOngComponent implements OnInit {
     });
   }
 
+  // Metodo que navega hacia una inciativa de la Ong
+  // Parametros:
+  // - id: string que identifica a una iniciativa
   redirigir(id: string) {
     if (localStorage.getItem('rol') == 'Voluntario') {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
+    }else {
+      this.router.navigate(['/ong/iniciativa/' + id]);
     }
   }
 

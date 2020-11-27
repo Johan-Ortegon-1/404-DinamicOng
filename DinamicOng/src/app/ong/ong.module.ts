@@ -17,6 +17,7 @@ import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-i
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
 import { EditarIniciativaComponent } from '../iniciativa/editar-iniciativa/editar-iniciativa.component';
+import { RecomendacionesOngComponent } from './recomendaciones-ong/recomendaciones-ong.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { EditarIniciativaComponent } from '../iniciativa/editar-iniciativa/edita
     EditarPerfilComponent,
     VerNotificacionesComponent,
     EditarIniciativaComponent
+    RecomendacionesOngComponent
   ],
   imports: [
     CommonModule,

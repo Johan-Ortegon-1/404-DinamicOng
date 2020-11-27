@@ -1,3 +1,4 @@
+import { RecomendacionesOngComponent } from './recomendaciones-ong/recomendaciones-ong.component';
 import { VerVoluntarioComponent } from './ver-voluntario/ver-voluntario.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,7 @@ import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-i
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
 import { EditarIniciativaComponent } from '../iniciativa/editar-iniciativa/editar-iniciativa.component';
+import { VerOngComponent } from '../voluntario/ver-ong/ver-ong.component';
 const routes: Routes = [
   {
     path: '',
@@ -19,6 +21,7 @@ const routes: Routes = [
     children: [
       { path: 'crear-iniciativa', component: CrearIniciativaComponent},
       { path: 'iniciativa/:id', component: VerIniciativaComponent},
+      {path: 'ver-ong/:id', component: VerOngComponent},
       { path: 'ver-iniciativas', component: VerIniciativasComponent},
       { path: 'editar-iniciativa/:id', component: EditarIniciativaComponent},
       { path: 'ver-perfil' , component: VerMiPerfilComponent},
@@ -28,8 +31,8 @@ const routes: Routes = [
       { path: 'mostrar-busqueda-voluntario' , component: MostrarBusquedaVoluntarioComponent},
       { path: 'ver-notificaciones', component: VerNotificacionesComponent},
       { path: 'ver-voluntario/:id' , component: VerVoluntarioComponent},
-
-      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) }
+      { path: 'chat', loadChildren: () => import('../chat/modulo-chat/modulo-chat.module').then(m => m.ModuloChatModule) },
+      { path: 'recomendaciones-ong' , component: RecomendacionesOngComponent}
     ]
   }
 ];

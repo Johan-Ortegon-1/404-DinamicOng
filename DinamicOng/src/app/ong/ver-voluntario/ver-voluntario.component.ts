@@ -15,6 +15,7 @@ import { Conversacion } from '../../models/conversacion';
 export class VerVoluntarioComponent implements OnInit {
 
   public voluntario: Voluntario = new Voluntario();
+  public isOng: boolean;
   public participaciones: Iniciativa[]=[];
   public telefonoNuevo = '';
   public errorTelefonos = '';
@@ -24,6 +25,16 @@ export class VerVoluntarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.voluntario.id = this.route.snapshot.paramMap.get('id');
+    const ruta = this.router.url;
+    const str = String(ruta);
+
+    if (str.includes('ong')) {
+      this.isOng = true;
+    }
+    else {
+      this.isOng = false;
+    }
+
     this.obtenerVoluntarioActual();
   }
 
@@ -57,8 +68,13 @@ export class VerVoluntarioComponent implements OnInit {
     });
   }
   navVerIniciativa(id: string){
-    //redirige a ver iniciativa de otra ong aun no implementada
-    //this.router.navigate(["/ong/iniciativa/" + id]);
+    const ruta = this.router.url;
+    const str = String(ruta);
+    if (str.includes('voluntario')) {
+      this.router.navigate(['/voluntario/iniciativa/' + id]);
+    } else if (str.includes('ong')) {
+      this.router.navigate(['/ong/iniciativa/' + id]);
+    }
   }
 
   // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá
