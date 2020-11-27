@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './administrar-voluntarios.component.html',
   styleUrls: ['./administrar-voluntarios.component.css']
 })
-//Clase que representa el componente de administrar voluntarios por parte de una ONG
+// Clase que representa el componente de administrar voluntarios por parte de una ONG
 export class AdministrarVoluntariosComponent implements OnInit {
 
   // tslint:disable-next-line: max-line-length
@@ -24,10 +24,10 @@ export class AdministrarVoluntariosComponent implements OnInit {
     configC.pauseOnHover = true;
   }
   public ong: Ong; // Objeto que representa la ONG que administrará la postulación
-  public uid: string;//String donde se indicará el id de la sesión
-  public iniciativas: Iniciativa[] = [];// Secuecia para almacenar las iniciativas de la ONG
-  public voluntarios: Voluntario[] = [];// Secuecia para almacenar los voluntarios postulados
-  public solicitudes: Solicitud[] = [];// Secuecia para almacenar las solicitudes por parte de los voluntarios
+  public uid: string; // String donde se indicará el id de la sesión
+  public iniciativas: Iniciativa[] = []; // Secuecia para almacenar las iniciativas de la ONG
+  public voluntarios: Voluntario[] = []; // Secuecia para almacenar los voluntarios postulados
+  public solicitudes: Solicitud[] = []; // Secuecia para almacenar las solicitudes por parte de los voluntarios
   public solis: AuxAdministrar[] = []; // Secuecia para almacenar estructuras auxiliares
 
   public aux: AuxAdministrar = new AuxAdministrar();
@@ -86,7 +86,7 @@ export class AdministrarVoluntariosComponent implements OnInit {
   rechazar(id: string) {
     let iniciativa: string;
     let voluntario: string;
-    //En este ciclo se actualizan las solicitudes temporales
+    // En este ciclo se actualizan las solicitudes temporales
     for (const iter of this.solis) {
       if (id === iter.id) {
         iter.contestado = true;
@@ -94,7 +94,7 @@ export class AdministrarVoluntariosComponent implements OnInit {
         voluntario = iter.idVoluntario;
       }
     }
-    //En este ciclo se actualizan las solicitudes en firebase
+    // En este ciclo se actualizan las solicitudes en firebase
 
     for (const iter2 of this.solicitudes) {
       if (id === iter2.id) {
@@ -140,7 +140,7 @@ export class AdministrarVoluntariosComponent implements OnInit {
                 if (sol.contestado === true) {
                   this.solicitudes.push(sol);
                 } else {
-                  //se crea una clase auxiliar para guardar datos relacionales entre voluntario, iniciativa, solicitud, ong
+                  // Se crea una clase auxiliar para guardar datos relacionales entre voluntario, iniciativa, solicitud, ong
                   const aux = new AuxAdministrar();
                   this.voluntarioService.consultarVoluntarioByID(sol.idVoluntario).then(resp4 => {
                     const vol = resp4.data() as Voluntario;

@@ -14,12 +14,15 @@
                   </ng-template>
                 </ngb-carousel>
               </div>
+              <!--Aca se deja un link a la iniciativa-->
               <div class="col-sm-7 click" (click) = 'navVerIni(iniciativa.id)'>
                 {{iniciativa.nombre}}
               </div>
+              <!--Aca se deja un link a la ONG-->
               <div class="col-sm-1">
                 <img (click)='navVerOng(iniciativa)' [src]="iniciativa.imagenPerfil">
               </div>
+              <!--Aca se muestra la informacion relevante de la iniciativa-->
               <div class="col-sm-3">
                 <a (click)='navVerOng(iniciativa)'>{{iniciativa.nombreOng}}</a>
               </div>
