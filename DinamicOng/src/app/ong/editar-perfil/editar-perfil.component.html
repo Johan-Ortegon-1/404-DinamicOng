@@ -1,0 +1,99 @@
+<form (ngSubmit)='actualizar()' #testForm="ngForm" ngNativeValidate>
+    <div class="container" id="border">
+        <!--Principal -->
+        <div class="primera">
+            <div class="foto ">
+                <div class="row" *ngIf="b">
+                    <img [src]='preview'>
+                </div>
+                <div class="picsum-img-wrapper" *ngIf="!b">
+                    <img [src]="ong.imagenPerfil">
+                </div>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="imagen" accept="image/*" name="imagen"
+                        (change)="uploadImage($event)">
+                    <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
+                </div>
+            </div>
+            <div class="nombre">
+                <h2><input type="text" name="nombreOng" [(ngModel)]="ong.nombre" required value={{ong.nombre}}></h2>
+            </div>
+        </div>
+
+
+        <!--Informacion de ong-->
+        <div class="seccion">
+            <h1>Misión</h1>
+            <textarea class="form-control" [(ngModel)]="ong.mision" required name="txtAMision">
+            {{ong.mision}}
+            </textarea>
+            
+        </div>
+        <div class="seccion">
+            <h1>Visión</h1>
+            <textarea class="form-control" [(ngModel)]="ong.vision" required name="txtAVision">
+            {{ong.vision}}
+            </textarea>
+        </div>
+        <!--Informacion media-->
+        <div class="seccionx">
+            <h1>Teléfonos</h1>
+            <div class="form-row">
+                <div class="col-sm-8">
+
+                    <input class="form-control" name="telefono" id="telefono" type="number" [(ngModel)]="nuevoTelefono"
+                        name="nTelefono" placeholder="Ingrese un nuevo teléfono">
+
+                </div>
+                <div class="col-sm-2">
+                    <a (click)="addTelefono()">
+                        <mat-icon class="big" aria-hidden="false" aria-label="add user">add_circle</mat-icon>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="secciont">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr *ngFor="let tel of telefonos">
+                        <td>
+                            {{tel}}
+                        </td>
+                        <td class="small-td">
+                            <a (click)="deleteTelefono(tel)">
+                                <mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle
+                                </mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <!--Ubicacion -->
+        <div class="seccionh">
+            <h1>Ubicación</h1>
+        
+        <div class="seccion">
+            <h1 style="margin-right: 20px;">Pais: </h1>
+            <input type="text" [(ngModel)]="ong.ubicacion.pais" required name="txtPais">
+            <h1 style="margin-right: 20px;">Ciudad: </h1>
+            <input type="text" [(ngModel)]="ong.ubicacion.ciudad" required name="txtCiudad">
+            <h1 style="margin-right: 20px;">Dirección: </h1>
+            <input type="text" [(ngModel)]="ong.ubicacion.direccion" required name="txtDireccion">
+        </div>
+    </div>
+        <!--Botones de confirmacion y cancelacion -->
+        <div class="seccionb">
+            <div style="float:right;">
+                <button class="botonedit" (click)="cancelar()">Cancelar</button>
+                <button type="submit" class="botonedit">Guardar</button>
+            </div>
+        </div>
+
+
+    </div>
+</form>

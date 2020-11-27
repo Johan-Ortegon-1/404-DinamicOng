@@ -1,0 +1,44 @@
+.slide {
+  height: 450px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+#convs {
+  margin-top: 10px;
+}
+
+.flex {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+
+.conversacion {
+  border-bottom: solid red;
+  padding: 5px;
+}
+
+.perfil {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.nom {
+  margin-left: 10px;
+  margin-top: 5px;
+  width: 70%;
+}
+
+.nombre {
+  width: 60%;
+}
+
+.fecha {
+  text-align: right;
+}
+
+a {
+  cursor: pointer;
+}

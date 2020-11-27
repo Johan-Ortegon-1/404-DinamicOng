@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dinamicong2020"
+  },
+  "targets": {
+    "dinamicong2020": {
+      "hosting": {
+        "DinamicOng": [
+          "dinamicong2020"
+        ]
+      }
+    }
+  }
+}

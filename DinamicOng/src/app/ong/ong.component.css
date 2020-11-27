@@ -1,0 +1,12 @@
+.nav *{
+  z-index: 3;
+}
+
+.contenedor {
+  padding-top: 5%;
+  padding-bottom: 4%;
+}
+
+.contenedor * {
+  z-index: 1;
+}

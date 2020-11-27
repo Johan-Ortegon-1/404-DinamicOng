@@ -1,0 +1,31 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  border-bottom: solid;
+  width: 100%;
+}
+
+#titulo {
+  font-size: xx-large;
+  padding-top: auto;
+  padding-bottom: auto;
+}
+
+mat-icon {
+  font-size: 50px;
+}
+
+a {
+  cursor:pointer;
+}
+
+#logo {
+  height: 75px;
+  width: 90px;
+}
+
+.vcenter {
+  margin-top: auto;
+}
