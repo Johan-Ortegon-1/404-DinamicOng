@@ -1,0 +1,12 @@
+#contenedor {
+  padding-bottom: 1%;
+  height: 100%;
+}
+
+.footer *{
+  z-index: 3;
+}
+
+.contenedor * {
+  z-index: 1;
+}

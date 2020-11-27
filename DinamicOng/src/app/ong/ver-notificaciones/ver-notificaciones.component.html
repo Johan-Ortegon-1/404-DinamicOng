@@ -1,0 +1,44 @@
+<!-- Contenedor del componente de Ver Notificaciones -->
+<div class="container cont" id="border">
+    <!-- Elemento Mostrar el buzon -->
+    <div class="row">
+        <h1 class="col-sm-12">Mi buzón</h1>
+        <div *ngFor="let aux of auxiliares" class="container">
+            <div class="form-group row container" id="border" style='text-align: center;'
+                style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <div class="form-group row container"> 
+                    <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
+                    class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
+                    notifications</mat-icon>
+                    Un voluntario se postuló a tu iniciativa!
+                </div>
+                <div class="col-md-1">
+                    <a (click)="verVoluntario(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
+                </div>
+                <!-- Elemento para ver una notificacion -->
+                <div class="col-sm-4 row">
+                    <label class="col-md-6" for="a_nombre">Nombre del voluntario:</label>
+                    <a class="col-md-6" (click)="verVoluntario(aux)" id="a_nombre"> <P>{{aux.nombreVoluntaro}}</P> </a>
+                </div>
+                <div class="col-sm-3 row">
+                    <label class="col-md-6" for="a_iniciativa">Nombre de la iniciativa:</label>
+                    <a class="col-md-6" (click)="verIniciativa(aux)" id="a_iniciativa"> <P>{{aux.nombreIniciativa}}</P> </a>
+                </div>
+                <!-- Elemento para ver el estado de una notificacion -->
+                <div class="col-sm-4 row">
+                    <label class="col-md-5" for="a_estado">Estado de la solicitud:</label>
+                    <p class="col-md-5" *ngIf="!aux.contestado" id="a_estado">Aun no has contestado</p>
+                    <a [routerLink]="['/ong/administrar-voluntarios']">
+                        <mat-icon *ngIf="!aux.contestado" _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
+                        class="mat-icon notranslate material-icons mat-icon-no-color col-md-2" data-mat-icon-type="font">
+                        border_color</mat-icon>
+                    </a>
+                    <div class="col-sm-2 row" *ngIf="aux.contestado">
+                        <p class="col-md-2" *ngIf="aux.aceptado">Lo Aceptaste!</p>
+                        <p class="col-md-4" *ngIf="!aux.aceptado">Lo rechazaste</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

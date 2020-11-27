@@ -1,0 +1,38 @@
+<!-- Contenedor del componente de Ver Notificaciones -->
+<div class="container cont" id="border">
+    <!-- Elemento Mostrar el buzon -->
+    <div class="row">
+        <h1 class="col-sm-12">Mi buzón</h1>
+        <div *ngFor="let aux of auxiliares" class="container">
+            <div class="form-group row container" id="border" style='text-align: center;'
+                style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+                <div class="form-group row container"> 
+                    <mat-icon _ngcontent-via-c61="" role="img" aria-hidden="false" aria-label="add user"
+                    class="mat-icon notranslate material-icons mat-icon-no-color" data-mat-icon-type="font">
+                    notifications</mat-icon>
+                    Te has postulado a una iniciativa!
+                </div>
+                <div class="col-sm-1">
+                    <a (click)="verOng(aux)"> <img [src]="aux.rutaImagenOng"> </a>  
+                </div>
+                <!-- Elemento para ver una notificacion -->
+                <div class="col-sm-4 row">
+                    <label class="col-md-6" for="a_nombre">Nombre de la Ong: </label>
+                    <a class="col-md-6" (click)="verOng(aux)" id="a_nombre"> <P>{{aux.nombreOng}}</P> </a>
+                </div>
+                <div class="col-sm-4 row">
+                    <label class="col-md-6" for="a_iniciativa">Nombre de la iniciativa:</label>
+                    <a class="col-md-6" (click)="verIniciativa(aux)" id="a_iniciativa"> <P>{{aux.nombreIniciativa}}</P> </a>
+                </div>
+                <!-- Elemento para ver el estado de una notificacion -->
+                <div class="col-sm-4 row">
+                    <label class="col-md-5" for="a_estado">Estado de la solicitud:</label>
+                    <p class="col-md-5" *ngIf="!aux.contestado" id="a_estado">Aun no ha contestado</p>
+                    
+                    <p class="col-md-5" *ngIf="aux.aceptado && aux.contestado">Has sido aceptado!</p>
+                    <p class="col-md-5" *ngIf="!aux.aceptado && aux.contestado">Rechazado</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

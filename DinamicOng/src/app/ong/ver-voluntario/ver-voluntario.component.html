@@ -1,0 +1,106 @@
+<div class="container" id="border">
+
+  <div class="row">
+    <div class="form-group" class="col-sm-1">
+      <div>
+
+        <div>
+          <img [src]='voluntario.imagenPerfil'>
+        </div>
+
+      </div>
+    </div>
+
+    <div class='col-sm-10 center'>
+      <div class="col-sm-10">
+        <p>{{voluntario.nombre}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="correo">Correo: </label>
+    <div class="col-sm-10">
+      <p>{{voluntario.correo}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Ubicación: </label>
+
+    <div class="col-sm-3">
+      <label for="pais">País </label>
+      <p>{{voluntario.ubicacion.pais}}</p>
+    </div>
+    <div class="col-sm-3">
+      <label for="ciudad">Ciudad </label>
+      <p>{{voluntario.ubicacion.ciudad}}</p>
+    </div>
+    <div class="col-sm-4">
+      <label for="direccion">Dirección </label>
+      <p>{{voluntario.ubicacion.direccion}}</p>
+    </div>
+
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label">Teléfonos: </label>
+    <div class="col-sm-8">
+      <table class="table table-bordered">
+        <tbody>
+          <tr *ngFor="let tel of voluntario.telefonos">
+            <td>
+              {{tel}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="fechaNacimiento">Fecha de nacimiento: </label>
+    <div class="col-sm-10">
+      <p>{{voluntario.fechaNacimiento}}</p>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-sm-2 col-form-label" for="idiomas">Idiomas: </label>
+    <div class="col-sm-10">
+    <div *ngFor='let idioma of voluntario.idiomas'>
+      {{idioma}}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h1 class="col-sm-12">Mis Participaciones</h1>
+    <table class="table table-bordered">
+      <tbody>
+        <tr *ngFor="let ini of participaciones">
+          <td>
+            <div class="row">
+              <div class="col-sm-2">
+                <ngb-carousel>
+                    <ng-template ngbSlide *ngFor="let item of ini.imagenes">
+                        <div class="picsum-img-wrapper">
+                            <img class="big" (click)='navVerIniciativa(ini.id)' [src]="item">
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+              </div>
+              <div class="col-sm-4">
+               <a (click)='navVerIniciativa(ini.id)'>{{ini.nombre}}</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pull-right">
+    <a><button [hidden]="!isOng" class="btn btn-primary" type="button" (click)="contactarVoluntario()">Contactar Voluntario</button></a>
+  </div>
+
+</div>

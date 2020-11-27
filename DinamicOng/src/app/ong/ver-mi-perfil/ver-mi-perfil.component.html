@@ -1,0 +1,71 @@
+<div class="container" id="border">
+  <div>
+    <button class="botonedit" (click)="editarPerfil()">Editar perfil</button>
+  </div>
+  <!--Principal -->
+  <div class="primera">
+    <div class="foto ">
+      <div class="picsum-img-wrapper">
+        <img [src]="ong.imagenPerfil">
+      </div>
+    </div>
+    <div class="nombre">
+      <h2>{{ong.nombre}}</h2>
+    </div>
+  </div>
+  <!--Informacion de ong-->
+  <div class="seccion">
+    <h1>Misión:</h1>
+    <textarea class="form-control" style="background-color:azure " readonly>
+        {{ong.mision}}
+      </textarea>
+  </div>
+  <div class="seccion">
+    <h1>Visión:</h1>
+    <textarea class="form-control" style="background-color: azure" readonly>
+        {{ong.vision}}
+      </textarea>
+  </div>
+  <!--Informacion media-->
+  <div class="seccion">
+    <h1 style="margin-right: 20px;">Correo:</h1>
+    <div>
+      <h3>{{ong.correo}}</h3>
+    </div>
+
+  </div>
+
+  <div class="seccion">
+    <div class="form-row">
+      <div class="col">
+        <h1>Telefonos:</h1>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+
+          <tbody>
+            <tr *ngFor="let tele of telefonos">
+              <td>{{tele}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!--Ubicacion -->
+  <div class="seccionh">
+    <h1>Ubicación</h1>
+
+    <div class="seccion">
+      <h1>Pais: </h1>
+      <textarea  readonly> {{ong.ubicacion.pais}}  </textarea>
+      <h1>Ciudad: </h1>
+      <textarea readonly> {{ong.ubicacion.ciudad}}  </textarea>
+
+      <h1>Dirección: </h1>
+      <textarea readonly> {{ong.ubicacion.direccion}}  </textarea>
+
+    </div>
+  </div>
+</div>

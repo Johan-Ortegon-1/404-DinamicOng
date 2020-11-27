@@ -1,0 +1,25 @@
+<!-- Contenedor del componente de Administrar Voluntarios -->
+<div class="container box" id="border">
+    <!-- Elemento Administrar Voluntarios -->
+
+    <div class="row">
+        <h1 class="col-sm-12">Administrar Voluntarios</h1>
+
+        <div *ngFor="let aux of solis" class="container">
+            <!-- Elemento para ver Voluntarios postulados -->
+            <div class="form-group row container" id="border" style='text-align: center;'
+                style="display:flex; flex-direction: row; justify-content: center; align-items: center"
+                *ngIf="!aux.contestado">
+                <!-- Elemento para ver la iniciativa a la cual se postuló el Voluntario -->
+                <label class="col-sm-2 col-form-label" for="nombreVol">{{aux.nombreVoluntaro}} </label>
+                <!-- Elemento para administrar la respuesta a la postulación -->
+                <label class="col-sm-2 col-form-label" for="nombreIni">{{aux.nombreIniciativa}} </label>
+                <button type="button" id="buttona" (click)="aceptar(aux.id)">Aceptar</button>
+                &nbsp;
+                &nbsp;
+                <button type="button" id="buttonr" (click)="rechazar(aux.id)">Rechazar</button>
+            </div>
+        </div>
+    </div>
+
+</div>

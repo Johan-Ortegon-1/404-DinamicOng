@@ -1,0 +1,29 @@
+.nav *{
+  z-index: 3;
+}
+
+.contenedor {
+  padding-top: 5%;
+  padding-bottom: 4%;
+}
+
+.contenedor * {
+  z-index: 1;
+}
+
+.container {
+  min-height: 550px;
+}
+
+#border {
+  border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+img {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+.contImg {
+  text-align: center;
+}
