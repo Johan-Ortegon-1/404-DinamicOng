@@ -102,6 +102,16 @@ export class IniciativaService {
       n++;
     });
   }
+  // Metodo para subir las imagenes de una iniciativa a Firestorage
+  // Parámetros:
+  // - iniciativa: Iniciativa a la que se le subiran las imagenes
+  updateImagenesIniciativa(iniciativa: Iniciativa, cantidad: number) {
+    let n = cantidad + 1 ; 
+    iniciativa.imagenes.forEach(element => {
+      this.firestorage.upload('/' + iniciativa.id + '/ImagenIniciativa_' + n, element);
+      n++;
+    });
+  }
 
   // Metodo que consulta una Iniciativa en Firestore segun el id
   // Parámetros:
@@ -115,10 +125,38 @@ export class IniciativaService {
   // Parámetros:
   // - iniciativa: Iniciativa a actualizar
   updateIniciativa(iniciativa: Iniciativa) {
+    
     const param = JSON.parse(JSON.stringify(iniciativa));
     this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
+    const idOng = localStorage.getItem('uid');
+    const id = this.firestore.createId();
+    const doc = this.firestore.collection('iniciativas').doc(id);
+    this.ongService.consultarOngByID(idOng).then(item => {
+      this.updateImagenesIniciativa(iniciativa);
+      const param = JSON.parse(JSON.stringify(iniciativa));
+      doc.set(param);
+    }, error => {
+      console.log(error);
+    });
   }
-
+  // Metodo que actualiza una iniciativa
+  // Parámetros:
+  // - iniciativa: Iniciativa a actualizar
+  updateIniciativa2(iniciativa: Iniciativa,cantidad: number) {
+    
+    const param = JSON.parse(JSON.stringify(iniciativa));
+    this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
+    const idOng = localStorage.getItem('uid');
+    const id = this.firestore.createId();
+    const doc = this.firestore.collection('iniciativas').doc(id);
+    this.ongService.consultarOngByID(idOng).then(item => {
+      this.updateImagenesIniciativa(iniciativa,cantidad);
+      const param = JSON.parse(JSON.stringify(iniciativa));
+      doc.set(param);
+    }, error => {
+      console.log(error);
+    });
+  }
   // Metodo que obtiene las URL's de las imagenes de una iniciativa de Firestorage
   // Parámetros:
   // - id: Identificador de la iniciativa

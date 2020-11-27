@@ -255,5 +255,12 @@ export class VerIniciativaComponent implements OnInit {
       this.router.navigate(['/ong/ver-voluntario/' + id]);
     }
   }
+  navEditar() {
+    const ruta = this.router.url;
+    const str = String(ruta);
+    if (str.includes('ong')) {
+      this.router.navigate(['/ong/editar-iniciativa/'+ this.iniciativa.id]);
+    }
+  }
 
 }
