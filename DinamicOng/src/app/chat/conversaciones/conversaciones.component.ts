@@ -150,8 +150,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     });
     setTimeout(() => {
       this.conversacionesView = this.conversacionesFiltradas;
-      //console.log(this.conversacionesFiltradas);
-    }, 1000);
+    }, 800);
   }
 
   // Metodo que filtra las conversaciones según lo ingresado en el input de búsqueda
