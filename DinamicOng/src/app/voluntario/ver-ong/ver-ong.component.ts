@@ -118,7 +118,7 @@ export class VerOngComponent implements OnInit {
       this.router.navigate(['/ong/iniciativa/' + id]);
     }
   }
-
+  // Este metodo sirve para la funcionalidad de seguir a una Ong o dejarla de seguir si ya se sigue
   seguir() {
     const id = localStorage.getItem('uid');
     const ong = this.ong.id;
@@ -146,7 +146,7 @@ export class VerOngComponent implements OnInit {
       });
     }
   }
-
+  // Este metodo revisa si la Ong que se esta viendo ya se esta sigiendo.
   preguntar() {
     let id =  localStorage.getItem('uid');
     this.voluntarioService.consultarVoluntarioByID(id).then(resp2 => {
@@ -158,6 +158,7 @@ export class VerOngComponent implements OnInit {
       } else {
         vol.seguidos.forEach(item => {
           console.log("item " , item);
+          // aca se determina si se esta siguiendo el boton cambia de estado
           if (item === this.ong.id) {
             this.estado = 'Dejar de Seguir';
             this.seguido = true;
@@ -166,5 +167,4 @@ export class VerOngComponent implements OnInit {
       }
     });
   }
-
 }

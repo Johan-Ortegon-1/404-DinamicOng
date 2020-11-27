@@ -18,12 +18,12 @@ import { Router } from '@angular/router';
 export class VerMiPerfilComponent implements OnInit {
 
   public voluntario: Voluntario; // Objeto donde se almacena el voluntario actual
-  public uid: string;// String donde se almacena el id de la sesión
-  public conocimientos: Conocimiento[] = [];// Arreglo donde se almacena la lista de conomientos de un voluntario
-  public conocimiento: Conocimiento;//Objeto donde se almacena un conocimiento del voluntario
+  public uid: string; // String donde se almacena el id de la sesión
+  public conocimientos: Conocimiento[] = []; // Arreglo donde se almacena la lista de conomientos de un voluntario
+  public conocimiento: Conocimiento; // Objeto donde se almacena un conocimiento del voluntario
   public prueb: string;
-  public idim: string[];//Arreglo donde se almacenan los idiomas que habla el voluntario
-  public telefonos: string[];//Arreglo donde se almacenan los teléfonos del voluntario
+  public idim: string[]; // Arreglo donde se almacenan los idiomas que habla el voluntario
+  public telefonos: string[]; // Arreglo donde se almacenan los teléfonos del voluntario
   constructor(private voluntarioServices: VoluntarioService, private configC: NgbCarouselConfig,  private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
@@ -36,8 +36,6 @@ export class VerMiPerfilComponent implements OnInit {
     this.voluntarioServices.obtenerImagenPerfil(this.uid).then(url => {
       this.voluntario.imagenPerfil = url;
     });
-
-
     this.voluntarioServices.consultarVoluntarioByID(this.uid).then(resp => {
       this.voluntario = resp.data() as Voluntario;
       this.prueb = this.voluntario.nombre;
@@ -51,10 +49,8 @@ export class VerMiPerfilComponent implements OnInit {
 
     });
   }
-// Método que lleva a la página de edición del perfil
-  editarPerfil(): void
-  {
+  // Método que lleva a la página de edición del perfil
+  editarPerfil(): void {
     this.router.navigate(['/voluntario/editar-perfil']);
   }
-
 }
