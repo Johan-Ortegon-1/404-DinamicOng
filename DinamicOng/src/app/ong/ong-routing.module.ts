@@ -10,6 +10,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { BuscarVoluntarioComponent } from './buscar-voluntario/buscar-voluntario.component';
 import { MostrarBusquedaVoluntarioComponent } from './mostrar-busqueda-voluntario/mostrar-busqueda-voluntario.component';
 import { CrearIniciativaComponent } from '../iniciativa/crear-iniciativa/crear-iniciativa.component';
+import { VerOngComponent } from '../voluntario/ver-ong/ver-ong.component';
 const routes: Routes = [
   {
     path: '',
@@ -17,6 +18,7 @@ const routes: Routes = [
     children: [
       { path: 'crear-iniciativa', component: CrearIniciativaComponent},
       { path: 'iniciativa/:id', component: VerIniciativaComponent},
+      {path: 'ver-ong/:id', component: VerOngComponent},
       { path: 'ver-iniciativas', component: VerIniciativasComponent},
       { path: 'ver-perfil' , component: VerMiPerfilComponent},
       { path: 'administrar-voluntarios' , component: AdministrarVoluntariosComponent},

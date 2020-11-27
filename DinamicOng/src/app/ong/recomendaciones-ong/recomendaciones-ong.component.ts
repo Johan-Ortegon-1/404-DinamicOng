@@ -32,7 +32,8 @@ export class RecomendacionesOngComponent implements OnInit {
     configC.interval = 5000;
     configC.pauseOnHover = true;
   }
-
+  // Metodo que se ejecuta al iniciar el componente
+  // Se inicializan atributos y listas
   ngOnInit(): void {
     this.ong = new Ong();
     this.uid = localStorage.getItem('uid');
@@ -47,13 +48,14 @@ export class RecomendacionesOngComponent implements OnInit {
     });
 
   }
-
+  // Metodo que se ejecuta al cambiar y destruir el componente
+  // Se eliminan las suscripciones activas
   ngOnDestroy(): void {
     if (this.var != null) {
       this.var.unsubscribe();
     }
   }
-
+  // Metodo que se realiza la suscripcion a los voluntarios para realizar la busqueda
   buscarVoluntario() {
     let voluntarios: Voluntario[] = [];
 
@@ -87,20 +89,22 @@ export class RecomendacionesOngComponent implements OnInit {
       }
     });
   }
+  // Metodo para filtrar voluntarios
+  // Parámetros:
+  // - voluntario: Objeto que contiene el voluntario a filtrar
   verificarFiltro(voluntario: Voluntario): boolean {
     let arrFiltro: boolean[] = [false, false, false];
-
+    // Primer filtro: Ubicacion
     if (
       voluntario.ubicacion.ciudad.toUpperCase().indexOf(this.ong.ubicacion.ciudad.toUpperCase()) !== -1 ||
       voluntario.ubicacion.pais.toUpperCase().indexOf(this.ong.ubicacion.pais.toUpperCase()) !== -1 ||
       voluntario.ubicacion.direccion.toUpperCase().indexOf(this.ong.ubicacion.direccion.toUpperCase()) !== -1
     ) {
       arrFiltro[0] = true;
-    }
-    else {
+    } else {
       arrFiltro[0] = false;
     }
-
+    // Segundo filtro: areas de conocimimeto
     let sw = false;
     this.iniciativas.map(iniciativa => {
       iniciativa.areasConocimientoRelacionadas.map(area => {
@@ -109,15 +113,14 @@ export class RecomendacionesOngComponent implements OnInit {
             if (habilidad.area == area) {
               arrFiltro[1] = true;
               sw = true;
-            }
-            else {
+            } else {
               arrFiltro[1] = false;
             }
           }
         });
       });
     });
-
+    // Tercer filtro: idiomas
     sw = false;
     this.iniciativas.map(iniciativa => {
       iniciativa.idiomasDeseables.map(idioma => {
@@ -126,8 +129,7 @@ export class RecomendacionesOngComponent implements OnInit {
             if (idiomaV == idioma) {
               arrFiltro[2] = true;
               sw = true;
-            }
-            else {
+            } else {
               arrFiltro[2] = false;
             }
           }
@@ -145,7 +147,9 @@ export class RecomendacionesOngComponent implements OnInit {
 
     return sw;
   }
-
+  // Metodo constructor para obtener la informacion de las iniciativas de ong actual
+  // Parámetros:
+  // - idiniciativa: string que representa el identificador de la iniciativa
   llenarListaIniciativas(idiniciativa: string) {
     console.log('Llenando lista: ' + idiniciativa);
     let nuevaIniciativa = new Iniciativa();
@@ -156,6 +160,7 @@ export class RecomendacionesOngComponent implements OnInit {
       console.log(error);
     });
   }
+  // Metoodo para dirigirse a el componente de ver voluntario
   navVerVol(id: string) {
     this.router.navigate(['/ong/ver-voluntario/' + id]);
   }

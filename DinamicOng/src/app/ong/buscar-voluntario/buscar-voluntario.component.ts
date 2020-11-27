@@ -79,7 +79,8 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
       else {
         localStorage.setItem('voluntariosFiltrados', JSON.stringify(voluntarios));
         console.log(voluntarios);
-        this.router.navigate(["/ong/mostrar-busqueda-voluntario"]);
+        // redirige al componente de mostrar busqueda voluntario
+        this.router.navigate(['/ong/mostrar-busqueda-voluntario']);
       }
     });
   }
@@ -90,6 +91,7 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
   verificarFiltro(voluntario: Voluntario): boolean {
     let arrFiltro: boolean[] = [false, false, false, false, false];
 
+    // Primer filtro: nombre
     if(voluntario.nombre.toUpperCase().indexOf(this.voluntarioBuscar.nombre.toUpperCase()) !== -1) {
       arrFiltro[0] = true;
     }
@@ -97,6 +99,7 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
       arrFiltro[0] = false;
     }
 
+    // Segundo filtro: dedad por fechas de nacimiento
     if(this.minimoNacimiento != null) {
       if(this.minimoNacimiento >= voluntario.fechaNacimiento && this.maximoNacimiento <= voluntario.fechaNacimiento) {
         arrFiltro[1] = true;
@@ -109,6 +112,7 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
         arrFiltro[1] = true;
     }
 
+     // Tercer filtro: ubicación
     if(Object.entries(this.voluntarioBuscar.ubicacion).length !== 0) {
       if(
         voluntario.ubicacion.ciudad.toUpperCase().indexOf(this.voluntarioBuscar.ubicacion.ciudad.toUpperCase()) !== -1 ||
@@ -125,6 +129,7 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
       arrFiltro[2] = true;
     }
 
+     // Tercer filtro: areas de conocimiento
     let sw = false;
     if(this.voluntarioBuscar.habilidades.length != 0) {
       this.voluntarioBuscar.habilidades.map(areaCBuscar => {
@@ -133,8 +138,7 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
                 if(areaC.area == areaCBuscar.area) {
                   arrFiltro[3] = true;
                   sw = true;
-                }
-                else {
+                } else {
                   arrFiltro[3] = false;
                 }
               }
@@ -142,11 +146,11 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
           )
         }
       );
-    }
-    else {
+    } else {
       arrFiltro[3] = true;
     }
 
+     // Cuarto filtro: idiomas
     sw = false;
     if(this.voluntarioBuscar.idiomas.length != 0) {
       this.voluntarioBuscar.idiomas.map(idiomaBuscar => {

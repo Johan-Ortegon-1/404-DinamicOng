@@ -57,8 +57,8 @@ export class VerVoluntarioComponent implements OnInit {
     });
   }
   navVerIniciativa(id: string){
-    //redirige a ver iniciativa de otra ong aun no implementada
-    //this.router.navigate(["/ong/iniciativa/" + id]);
+    // redirige a ver iniciativa de otra ong aun no implementada
+    this.router.navigate(['/ong/iniciativa/' + id]);
   }
 
   // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá

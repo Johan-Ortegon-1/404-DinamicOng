@@ -19,12 +19,22 @@ export class VerOngComponent implements OnInit {
   public iniciativas: Iniciativa[]=[];
   public telefonoNuevo = '';
   public errorTelefonos = '';
+  public isOng: boolean;
 
   constructor(private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute,
     private router: Router, private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.ong.id = this.route.snapshot.paramMap.get('id');
+    const ruta = this.router.url;
+    const str = String(ruta);
+
+    if (str.includes('ong')) {​​​​​​
+      this.isOng = true;
+    }​​​​​​
+    else {​​​​​​
+      this.isOng = false;
+    }​​​​​​
     this.obtenerOngActual();
   }
 
@@ -79,6 +89,8 @@ export class VerOngComponent implements OnInit {
   redirigir(id: string) {
     if (localStorage.getItem('rol') == 'Voluntario') {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
+    }else {
+      this.router.navigate(['/ong/iniciativa/' + id]);
     }
   }
 
