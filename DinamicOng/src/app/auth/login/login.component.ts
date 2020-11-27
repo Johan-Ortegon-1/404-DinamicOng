@@ -2,8 +2,11 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from './../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+
+
 import { Usuario } from './../../models/usuario';
 import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'app-login',
