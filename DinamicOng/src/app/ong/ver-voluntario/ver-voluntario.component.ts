@@ -68,13 +68,12 @@ export class VerVoluntarioComponent implements OnInit {
     });
   }
   navVerIniciativa(id: string){
-    //redirige a ver iniciativa de otra ong aun no implementada
-    //this.router.navigate(["/ong/iniciativa/" + id]);
     const ruta = this.router.url;
     const str = String(ruta);
     if (str.includes('voluntario')) {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
     } else if (str.includes('ong')) {
+      this.router.navigate(['/ong/iniciativa/' + id]);
     }
   }
 

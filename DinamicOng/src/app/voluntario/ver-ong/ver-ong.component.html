@@ -101,8 +101,7 @@
   </div>
 
   <div class="pull-right">
-    <!-- Boton que acciona la funcion contactarOng() -->
-    <a><button class="btn btn-primary" type="button" (click)="contactarOng()">Contactar ONG</button></a>
+    <a><button class="btn btn-primary" [hidden]="isOng" type="button" (click)="contactarOng()">Contactar ONG</button></a>
   </div>
 
 </div>

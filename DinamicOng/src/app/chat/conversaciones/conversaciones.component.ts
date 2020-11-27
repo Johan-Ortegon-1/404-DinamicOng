@@ -13,25 +13,37 @@ import { Subscription } from 'rxjs';
   templateUrl: './conversaciones.component.html',
   styleUrls: ['./conversaciones.component.css']
 })
+
+// Clase que representa el componente de conversaciones
 export class ConversacionesComponent implements OnInit, OnDestroy {
 
-  public conversacionesView = [];
-  public conversacionesOriginal: Array<Conversacion>;
-  public conversacionesFiltradas = [];
-  public filtro = '';
-  public suscripcion: Subscription;
+  public conversacionesView = []; // Las conversaciones que seran mostradas en la vista
+  public conversacionesOriginal: Array<Conversacion>; // Las conversaciones que se recuperan de FireStore
+  public conversacionesFiltradas = []; // Las conversaciones filtradas en las que el usuario participa
+  public filtro = ''; // Filtro ingresado en la busqueda de conversaciones
+  public suscripcion: Subscription; // Suscripción a las conversaciones de FireStore
 
+  // Metodo constructor para crear un objeto del componente
+  // Parámetros:
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  // - chatService: Objeto que permite el acceso al servicio de las conversaciones
+  // - voluntarioService: Objeto que permite el acceso al servicio de los voluntarios
+  // - ongService: Objeto que permite el acceso al servicio de las Ong's
   constructor(private chatService: ChatService, private voluntarioService: VoluntarioService, private ongService: OngService,
     private router: Router) { }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.obtenerConversaciones();
   }
 
+  // Metodo que se ejecuta al cambiar y destruir el componente
+  // Se eliminan las suscripciones activas
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();
   }
 
+  // Metodo que realiza la suscripción las conversaciones de FireStore para consultarlas
   obtenerConversaciones() {
     this.suscripcion = this.chatService.obtenerConversaciones().subscribe(cs => {
       this.conversacionesView = [];
@@ -46,6 +58,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Metodo que ordena las conversaciones, según el tiempo del ultimo mensaje enviado
   ordenarOriginal() {
     this.conversacionesOriginal.sort((a, b) => {
       let c = a.mensajes[a.mensajes.length - 1];
@@ -60,6 +73,8 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Metodo que filtra las conversaciones para manejar unicamente las del usuario,
+  // además de llenar el arreglo de la vista mediante consultas de los usuarios destinatarios
   filtroInicio() {
 
     const id = localStorage.getItem('uid');
@@ -136,6 +151,7 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     }, 800);
   }
 
+  // Metodo que filtra las conversaciones según lo ingresado en el input de búsqueda
   filtrarConversaciones() {
     let result = [];
 
@@ -148,10 +164,12 @@ export class ConversacionesComponent implements OnInit, OnDestroy {
     this.conversacionesView = result;
   }
 
+  // Metodo que invoca el input de búsqueda para filtrar las conversaciones
   filtrar() {
     this.filtrarConversaciones();
   }
 
+  // Metodo que redirige a la conversación según el id
   redirigir(id: string) {
     let rol = localStorage.getItem('rol');
 
