@@ -20,11 +20,16 @@
       </div>
 
       <!-- Iconos de navegación -->
-      <div class="col-sm-3 vcenter">
+      <div class="col-sm-4 vcenter">
         <ul class="icon-menu">
           <li><a [routerLink]="['/voluntario/buscar-iniciativa']"><mat-icon aria-hidden="false" aria-label="add user">search</mat-icon></a></li>
           <li><a [routerLink]="['/voluntario/chat']"><mat-icon aria-hidden="false" aria-label="add user">forum</mat-icon></a></li>
-          <li><a [routerLink]="['/voluntario/ver-notificaciones']"><mat-icon aria-hidden="false" aria-label="add user">notifications</mat-icon></a></li>
+          <li class="col-sm-2">
+            <div class="row">
+              <a class="col-sm-1" [routerLink]="['/voluntario/ver-notificaciones']"><mat-icon aria-hidden="false" aria-label="add user">notifications</mat-icon></a>
+              <a *ngIf="notificacion_pendiente" class="col-sm-1" style="color: red;" [routerLink]="['/voluntario/ver-notificaciones']"><mat-icon aria-hidden="false" aria-label="add user">new_releases</mat-icon></a>
+            </div>
+          </li>
           <li><a (click)="logout()"><mat-icon aria-hidden="false" aria-label="add user">logout</mat-icon></a></li>
         </ul>
       </div>

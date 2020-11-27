@@ -11,6 +11,8 @@ import { AuthService } from '../../auth/services/auth.service';
 // Clase que representa el componente del navbar del voluntario
 export class NavbarVoluntarioComponent implements OnInit {
 
+  public notificacion_pendiente = false;
+
   public selected = [ // Lista de banderas para identificar que enlace está seleccionado
     false,
     false,
@@ -56,9 +58,10 @@ export class NavbarVoluntarioComponent implements OnInit {
     }
   }
 
-  // Metodo que realiza el logout del usuario
-  logout(){
+  
 
+  // Metodo que realiza el logout del usuario
+  logout() {
     localStorage.clear();
     this.auth.logout();
   }
