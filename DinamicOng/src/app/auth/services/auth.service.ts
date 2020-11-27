@@ -72,31 +72,31 @@ export class AuthService {
   // Metodo para actualizar un Usuario
   // Parámetros:
   // - usuario: Objeto de clase Usuario cuya información se va a actualizar
-  updateOng(usuario: Ong) {
-    var bcorreo = true;
-    console.log("LOOKA T MASDSDASDASDASD" + usuario.imagenPerfil);
-    this.updateImagenONG(usuario);
+  updateOng(usuario: Ong, b: boolean) {
+    
+    /*if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }*/
+    //var bcorreo=true;
+    if (b) {
+      this.updateImagenONG(usuario);
+    }
 
 
     var user = firebase.auth().currentUser;
-    console.log("a111111111111" + usuario.correo);
+
     user.updateEmail(usuario.correo).then(function () {
-
-
-    }).catch(function (error) {
-      console.log("ERROR AL ACTUALIZAR EMAIL DE ONG")
-      var user=firebase.auth().currentUser;
-      var emailUser = user.email;
-      usuario.correo=emailUser;
-      // mensaje de error
-
-    });
-    console.log("HELOOOOOOOOOOO"+usuario);
-    console.log("Correososos"+user.email);
     usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));
     this.firestore.collection('usuarios').doc(usuario.id).update(param);
+    }).catch(function (error) {
+      console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO");
+      return;
+    });
+    
   }
+
+
   // Metodo que crea un usuario en Firestore
   // Parámetros:
   // - usuario: Objeto de clase Usuario el cual se va a crear en Firestore
@@ -133,10 +133,12 @@ export class AuthService {
   // Metodo para actualizar un Usuario
   // Parámetros:
   // - usuario: Objeto de clase Usuario cuya información se va a actualizar
-  updateVoluntario(usuario: Voluntario) {
-    /*if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
-      this.subirImagenPerfil(usuario);
-    }*/
+  updateVoluntario(usuario: Voluntario, b: boolean) {
+
+    if (b) {
+      this.updateImagenVoluntario(usuario);
+    }
+
 
     var user = firebase.auth().currentUser;
 
@@ -144,14 +146,25 @@ export class AuthService {
 
     }).catch(function (error) {
       console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO")
+      //var user=firebase.auth().currentUser;
+      //var emailUser = user.email;
+      //usuario.correo=emailUser;
+      // mensaje de error
     });
-
-
-
     usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));
     this.firestore.collection('usuarios').doc(usuario.id).update(param);
   }
+
+  updateImagenVoluntario(usuario: Usuario) {
+    if (usuario.imagenPerfil != null && usuario.imagenPerfil != '') {
+      this.subirImagenPerfil(usuario);
+    }
+    usuario.imagenPerfil = '';
+    const param = JSON.parse(JSON.stringify(usuario));
+    this.firestore.collection('usuarios').doc(usuario.id).set(param);
+  }
+
 
   // Metodo para subir imagenes a Firestorage
   // Parámetros:

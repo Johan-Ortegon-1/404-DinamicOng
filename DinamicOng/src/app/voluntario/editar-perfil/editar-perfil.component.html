@@ -3,43 +3,64 @@
         <!--Principal -->
         <div class="primera">
             <div class="foto ">
-                <div class="picsum-img-wrapper">
-                    <img [src]=voluntario.imagenPerfil>
+                <div class="row" *ngIf="b">
+                    <img [src]='preview'>
                 </div>
+                <div class="picsum-img-wrapper" *ngIf="!b">
+                    <img [src]="voluntario.imagenPerfil">
+                </div>
+
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="imagen" accept="image/*" name="imagen"
+                        (change)="uploadImage($event)">
+                    <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
+                </div>
+
+
             </div>
             <div class="nombre">
-                <h2><input type="text" name="nombreVoluntario" [(ngModel)]="voluntario.nombre" required
-                        value={{voluntario.nombre}}></h2>
+                <h4><input type="text" name="nombreVoluntario" [(ngModel)]="voluntario.nombre" required
+                        value={{voluntario.nombre}}></h4>
             </div>
-        </div>
-        <!--Informacion de habilidades-->
-        <div class="seccion">
-            <div class="tabla">
-                <h1>Habilidades</h1>
-                <table class="table table-light">
-                    <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Área de Conocimiento</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let con of conocimientos">
-                            <td>{{con.nombre}}</td>
-                            <td>{{con.area}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!--Informacion media-->
-        <div class="seccionx">
-            <h1>Correo</h1>
-            <h3><input type="text" name="correoVoluntario" [(ngModel)]="voluntario.correo" required
-                    value={{voluntario.correo}}></h3>
         </div>
 
-        <div class="seccionx">
+        <!-- Elemento para ingresar las habilidades de un Voluntario -->
+        <div class="seccionh">
+
+            <h1>Habilidades:</h1>
+            <div class="form-row">
+                <input type="text" name="habilida" [(ngModel)]="this.habilidadNuevaNombre">
+                <label class="col-form-label lable-area" for="listaAreas">Area</label>
+                <select id="listaAreas" name="lista-idiomas" [(ngModel)]="this.habilidadNuevaArea">
+                    <option *ngFor="let areaC of opcAreas">{{areasConoc[areaC]}}</option>
+                </select>
+                <a (click)="addArea()">
+                    <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
+                </a>
+            </div>
+        </div>
+
+        <div class="secciont">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr *ngFor="let habilidad of voluntario.habilidades">
+                        <td>
+                            {{habilidad.nombre}} - {{habilidad.area}}
+                        </td>
+                        <td class="small-td">
+                            <a (click)="deleteArea(habilidad)">
+                                <mat-icon class="small" aria-hidden="false" aria-label="add user">
+                                    remove_circle</mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="error">{{errorArea}}</p>
+
+        </div>
+        <!--Informacion media-->
+        <div class="seccionh">
             <h1>Teléfonos</h1>
             <div class="form-row">
                 <div class="col-sm-8">
@@ -54,55 +75,59 @@
                     </a>
                 </div>
             </div>
-            <div class="secciont">
-                <table class="table table-bordered">
-                    <tbody>
-                        <tr *ngFor="let tel of telefonos">
-                            <td>
-                                {{tel}}
-                            </td>
-                            <td class="small-td">
-                                <a (click)="deleteTelefono(tel)">
-                                    <mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle
-                                    </mat-icon>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
         </div>
-        <!--Ubicacion -->
-        <div class="seccion">
-            <h1>Ubicación</h1>
-        </div>
-        <div class="seccion">
-            <h2>Pais: </h2>
-            <input type="text" [(ngModel)]="voluntario.ubicacion.pais" required name="txtPais">
-            <h2>Ciudad: </h2>
-            <input type="text" [(ngModel)]="voluntario.ubicacion.ciudad" required name="txtCiudad">
-            <h2>Dirección: </h2>
-            <input type="text" [(ngModel)]="voluntario.ubicacion.direccion" required name="txtDireccion">
-        </div>
-        <!--Informacion final-->
-        <div class="seccionx">
-            <h1 for="listaIdioma">Idioma </h1>
-        </div>
+
         <div class="secciont">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr *ngFor="let tel of telefonos">
+                        <td>
+                            {{tel}}
+                        </td>
+                        <td class="small-td">
+                            <a (click)="deleteTelefono(tel)">
+                                <mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle
+                                </mat-icon>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="error">{{errorTelefonos}}</p>
+
+        <!--Ubicacion -->
+        <div class="seccionh">
+            <h1>Ubicación</h1>
+
+            <div class="seccion">
+                <h1 style="margin-right: 20px;">Pais: </h1>
+                <input type="text" [(ngModel)]="voluntario.ubicacion.pais" required name="txtPais">
+                <h1 style="margin-right: 10px;">Ciudad: </h1>
+                <input type="text" [(ngModel)]="voluntario.ubicacion.ciudad" required name="txtCiudad">
+                <h1 style="margin-right: 10px;">Dirección: </h1>
+                <input type="text" [(ngModel)]="voluntario.ubicacion.direccion" required name="txtDireccion">
+            </div>
+        </div>
+
+        <!--Informacion final-->
+
+        <div class="seccionh">
             <div class="form-row">
-                <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo"                    name="lista_idioma">
-                    <option>idioma</option>
-                    <option *ngFor="let idioma of idim">{{idiomas[idioma]}}</option>
+            <h1 style="margin-right: 20px;">Idiomas:</h1>
+            
+            <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo" name="lista_idioma">
+                <option *ngFor="let idioma of idim">{{idiomas[idioma]}}</option>
                 </select>
                 <a (click)="addIdioma()">
                     <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
-                    
                 </a>
             </div>
+        </div>
 
-
-            <table class="table table-bordered">
+        <div class="secciont">
+           <table class="table table-bordered">
                 <tbody>
                     <tr *ngFor="let idioma of voluntario.idiomas">
                         <td>
@@ -120,13 +145,16 @@
             <p class="error">{{errorIdiomas}}</p>
         </div>
 
-        <div class="seccionx">
-            <h1>Fecha nacimiento</h1>
-            <textarea [(ngModel)]="voluntario.fechaNacimiento"
-                name="txtAFechaNa">{{voluntario.fechaNacimiento}}</textarea>
-        </div>
         <!--Botones de confirmacion y cancelacion -->
-        <div>
+       
+        <!-- Elemento para ingresar la fecha de nacimiento de un Voluntario -->
+        <div class="seccionx">
+            <h1>Fecha Nacimiento</h1>
+            <input type="date" name="fechaNacimiento" [(ngModel)]="voluntario.fechaNacimiento">
+
+        </div>
+        
+        <div class="seccionb">
             <button class="botonedit" (click)="cancelar()">Cancelar</button>
             <button type="submit" class="botonedit">Guardar</button>
         </div>

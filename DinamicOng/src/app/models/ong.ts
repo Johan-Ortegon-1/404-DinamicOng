@@ -16,5 +16,5 @@ export class Ong extends Usuario {
     this.rol = 'Ong';
     this.iniciativas = [];
   }
-
+  
 }

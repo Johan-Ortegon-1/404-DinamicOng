@@ -1,13 +1,23 @@
 h1 {
     text-align: left;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 30px;
   }
+
+
+  h4{
+  
+    text-align: center;
+    font-weight: 500;
+    font-size: 45px;
+    display: flex;
+  }
+  
   h2{
   
     text-align: center;
     font-weight: 500;
-    font-size: 40px;
+    font-size: 50px;
   }
   h3{
   
@@ -85,7 +95,7 @@ h1 {
   
   .primera{
     width: auto;
-    height: auto;
+    height: 300px;
     margin : 10px;
     padding: 20px;
     margin-top: 50px;
@@ -97,6 +107,15 @@ h1 {
     height: auto;
     margin: 30px;
     display: -webkit-flex;
+    font-size: 17px;
+  }
+  .seccionb{
+    width: 1000px;
+    height: auto;
+    margin: 30px;
+    display: -webkit-flex;
+    font-size: 17px;
+    padding-left: 600px;
   }
   
   
@@ -147,7 +166,20 @@ h1 {
   .seccionx{
   
     margin-left: 30px;
+
   }
+
+  .seccionh{
+  
+    width: 1000px;
+    height: auto;
+    margin: 30px;
+    
+    margin-left: 30px;
+    
+
+  }
+  
   .secciont{
     margin-left: 30px;
     width: fit-content;

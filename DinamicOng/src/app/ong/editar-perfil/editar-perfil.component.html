@@ -2,8 +2,9 @@
     <div class="container" id="border">
         <!--Principal -->
         <div class="primera">
-            
+
             <div class="foto ">
+
                 <div class="row" *ngIf="b">
                     <img [src]='preview'>
                 </div>
@@ -13,7 +14,6 @@
 
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="imagen" accept="image/*" name="imagen"
-                        [(ngModel)]="ong.imagenPerfil"  value={{ong.imagenPerfil}}
                         (change)="uploadImage($event)">
                     <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                 </div>
@@ -42,15 +42,7 @@
             </textarea>
         </div>
         <!--Informacion media-->
-        <div class="seccionx">
-            <h1>Correo</h1>
-            <h3><input type="text" name="correoOng" [(ngModel)]="ong.correo" required value={{ong.correo}}></h3>
-
-        </div>
-
-
-
-        <div class="seccionx">
+               <div class="seccionx">
             <h1>Teléfonos</h1>
             <div class="form-row">
                 <div class="col-sm-8">
@@ -100,8 +92,12 @@
         </div>
         <!--Botones de confirmacion y cancelacion -->
         <div class="seccion">
+        <div style="float:right;">
             <button class="botonedit" (click)="cancelar()">Cancelar</button>
             <button type="submit" class="botonedit">Guardar</button>
         </div>
+    </div>
+
+        
     </div>
 </form>

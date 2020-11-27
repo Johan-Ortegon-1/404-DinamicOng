@@ -15,5 +15,8 @@ export class Usuario {
   constructor() {
     this.telefonos = [];
     this.ubicacion = new Ubicacion();
+
   }
+ 
+
 }

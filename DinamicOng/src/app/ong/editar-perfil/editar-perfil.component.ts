@@ -20,6 +20,7 @@ export class EditarPerfilComponent implements OnInit {
    public errorTelefonos = '';
    public preview: string;
    public b :boolean=false;
+
   
   constructor(private authSvc: AuthService, private ongServices: OngService, private configC: NgbCarouselConfig, private router: Router) { 
     configC.interval = 5000;
@@ -27,6 +28,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+   
     this.ong = new Ong();
     this.uid = localStorage.getItem('uid');
 
@@ -36,7 +38,7 @@ export class EditarPerfilComponent implements OnInit {
     this.mision= this.ong.mision;
     this.vision= this.ong.vision;
     this.telefonos = this.ong.telefonos;
-    
+   
     
 
     this.ongServices.obtenerImagenPerfil(this.uid).then(url => {
@@ -58,8 +60,9 @@ export class EditarPerfilComponent implements OnInit {
   
   async actualizar()
   {
-    console.log("ong cambiada: ", this.ong);
-    this.authSvc.updateOng(this.ong);
+      console.log("ong cambiada: ", this.ong);
+    this.authSvc.updateOng(this.ong,this.b);
+    
     this.router.navigate(['/ong/ver-perfil']);
   }
   addTelefono() {
@@ -107,6 +110,8 @@ uploadImage($event) {
 
     reader.readAsDataURL($event.target.files[0]);
   }
+  this.authSvc.updateImagenONG(this.ong);
+
 }
 
 
