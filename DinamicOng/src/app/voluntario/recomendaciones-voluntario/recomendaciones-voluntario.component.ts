@@ -53,9 +53,9 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
 
   // Metodo que se ejecuta para  buscar las inicitivas en base a los datos del voluntario
   buscarIniciativa() {
-    let iniciativas: Iniciativa[] = [];
-
     this.var = this.iniciativaService.buscarIniciativas().subscribe((data:any) => {
+      let iniciativas: Iniciativa[] = [];
+      this.iniciativas = [];
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {
@@ -71,9 +71,8 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
         alert('Sin resultados')
       }
       else {
-        this.iniciativas = iniciativas;
-        let iniciativas2:Iniciativa[] = [];
-        this.iniciativas.map(elem => {
+        console.log(iniciativas);
+        iniciativas.map(elem => {
           let ong = null;
           this.ongService.consultarOngByID(elem.idOng).then(resp => {
             ong = resp.data() as Ong;
@@ -82,12 +81,10 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
               elem.imagenes = this.iniciativaService.obtenerImagenesIniciativa(elem.id);
               elem.imagenPerfil = ong.imagenPerfil;
               elem.nombreOng = ong.nombre;
-              iniciativas2.push(elem);
+              this.iniciativas.push(elem);
             });
           });
         });
-        this.iniciativas = iniciativas2;
-        console.log(this.iniciativas);
       }
     });
   }

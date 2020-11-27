@@ -31,11 +31,9 @@ export class MostrarBusquedaComponent implements OnInit {
 
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
-
-    this.iniciativas = JSON.parse(localStorage.getItem('iniciativasFiltradas'));
-    console.log('bandera' , this.iniciativas);
-    let iniciativas2:Iniciativa[] = [];
-    this.iniciativas.map(elem => {
+    let iniciativas:Iniciativa[] = JSON.parse(localStorage.getItem('iniciativasFiltradas'));
+    console.log('bandera' , iniciativas);
+    iniciativas.map(elem => {
       let ong = null;
       this.ongService.consultarOngByID(elem.idOng).then(resp => {
         ong = resp.data() as Ong;
@@ -44,12 +42,10 @@ export class MostrarBusquedaComponent implements OnInit {
           elem.imagenes = this.iniciativaService.obtenerImagenesIniciativa(elem.id);
           elem.imagenPerfil = ong.imagenPerfil;
           elem.nombreOng = ong.nombre;
-          iniciativas2.push(elem);
+          this.iniciativas.push(elem);
         });
       });
     });
-    this.iniciativas = iniciativas2;
-    console.log(this.iniciativas);
   }
 
   // Metodo que se ejecuta para navegar a la ong

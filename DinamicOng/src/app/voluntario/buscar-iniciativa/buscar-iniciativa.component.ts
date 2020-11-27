@@ -59,9 +59,8 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
 
   // Metodo que se ejecuta para  buscar las inicitivas en base al formulario
   buscarIniciativa() {
-    let iniciativas: Iniciativa[] = [];
-
     this.var = this.iniciativaService.buscarIniciativas().subscribe((data:any) => {
+      let iniciativas: Iniciativa[] = [];
       data.map(elem => {
         let iniciativa = elem.payload.doc.data();
         if(this.verificarFiltro(iniciativa)) {
