@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { Ong } from 'src/app/models/ong';
@@ -8,6 +8,7 @@ import { AuxAdministrar } from 'src/app/models/auxAdministrar';
 import { Solicitud } from 'src/app/models/solicitud';
 import { OngService } from '../../ong/services/ong.service';
 import { IniciativaService } from 'src/app/iniciativa/services/iniciativa.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -17,13 +18,16 @@ import { IniciativaService } from 'src/app/iniciativa/services/iniciativa.servic
 })
 
 // Clase que representa el componente del navbar de la Ong
-export class NavbarOngComponent implements OnInit {
+export class NavbarOngComponent implements OnInit, OnDestroy {
 
   public notificacion_pendiente = false;
   /**Version final */
   public ruta = this.route.url; // Objeto que que permitir[a la navegacion]
   public str = String(this.ruta); // Variable auxiliar para almacenar la ruta
   public ong = new Ong(); // Objeto que se llenará mediante el registro
+
+  public sub1: Subscription;
+  public sub2: Subscription;
 
 
   public selected = [ // Lista de banderas para identificar que enlace está seleccionado
@@ -39,7 +43,7 @@ export class NavbarOngComponent implements OnInit {
   // - auth: Objeto que permite manejar datos de autenticación
   constructor(private route: Router, private auth: AuthService, private iniciativaService: IniciativaService,
               private ongService: OngService) {
-    this.route.events.subscribe(val => {
+    this.sub2 = this.route.events.subscribe(val => {
       this.actualizarCambios();
     });
   }
@@ -49,6 +53,18 @@ export class NavbarOngComponent implements OnInit {
     this.notificacion_pendiente = false;
     this.obtenerOngActual();
     this.actualizarCambios();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.sub1 != null) {
+      this.sub1.unsubscribe();
+    }
+
+    if (this.sub2 != null) {
+      this.sub2.unsubscribe();
+    }
   }
 
   // Metodo que actualiza el arreglo de selección
@@ -96,7 +112,7 @@ export class NavbarOngComponent implements OnInit {
 
   // Metodo para obtener las solucitudes de un Voluntario
   obtenerTodasSolicitudes() {
-    this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
+    this.sub1 = this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
       data.map(elem => {
         const solicitud = elem.payload.doc.data();
         if (this.filtrarSolicitud(solicitud)) {

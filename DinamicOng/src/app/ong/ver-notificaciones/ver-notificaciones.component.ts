@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { IniciativaService } from 'src/app/iniciativa/services/iniciativa.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -9,13 +9,14 @@ import { Ong } from 'src/app/models/ong';
 import { Solicitud } from 'src/app/models/solicitud';
 import { Iniciativa } from 'src/app/models/iniciativa';
 import { AuxAdministrar } from 'src/app/models/auxAdministrar';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ver-notificaciones',
   templateUrl: './ver-notificaciones.component.html',
   styleUrls: ['./ver-notificaciones.component.css']
 })
-export class VerNotificacionesComponent implements OnInit {
+export class VerNotificacionesComponent implements OnInit, OnDestroy {
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
     private router: Router, private configC: NgbCarouselConfig, private voluntarioService: VoluntarioService, private ongService: OngService) { }
@@ -24,7 +25,7 @@ export class VerNotificacionesComponent implements OnInit {
     public ong1: Ong = new Ong(); // Objeto que se llenará mediante el registro
     public ong2: Ong = new Ong(); // Objeto que se llenará mediante el registro
     public solicitudes: Solicitud[] = []; // Secuecia para almacenar las solucitudes a desplegar
-  
+
     /**Version final */
     public ruta = this.router.url; // Objeto que que permitir[a la navegacion]
     public str = String(this.ruta); // Variable auxiliar para almacenar la ruta
@@ -32,13 +33,23 @@ export class VerNotificacionesComponent implements OnInit {
     public ong = new Ong(); // Objeto que se llenará mediante el registro
     public iniciativa = new Iniciativa(); // Objeto que se llenará mediante el registro
     public auxiliares: AuxAdministrar[] = []; // Secuecia para almacenar estructuras auxiliares
-  
+
+    public sub: Subscription;
+
     // Metodo que se ejecuta al iniciar el componente
     // Se inicializa el objeto Ong
     ngOnInit(): void {
       this.obtenerOngActual();
     }
-  
+
+    ngOnDestroy(): void {
+      //Called once, before the instance is destroyed.
+      //Add 'implements OnDestroy' to the class.
+      if (this.sub != null) {
+        this.sub.unsubscribe();
+      }
+    }
+
     // Metodo para obtener la ong del cual quiero saber sus notificaciones
     obtenerOngActual() {
       if (this.str.includes('ong')) {
@@ -54,7 +65,7 @@ export class VerNotificacionesComponent implements OnInit {
     // Metodo para obtener las solucitudes de una Ong
     obtenerTodasSolicitudes() {
       let iniciativas: Iniciativa[] = [];
-      this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
+      this.sub = this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
         data.map(elem => {
           this.auxiliares = [];
           const solicitud = elem.payload.doc.data();
@@ -66,7 +77,7 @@ export class VerNotificacionesComponent implements OnInit {
         });
       });
     }
-  
+
     // Metodo para obtener al voluntario correspondiente a una solicitud
     // Parámetros:
     // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluntario
@@ -83,7 +94,7 @@ export class VerNotificacionesComponent implements OnInit {
         });
       });
     }
-  
+
     // Metodo para obtener la iniciativa correspondiente a una solicitud
     // Parámetros:
     // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluntario
@@ -95,28 +106,28 @@ export class VerNotificacionesComponent implements OnInit {
         this.construirPresentacionDatos(solicitudActual, urlImagen, nombre);
       });
     }
-  
+
     // Metodo para construir la presentacion de datos
     // Parámetros:
     // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente a un Voluntario
     // - urlImagen: Objeto que permite obtener la url de la imagen asociada
     construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string, nombre: string) {
       let nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
-  
+
       nuevoAuxiliar.aceptado = solicitudActual.aceptado;
       nuevoAuxiliar.contestado = solicitudActual.contestado;
       nuevoAuxiliar.id = solicitudActual.id;
       nuevoAuxiliar.idIniciativa = solicitudActual.idIniciativa;
       nuevoAuxiliar.idVoluntario = solicitudActual.idVoluntario;
       nuevoAuxiliar.idOng = solicitudActual.idOng;
-  
+
       nuevoAuxiliar.nombreVoluntaro = nombre;
       nuevoAuxiliar.nombreIniciativa = this.iniciativa.nombre;
       nuevoAuxiliar.nombreOng = this.ong.nombre;
       nuevoAuxiliar.rutaImagenOng = urlImagen;
       this.auxiliares.push(nuevoAuxiliar);
     }
-  
+
     // Metodo para filtar las solicitudes por la Voluintario actual
     // Parámetros:
     // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluintario
@@ -126,7 +137,7 @@ export class VerNotificacionesComponent implements OnInit {
       }
       return false;
     }
-  
+
     // Metodo para cambiar de pagina y visualizar un Voluntario
     verVoluntario(aux: AuxAdministrar) {
       this.router.navigate(['/ong/ver-voluntario/' + aux.idVoluntario]);

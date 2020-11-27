@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Voluntario } from '../../models/voluntario';
 import { Ong } from '../../models/ong';
 import { Solicitud } from '../../models/solicitud';
@@ -9,6 +9,7 @@ import { OngService } from 'src/app/ong/services/ong.service';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { VoluntarioService } from '../services/voluntario.service';
 import { AuxAdministrar } from '../../models/auxAdministrar';
+import { Subscription } from 'rxjs';
 
 
 
@@ -18,7 +19,7 @@ import { AuxAdministrar } from '../../models/auxAdministrar';
   styleUrls: ['./ver-notificaciones.component.css']
 })
 // Clase que representa el componente ver notificaciones de un Voluntario
-export class VerNotificacionesComponent implements OnInit {
+export class VerNotificacionesComponent implements OnInit, OnDestroy {
 
   constructor(private iniciativaService: IniciativaService, private routeActive: ActivatedRoute,
     private router: Router, private configC: NgbCarouselConfig, private voluntarioService: VoluntarioService, private ongService: OngService) { }
@@ -36,10 +37,20 @@ export class VerNotificacionesComponent implements OnInit {
   public iniciativa = new Iniciativa(); // Objeto que se llenará mediante el registro
   public auxiliares: AuxAdministrar[] = []; // Secuecia para almacenar estructuras auxiliares
 
+  public sub: Subscription;
+
   // Metodo que se ejecuta al iniciar el componente
   // Se inicializa el objeto Ong
   ngOnInit(): void {
     this.obtenerVoluntarioActual();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.sub != null) {
+      this.sub.unsubscribe();
+    }
   }
 
   // Metodo para obtener el voluntario del cual quiero saber sus notificaciones
@@ -57,7 +68,7 @@ export class VerNotificacionesComponent implements OnInit {
   // Metodo para obtener las solucitudes de un Voluntario
   obtenerTodasSolicitudes() {
     let iniciativas: Iniciativa[] = [];
-    this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
+    this.sub = this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
       data.map(elem => {
         this.auxiliares = [];
         const solicitud = elem.payload.doc.data();

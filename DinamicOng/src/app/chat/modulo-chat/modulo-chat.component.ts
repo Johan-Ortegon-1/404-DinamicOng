@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-modulo-chat',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 })
 
 // Clase que representa el componente del modulo del chat
-export class ModuloChatComponent implements OnInit {
+export class ModuloChatComponent implements OnInit, OnDestroy {
 
   public select = false; // Bandera para identificar si se ha seleccionado una conversación
+
+  public sub: Subscription;
 
   // Metodo constructor para crear un objeto del componente
   // Parámetros:
@@ -27,13 +30,21 @@ export class ModuloChatComponent implements OnInit {
       this.select = true;
     }
 
-    this.router.events.subscribe(resp => {
+    this.sub = this.router.events.subscribe(resp => {
       if ( this.router.url == '/voluntario/chat' || this.router.url == '/ong/chat') {
         this.select = false;
       } else {
         this.select = true;
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.sub != null) {
+      this.sub.unsubscribe();
+    }
   }
 
 }

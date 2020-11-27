@@ -60,8 +60,9 @@ export class BuscarVoluntarioComponent implements OnInit, OnDestroy {
 
   // Metodo que se realiza la suscripcion a los voluntarios para realizar la busqueda
   buscarVoluntario() {
-    let voluntarios: Voluntario[] = [];
+
     this.suscripcion = this.voluntarioService.buscarVoluntario().subscribe((data:any) => {
+      let voluntarios: Voluntario[] = [];
       data.map(elem => {
         let voluntario: Voluntario = elem.payload.doc.data();
         if(this.verificarFiltro(voluntario)) {

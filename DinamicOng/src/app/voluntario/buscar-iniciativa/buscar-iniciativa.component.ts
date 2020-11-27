@@ -52,9 +52,11 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
   }
 
   // Metodo que se ejecuta al eliminar el componente
-  ngOnDestroy():void {
-    if(this.var != null)
+  ngOnDestroy(): void {
+    if(this.var != null) {
       this.var.unsubscribe();
+    }
+
   }
 
   // Metodo que se ejecuta para  buscar las inicitivas en base al formulario

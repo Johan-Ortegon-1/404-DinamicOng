@@ -57,9 +57,10 @@ export class RecomendacionesOngComponent implements OnInit {
   }
   // Metodo que se realiza la suscripcion a los voluntarios para realizar la busqueda
   buscarVoluntario() {
-    let voluntarios: Voluntario[] = [];
 
     this.var = this.voluntarioService.buscarVoluntario().subscribe((data: any) => {
+      let voluntarios: Voluntario[] = [];
+      this.voluntarios = [];
       data.map(elem => {
         let voluntario = elem.payload.doc.data();
         if (this.verificarFiltro(voluntario)) {
@@ -75,17 +76,17 @@ export class RecomendacionesOngComponent implements OnInit {
         alert('Sin resultados')
       }
       else {
-        this.voluntarios = voluntarios;
-        let voluntarios2: Voluntario[] = [];
-        this.voluntarios.map(elem => {
+        //this.voluntarios = voluntarios;
+        //let voluntarios2: Voluntario[] = [];
+        voluntarios.map(elem => {
           console.log(elem);
           this.voluntarioService.obtenerImagenPerfil(elem.id).then(url => {
             elem.imagenPerfil = url;
-            voluntarios2.push(elem);
+            this.voluntarios.push(elem);
           });
         });
-        this.voluntarios = voluntarios2;
-        console.log(this.voluntarios);
+        //this.voluntarios = voluntarios2;
+        //console.log(this.voluntarios);
       }
     });
   }

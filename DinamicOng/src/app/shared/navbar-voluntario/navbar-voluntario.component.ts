@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-navbar-voluntario',
@@ -9,7 +10,7 @@ import { AuthService } from '../../auth/services/auth.service';
 })
 
 // Clase que representa el componente del navbar del voluntario
-export class NavbarVoluntarioComponent implements OnInit {
+export class NavbarVoluntarioComponent implements OnInit, OnDestroy {
 
   public notificacion_pendiente = false;
 
@@ -20,12 +21,14 @@ export class NavbarVoluntarioComponent implements OnInit {
     false
   ];
 
+  public sub: Subscription;
+
   // Metodo constructor para crear un objeto del componente
   // Parametros:
   // - router: Objeto que permite navegar entre pantallas por la URL
   // - auth: Objeto que permite manejar datos de autenticación
   constructor(private route: Router,private auth: AuthService) {
-    this.route.events.subscribe(val => {
+    this.sub = this.route.events.subscribe(val => {
       this.actualizarCambios();
     });
   }
@@ -33,6 +36,15 @@ export class NavbarVoluntarioComponent implements OnInit {
   // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.actualizarCambios();
+  }
+
+  ngOnDestroy(): void {
+    //Called once, before the instance is destroyed.
+    //Add 'implements OnDestroy' to the class.
+    if (this.sub != null) {
+      this.sub.unsubscribe();
+    }
+
   }
 
   // Metodo que actualiza el arreglo de selección
@@ -58,7 +70,7 @@ export class NavbarVoluntarioComponent implements OnInit {
     }
   }
 
-  
+
 
   // Metodo que realiza el logout del usuario
   logout() {

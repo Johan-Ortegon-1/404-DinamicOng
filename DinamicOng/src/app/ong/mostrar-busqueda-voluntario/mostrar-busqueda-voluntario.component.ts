@@ -20,15 +20,16 @@ export class MostrarBusquedaVoluntarioComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.voluntarios = JSON.parse(localStorage.getItem('voluntariosFiltrados'));
-    let voluntarios2: Voluntario[] = [];
-    this.voluntarios.map( elem => {
+    //this.voluntarios = JSON.parse(localStorage.getItem('voluntariosFiltrados'));
+    let voluntarios = JSON.parse(localStorage.getItem('voluntariosFiltrados'));
+    //let voluntarios2: Voluntario[] = [];
+    voluntarios.map( elem => {
       this.voluntarioService.obtenerImagenPerfil(elem.id).then(url => {
         elem.imagenPerfil = url;
-        voluntarios2.push(elem);
+        this.voluntarios.push(elem);
       });
     });
-    this.voluntarios = voluntarios2;
+    //this.voluntarios = voluntarios2;
   }
 
   navVerVoluntario( voluntario: Voluntario) {
