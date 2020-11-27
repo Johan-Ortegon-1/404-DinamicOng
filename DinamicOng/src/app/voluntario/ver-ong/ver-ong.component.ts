@@ -7,6 +7,8 @@ import { switchMap } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChatService } from '../../chat/services/chat.service';
 import { Conversacion } from '../../models/conversacion';
+import { VoluntarioService } from '../services/voluntario.service';
+import { Voluntario } from 'src/app/models/voluntario';
 
 @Component({
   selector: 'app-ver-ong',
@@ -19,13 +21,17 @@ export class VerOngComponent implements OnInit {
   public iniciativas: Iniciativa[]=[];
   public telefonoNuevo = '';
   public errorTelefonos = '';
+  public seguido: boolean = false;
+  public estado: string = 'Seguir';
+
 
   constructor(private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute,
-    private router: Router, private chatService: ChatService) { }
+    private router: Router, private chatService: ChatService,private voluntarioService: VoluntarioService) { }
 
   ngOnInit(): void {
     this.ong.id = this.route.snapshot.paramMap.get('id');
     this.obtenerOngActual();
+    this.preguntar();
   }
 
   obtenerOngActual() {
@@ -80,6 +86,54 @@ export class VerOngComponent implements OnInit {
     if (localStorage.getItem('rol') == 'Voluntario') {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
     }
+  }
+
+  seguir() {
+    const id = localStorage.getItem('uid');
+    const ong = this.ong.id;
+    if (!this.seguido) {
+      this.voluntarioService.consultarVoluntarioByID(id).then(resp1 => {
+        const vol = resp1.data() as Voluntario;
+        vol.seguidos.push(ong);
+        this.estado = 'Dejar de seguir';
+        this.seguido = true;
+        this.voluntarioService.updateVoluntario(vol);
+      });
+    } else {
+      this.voluntarioService.consultarVoluntarioByID(id).then(resp2 => {
+        const vol = resp2.data() as Voluntario;
+        let cont = 0;
+        vol.seguidos.forEach(item => {
+          if (item === ong) {
+            this.seguido = false;
+            this.estado = 'Seguir';
+            vol.seguidos.splice(cont, 1 );
+            this.voluntarioService.updateVoluntario(vol);
+          }
+          cont++;
+        });
+      });
+    }
+  }
+
+  preguntar() {
+    let id =  localStorage.getItem('uid');
+    this.voluntarioService.consultarVoluntarioByID(id).then(resp2 => {
+      const vol = resp2.data() as Voluntario;
+      console.log('tamañ' ,vol.seguidos.length);
+      if (vol.seguidos.length === 0) {
+        this.estado = 'Seguir';
+        this.seguido = false;
+      } else {
+        vol.seguidos.forEach(item => {
+          console.log("item " , item);
+          if (item === this.ong.id) {
+            this.estado = 'Dejar de Seguir';
+            this.seguido = true;
+          }
+        });
+      }
+    });
   }
 
 }

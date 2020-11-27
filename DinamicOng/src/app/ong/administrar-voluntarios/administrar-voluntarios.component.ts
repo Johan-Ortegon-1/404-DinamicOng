@@ -140,9 +140,11 @@ export class AdministrarVoluntariosComponent implements OnInit {
                 if (sol.contestado === true) {
                   this.solicitudes.push(sol);
                 } else {
+                  //se crea una clase auxiliar para guardar datos relacionales entre voluntario, iniciativa, solicitud, ong
                   const aux = new AuxAdministrar();
                   this.voluntarioService.consultarVoluntarioByID(sol.idVoluntario).then(resp4 => {
                     const vol = resp4.data() as Voluntario;
+
                     aux.nombreVoluntaro = vol.nombre;
                     aux.idVoluntario = vol.id;
                     aux.idIniciativa = ini.id;

@@ -15,6 +15,7 @@ import { VerMiPerfilComponent } from './ver-mi-perfil/ver-mi-perfil.component';
 import { VerNotificacionesComponent } from './ver-notificaciones/ver-notificaciones.component';
 import { EditarPerfilComponent } from './editar-perfil/editar-perfil.component';
 import { RecomendacionesVoluntarioComponent } from './recomendaciones-voluntario/recomendaciones-voluntario.component';
+import { VerSeguidosComponent } from './ver-seguidos/ver-seguidos.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RecomendacionesVoluntarioComponent } from './recomendaciones-voluntario
     VerMiPerfilComponent,
     VerNotificacionesComponent,
     EditarPerfilComponent,
-    RecomendacionesVoluntarioComponent
+    RecomendacionesVoluntarioComponent,
+    VerSeguidosComponent
   ],
   imports: [
     CommonModule,
