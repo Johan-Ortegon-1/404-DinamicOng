@@ -64,9 +64,9 @@ export class NavbarOngComponent implements OnInit {
 
     if (ruta === '/ong/recomendaciones-ong') {
       this.selected[0] = true;
-    } else if (ruta == '/ong/mi-perfil') {
+    } else if (ruta == '/ong/ver-perfil') {
       this.selected[1] = true;
-    } else if (ruta == '/ong/mis-iniciativas') {
+    } else if (ruta == '/ong/ver-iniciativas') {
       this.selected[2] = true;
     } else if (ruta == '/ong/administrar-voluntarios') {
       this.selected[3] = true;

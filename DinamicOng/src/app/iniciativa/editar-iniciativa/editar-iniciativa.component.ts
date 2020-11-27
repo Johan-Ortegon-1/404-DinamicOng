@@ -76,7 +76,7 @@ export class EditarIniciativaComponent implements OnInit {
     this.iniciativaNueva.ubicacion.ciudad ="";
     this.iniciativaNueva.ubicacion.pais ="";
     this.iniciativaNueva.ubicacion.direccion ="";
-    
+
     this.hoy = this.iniciativaService.obtenerFechaHoy(2);
     this.opcAreas = Object.keys(this.areasConoc);
     this.areaNueva = AreasConocimiento.Ingenieria;
@@ -97,7 +97,7 @@ export class EditarIniciativaComponent implements OnInit {
     this.iniciativa = new Iniciativa();
     this.id = this.routeActive.snapshot.paramMap.get('id');
     this.obtenerIniciativa();
-   
+
 
   }
 
@@ -107,7 +107,7 @@ export class EditarIniciativaComponent implements OnInit {
       this.iniciativaNueva.idOng= this.iniciativa.idOng;
       this.iniciativaNueva.imagenPerfil= this.iniciativa.imagenPerfil;
       this.iniciativaNueva.valoraciones= this.iniciativa.valoraciones;
-      this.iniciativaNueva.solicitudes = this.iniciativa.solicitudes; 
+      this.iniciativaNueva.solicitudes = this.iniciativa.solicitudes;
       this.iniciativaNueva.participantes= this.iniciativa.participantes;
 
       if(this.iniciativaNueva.nombre == "")
@@ -147,10 +147,10 @@ export class EditarIniciativaComponent implements OnInit {
         this.iniciativaNueva.ubicacion.direccion = this.iniciativa.ubicacion.direccion;
       }
     this.iniciativaService.updateIniciativa2(this.iniciativaNueva, this.imagenes.length, this.imagenEliminar);
-    
+
     setTimeout(() => {
       this.router.navigate(['/ong/iniciativa/' + this.iniciativa.id]);
-    }, 600);
+    }, 500);
   }
   // Metodo que obtiene el objeto de la iniciativa y realiza la lógica de identificación de usuario (banderas)
   obtenerIniciativa() {
@@ -166,7 +166,7 @@ export class EditarIniciativaComponent implements OnInit {
         this.iniciativaNueva.idiomasDeseables.push(p);
       }
       this.imagenes = this.iniciativaService.obtenerImagenesIniciativa(this.iniciativa.id);
-      
+
       if (this.iniciativaService.compararFechaMenorIgualHoy(this.iniciativa.fechaInicio)) {
         this.empezo = true;
       }
@@ -245,8 +245,8 @@ export class EditarIniciativaComponent implements OnInit {
   }
   //Metodo para eliminar una imagen
   deleteImagen(img: string)
-  { 
-    let temporal = []; 
+  {
+    let temporal = [];
     let encontro = false;
     for(let p of this.imagenes)
     {
@@ -267,14 +267,14 @@ export class EditarIniciativaComponent implements OnInit {
       this.imagenEliminar.push(img);
       this.imagenes = temporal;
     }
-    
+
   }
 
   //Método para regresar la imagen que se pretendia borrar
   //Metodo para eliminar una imagen
   regresarImagen(img: string)
-  { 
-    let temporal = []; 
+  {
+    let temporal = [];
     this.imagenes.push(img);
 
     for(let p of this.imagenEliminar)
@@ -283,6 +283,6 @@ export class EditarIniciativaComponent implements OnInit {
         temporal.push(p);
     }
     this.imagenEliminar = temporal;
-    
+
   }
 }

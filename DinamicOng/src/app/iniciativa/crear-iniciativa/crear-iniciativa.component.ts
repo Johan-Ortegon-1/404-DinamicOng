@@ -58,7 +58,9 @@ export class CrearIniciativaComponent implements OnInit {
   // Metodo que crea una iniciativa y redirige a la pantalla de las iniciativas de la Ong
   crearIniciativa() {
     this.iniciativaService.crearIniciativa(this.iniciativaNueva);
-    this.router.navigate(['/ong/ver-iniciativas']);
+    setTimeout(()=> {
+      this.router.navigate(['/ong/ver-iniciativas']);
+    }, 300);
   }
 
   // Metodo para guardar una imagen en la lista de imagenes de la iniciativa y en la previsualización

@@ -24,7 +24,7 @@ export class VerOngComponent implements OnInit {
   public errorTelefonos = '';
   public seguido: boolean = false;
   public estado: string = 'Seguir';
-  public isOng: boolean;
+  public isOng: boolean = false;
 
   // Metodo constructor para crear un objeto del componente
   // Parametros:
@@ -41,8 +41,9 @@ export class VerOngComponent implements OnInit {
     this.ong.id = this.route.snapshot.paramMap.get('id');
     const ruta = this.router.url;
     const str = String(ruta);
+    const rol = localStorage.getItem("rol");
 
-    if (str.includes('ong')) {​​​​​​
+    if (rol=='Ong') {​​​​​​
       this.isOng = true;
     }​​​​​​
     else {​​​​​​
@@ -95,7 +96,9 @@ export class VerOngComponent implements OnInit {
         conversacion.idOng = this.ong.id;
         conversacion.idVoluntario = localStorage.getItem('uid');
         let id = this.chatService.crearConversacion(conversacion);
-        this.router.navigate(['/voluntario/chat/' + id]);
+        setTimeout(()=>{
+          this.router.navigate(['/voluntario/chat/' + id]);
+        }, 500);
       } else {
         resp.forEach(c => {
           let aux = c.data() as Conversacion;

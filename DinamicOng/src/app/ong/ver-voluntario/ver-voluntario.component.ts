@@ -87,7 +87,9 @@ export class VerVoluntarioComponent implements OnInit {
         conversacion.idVoluntario = this.voluntario.id;
         conversacion.idOng = localStorage.getItem('uid');
         let id = this.chatService.crearConversacion(conversacion);
-        this.router.navigate(['/ong/chat/' + id]);
+        setTimeout(()=>{
+          this.router.navigate(['/ong/chat/' + id]);
+        }, 500);
       } else {
         resp.forEach(c => {
           let aux = c.data() as Conversacion;

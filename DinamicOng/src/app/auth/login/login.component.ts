@@ -37,7 +37,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   // Metodo que se ejecuta al eliminar el componente
   ngOnDestroy(): void {
-    this.suscripcion.unsubscribe();
+    if( this.suscripcion != null) {
+      this.suscripcion.unsubscribe();
+    }
   }
 
   // Metodo que se encarga de hacer el inicio de sesion de un usuario

@@ -225,7 +225,9 @@ export class VerIniciativaComponent implements OnInit {
         conversacion.idOng = this.creador.id;
         conversacion.idVoluntario = localStorage.getItem('uid');
         let id = this.chatService.crearConversacion(conversacion);
-        this.router.navigate(['/voluntario/chat/' + id]);
+        setTimeout(()=>{
+          this.router.navigate(['/voluntario/chat/' + id]);
+        }, 500);
       } else {
         resp.forEach(c => {
           let aux = c.data() as Conversacion;

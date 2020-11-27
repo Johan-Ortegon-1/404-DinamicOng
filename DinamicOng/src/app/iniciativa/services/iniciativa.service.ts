@@ -106,7 +106,7 @@ export class IniciativaService {
   // Parámetros:
   // - iniciativa: Iniciativa a la que se le subiran las imagenes
   updateImagenesIniciativa(iniciativa: Iniciativa, cantidad: number) {
-    let n = cantidad + 1 ; 
+    let n = cantidad + 1 ;
     iniciativa.imagenes.forEach(element => {
       this.firestorage.upload('/' + iniciativa.id + '/ImagenIniciativa_' + n, element);
       n++;
@@ -115,7 +115,7 @@ export class IniciativaService {
   eliminarImagenesIniciativa(iniciativa: Iniciativa, eliminar: Array<string> )
   {
     eliminar.forEach(element => {
-      console.log("No se elimina"); 
+      console.log("No se elimina");
       //this.firestore.collection('iniciativas').doc(iniciativa.id).collection('imagenes').doc().delete();
     });
   }
@@ -132,26 +132,23 @@ export class IniciativaService {
   // Parámetros:
   // - iniciativa: Iniciativa a actualizar
   updateIniciativa(iniciativa: Iniciativa) {
-    
+
     const param = JSON.parse(JSON.stringify(iniciativa));
     this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
-    
+
   }
   // Metodo que actualiza una iniciativa
   // Parámetros:
   // - iniciativa: Iniciativa a actualizar
   updateIniciativa2(iniciativa: Iniciativa,cantidad: number, eliminar: Array<string> ) {
-    
+
     const param = JSON.parse(JSON.stringify(iniciativa));
     this.firestore.collection('iniciativas').doc(iniciativa.id).update(param);
     const idOng = localStorage.getItem('uid');
-    const id = this.firestore.createId();
-    const doc = this.firestore.collection('iniciativas').doc(id);
+    const doc = this.firestore.collection('iniciativas').doc(iniciativa.id);
     this.ongService.consultarOngByID(idOng).then(item => {
       this.updateImagenesIniciativa(iniciativa,cantidad);
-      this.eliminarImagenesIniciativa(iniciativa, eliminar)
-      const param = JSON.parse(JSON.stringify(iniciativa));
-      doc.set(param);
+      //this.eliminarImagenesIniciativa(iniciativa, eliminar);
     }, error => {
       console.log(error);
     });
@@ -186,7 +183,7 @@ export class IniciativaService {
           xhr.responseType = 'blob';
           xhr.onload = function(event) {
             var blob = xhr.response;
-            blobs.push(blob); 
+            blobs.push(blob);
           };
           xhr.open('GET', url);
           xhr.send();

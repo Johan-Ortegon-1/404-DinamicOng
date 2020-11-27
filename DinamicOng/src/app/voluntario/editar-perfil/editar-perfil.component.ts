@@ -76,7 +76,9 @@ export class EditarPerfilComponent implements OnInit {
   async actualizar() {
     console.log('voluntario cambiado: ', this.voluntario);
     this.authSvc.updateVoluntario(this.voluntario, this.b);
-    this.router.navigate(['/voluntario/mi-perfil']);
+    setTimeout(()=> {
+      this.router.navigate(['/voluntario/mi-perfil']);
+    }, 500);
   }
   deleteTelefono(tel: string) {
     const i = this.voluntario.telefonos.indexOf(tel);
@@ -110,7 +112,7 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   addIdioma() {
-  
+
     if (this.idiomaNuevo !== '' && this.idiomaNuevo != null) {
       if (this.voluntario.idiomas.indexOf(this.idiomaNuevo) === -1) {
         this.voluntario.idiomas.push(this.idiomaNuevo);

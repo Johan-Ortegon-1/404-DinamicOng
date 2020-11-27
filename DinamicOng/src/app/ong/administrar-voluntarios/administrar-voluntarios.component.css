@@ -2,8 +2,8 @@
   text-align: center;
 }
 h1{
-text-align: center; 
-font-size: 40px; 
+text-align: center;
+font-size: 40px;
 }
 
 .info {
@@ -44,6 +44,10 @@ a {
 
 #border {
   border-radius: 30px;border: solid;padding: 30px;margin-top: 3%;
+}
+
+.box {
+  min-height: 550px;
 }
 
 label, h1 {
@@ -110,7 +114,7 @@ ngb-carousel {
   color: #f8ce0b;
 }
 
-  
+
   #buttona{
     color: white;
     background-color: #4CAF50;
@@ -123,6 +127,6 @@ ngb-carousel {
   }
   p{
     margin-top: 13px;
-     
+
   }
-  
+
