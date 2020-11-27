@@ -67,18 +67,20 @@ export class VerVoluntarioComponent implements OnInit {
       console.log(error);
     });
   }
+
   navVerIniciativa(id: string){
     const ruta = this.router.url;
+    const rol = localStorage.getItem("rol");
     const str = String(ruta);
-    if (str.includes('voluntario')) {
+    if (rol == 'Voluntario') {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
-    } else if (str.includes('ong')) {
+    } else if (rol == 'Ong') {
       this.router.navigate(['/ong/iniciativa/' + id]);
     }
   }
 
-  // Metodo que crea una conversación con la Ong y redirige al usuario hacia allá
-  contactarOng() {
+  // Metodo que crea una conversación con el voluntario y redirige al usuario hacia allá
+  contactarVoluntario() {
     this.chatService.obtenerConversacionByIdOngIdVol(localStorage.getItem('uid'), this.voluntario.id).then(resp => {
       if (resp.empty) {
         let conversacion = new Conversacion();

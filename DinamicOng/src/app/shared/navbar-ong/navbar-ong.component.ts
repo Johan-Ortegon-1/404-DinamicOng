@@ -37,7 +37,7 @@ export class NavbarOngComponent implements OnInit {
   // Parametros:
   // - router: Objeto que permite navegar entre pantallas por la URL
   // - auth: Objeto que permite manejar datos de autenticación
-  constructor(private route: Router, private auth: AuthService, private iniciativaService: IniciativaService, 
+  constructor(private route: Router, private auth: AuthService, private iniciativaService: IniciativaService,
               private ongService: OngService) {
     this.route.events.subscribe(val => {
       this.actualizarCambios();
@@ -62,7 +62,7 @@ export class NavbarOngComponent implements OnInit {
 
     const ruta = this.route.url;
 
-    if (ruta === '/ong/inicio') {
+    if (ruta === '/ong/recomendaciones-ong') {
       this.selected[0] = true;
     } else if (ruta == '/ong/mi-perfil') {
       this.selected[1] = true;

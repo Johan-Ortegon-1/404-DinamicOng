@@ -33,7 +33,7 @@ import { RecomendacionesOngComponent } from './recomendaciones-ong/recomendacion
     VerVoluntarioComponent,
     EditarPerfilComponent,
     VerNotificacionesComponent,
-    EditarIniciativaComponent
+    EditarIniciativaComponent,
     RecomendacionesOngComponent
   ],
   imports: [

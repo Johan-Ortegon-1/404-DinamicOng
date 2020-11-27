@@ -6,13 +6,13 @@
 
       <!-- Logo de la aplicación -->
       <div class="col-sm-1">
-        <a ><img id="logo" src="../../../assets/logotipo ONG.png"></a>
+        <a [routerLink]="['/ong/recomendaciones-ong']"><img id="logo" src="../../../assets/logotipo ONG.png"></a>
       </div>
 
       <!-- Enlaces de navegación -->
       <div class="col-sm-7 vcenter">
         <ul class="menu">
-          <li [ngClass]="{'selected': selected[0] == true}"><a>Inicio</a></li>
+          <li [ngClass]="{'selected': selected[0] == true}"><a [routerLink]="['/ong/recomendaciones-ong']">Inicio</a></li>
           <li [ngClass]="{'selected': selected[1] == true}"><a [routerLink]="['/ong/ver-perfil']">Mi Perfil</a></li>
           <li [ngClass]="{'selected': selected[2] == true}"><a [routerLink] = "['/ong/ver-iniciativas']">Mis Iniciciativas</a></li>
           <li [ngClass]="{'selected': selected[3] == true}"><a [routerLink] = "['/ong/administrar-voluntarios']">Administrar Voluntarios</a></li>
