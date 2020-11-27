@@ -39,7 +39,7 @@ export class VerNotificacionesComponent implements OnInit {
       this.obtenerOngActual();
     }
   
-    // Metodo para obtener el voluntario del cual quiero saber sus notificaciones
+    // Metodo para obtener la ong del cual quiero saber sus notificaciones
     obtenerOngActual() {
       if (this.str.includes('ong')) {
         const idOng = localStorage.getItem('uid');
@@ -51,7 +51,7 @@ export class VerNotificacionesComponent implements OnInit {
         });
       }
     }
-    // Metodo para obtener las solucitudes de un Voluntario
+    // Metodo para obtener las solucitudes de una Ong
     obtenerTodasSolicitudes() {
       let iniciativas: Iniciativa[] = [];
       this.iniciativaService.consultarTodasSolicitudes().subscribe((data: any) => {
@@ -67,39 +67,40 @@ export class VerNotificacionesComponent implements OnInit {
       });
     }
   
-    // Metodo para obtener la ong correspondiente a una solicitud
+    // Metodo para obtener al voluntario correspondiente a una solicitud
     // Parámetros:
-    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluntario
     obtenerVoluntario(solicitudActual: Solicitud) {
       this.voluntarioService.consultarVoluntarioByID(solicitudActual.idVoluntario).then(resp => {
         this.voluntario = resp.data() as Voluntario;
         console.log('Objeto Voluntario: ' + this.voluntario.correo);
+        const nombre = this.voluntario.nombre;
         let urlImagen = '';
         this.voluntarioService.obtenerImagenPerfil(this.voluntario.id).then(url => {
           this.voluntario.imagenPerfil = url;
           urlImagen = url;
-          this.obtenerIniciativa(solicitudActual, urlImagen);
+          this.obtenerIniciativa(solicitudActual, urlImagen, nombre);
         });
       });
     }
   
     // Metodo para obtener la iniciativa correspondiente a una solicitud
     // Parámetros:
-    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluntario
     // - urlImagen: Objeto que permite obtener la url de la imagen asociada
-    obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string) {
+    obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string, nombre: string) {
       this.iniciativaService.consultarIniciativaByID(solicitudActual.idIniciativa).then(resp => {
         this.iniciativa = resp.data() as Iniciativa;
         console.log('Objeto Iniciativa: ' + this.iniciativa.nombre);
-        this.construirPresentacionDatos(solicitudActual, urlImagen);
+        this.construirPresentacionDatos(solicitudActual, urlImagen, nombre);
       });
     }
   
     // Metodo para construir la presentacion de datos
     // Parámetros:
-    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente a un Voluntario
     // - urlImagen: Objeto que permite obtener la url de la imagen asociada
-    construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string) {
+    construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string, nombre: string) {
       let nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
   
       nuevoAuxiliar.aceptado = solicitudActual.aceptado;
@@ -109,16 +110,16 @@ export class VerNotificacionesComponent implements OnInit {
       nuevoAuxiliar.idVoluntario = solicitudActual.idVoluntario;
       nuevoAuxiliar.idOng = solicitudActual.idOng;
   
-      nuevoAuxiliar.nombreVoluntaro = this.voluntario.nombre;
+      nuevoAuxiliar.nombreVoluntaro = nombre;
       nuevoAuxiliar.nombreIniciativa = this.iniciativa.nombre;
       nuevoAuxiliar.nombreOng = this.ong.nombre;
       nuevoAuxiliar.rutaImagenOng = urlImagen;
       this.auxiliares.push(nuevoAuxiliar);
     }
   
-    // Metodo para filtar las solicitudes por el voluntario actual
+    // Metodo para filtar las solicitudes por la Voluintario actual
     // Parámetros:
-    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
+    // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Voluintario
     filtrarSolicitud(solicituidActual: Solicitud): boolean {
       if (solicituidActual.idOng === this.ong.id) {
         return true;
@@ -126,7 +127,7 @@ export class VerNotificacionesComponent implements OnInit {
       return false;
     }
   
-    // Metodo para cambiar de pagina y visualizar un Ong
+    // Metodo para cambiar de pagina y visualizar un Voluntario
     verVoluntario(aux: AuxAdministrar) {
       this.router.navigate(['/ong/ver-voluntario/' + aux.idVoluntario]);
     }

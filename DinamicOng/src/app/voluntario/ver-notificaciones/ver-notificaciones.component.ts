@@ -46,10 +46,10 @@ export class VerNotificacionesComponent implements OnInit {
   obtenerVoluntarioActual() {
     if (this.str.includes('voluntario')) {
       const idVoluntario = localStorage.getItem('uid');
-      console.log('id del voluntario Actual: ' + idVoluntario);
+      //console.log('id del voluntario Actual: ' + idVoluntario);
       this.voluntarioService.consultarVoluntarioByID(idVoluntario).then(resp => {
         this.voluntario = resp.data() as Voluntario;
-        console.log('Objeto voluntario: ' + this.voluntario.correo);
+        //console.log('Objeto voluntario: ' + this.voluntario.correo);
         this.obtenerTodasSolicitudes();
       });
     }
@@ -63,7 +63,7 @@ export class VerNotificacionesComponent implements OnInit {
         const solicitud = elem.payload.doc.data();
         if (this.filtrarSolicitud(solicitud)) {
           this.solicitudes.push(solicitud);
-          console.log('Solicitud agregada: ' + solicitud.id);
+          //console.log('Solicitud agregada: ' + solicitud.id);
           this.obtenerOng(solicitud);
         }
       });
@@ -76,12 +76,13 @@ export class VerNotificacionesComponent implements OnInit {
   obtenerOng(solicitudActual: Solicitud) {
     this.ongService.consultarOngByID(solicitudActual.idOng).then(resp => {
       this.ong = resp.data() as Ong;
-      console.log('Objeto Ong: ' + this.ong.correo);
+      console.log('Objeto Ong: ' + this.ong.nombre);
+      const nombre = this.ong.nombre;
       let urlImagen = '';
       this.ongService.obtenerImagenPerfil(this.ong.id).then(url => {
         this.ong.imagenPerfil = url;
         urlImagen = url;
-        this.obtenerIniciativa(solicitudActual, urlImagen);
+        this.obtenerIniciativa(solicitudActual, urlImagen, nombre);
       });
     });
   }
@@ -90,11 +91,11 @@ export class VerNotificacionesComponent implements OnInit {
   // Parámetros:
   // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
   // - urlImagen: Objeto que permite obtener la url de la imagen asociada
-  obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string) {
+  obtenerIniciativa(solicitudActual: Solicitud, urlImagen: string, nombre: string) {
     this.iniciativaService.consultarIniciativaByID(solicitudActual.idIniciativa).then(resp => {
       this.iniciativa = resp.data() as Iniciativa;
-      console.log('Objeto Iniciativa: ' + this.iniciativa.nombre);
-      this.construirPresentacionDatos(solicitudActual, urlImagen);
+      //console.log('Objeto Iniciativa: ' + this.iniciativa.nombre);
+      this.construirPresentacionDatos(solicitudActual, urlImagen, nombre);
     });
   }
 
@@ -102,9 +103,8 @@ export class VerNotificacionesComponent implements OnInit {
   // Parámetros:
   // - Solicitud: Objeto que permite buscar en la bse de datos su correspondiente Ong
   // - urlImagen: Objeto que permite obtener la url de la imagen asociada
-  construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string) {
-    let nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
-
+  construirPresentacionDatos(solicitudActual: Solicitud, urlImagen: string, nombre: string) {
+    const nuevoAuxiliar: AuxAdministrar = new AuxAdministrar();
     nuevoAuxiliar.aceptado = solicitudActual.aceptado;
     nuevoAuxiliar.contestado = solicitudActual.contestado;
     nuevoAuxiliar.id = solicitudActual.id;
@@ -114,9 +114,10 @@ export class VerNotificacionesComponent implements OnInit {
 
     nuevoAuxiliar.nombreVoluntaro = this.voluntario.nombre;
     nuevoAuxiliar.nombreIniciativa = this.iniciativa.nombre;
-    nuevoAuxiliar.nombreOng = this.ong.nombre;
+    nuevoAuxiliar.nombreOng = nombre;
     nuevoAuxiliar.rutaImagenOng = urlImagen;
     this.auxiliares.push(nuevoAuxiliar);
+    //console.log("Nombre bandera:" + nombre);
   }
 
   // Metodo para filtar las solicitudes por el voluntario actual
