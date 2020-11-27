@@ -13,85 +13,124 @@
       <h2>{{voluntario.nombre}}</h2>
     </div>
   </div>
-  <!--Informacion de habilidades-->
+
+
+
   <div class="seccion">
-    <div class="tabla">
-      <h1>Habilidades</h1>
-      <table class="table table-light">
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Área de Conocimiento</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let con of conocimientos">
-            <td>{{con.nombre}}</td>
-            <td>{{con.area}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="form-row">
+      <div class="col">
+        <h1>Telefonos:</h1>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+
+          <tbody>
+            <tr *ngFor="let tele of telefonos">
+              <td>{{tele}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
+
+
+
+  <div class="seccion">
+    <div class="form-row">
+      <div class="col">
+        <h1>Habilidades:</h1>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Área de Conocimiento</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let con of conocimientos">
+              <td>{{con.nombre}}</td>
+              <td>{{con.area}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <!--Informacion media-->
-  <div class="seccionx">
-    <h1>Correo</h1>
-    <textarea class="normal" readonly>{{voluntario.correo}}</textarea>
-  </div>
   <div class="seccion">
-    <div class="tabla">
-      <h1>Telefonos</h1>
-      <table class="table table-light">
-        <thead>
-          <tr>
-            <th>Teléfono</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let tele of telefonos">
-            <td>{{tele}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <h1 style="margin-right: 20px;">Correo:</h1>
+    <div>
+      <h3>{{voluntario.correo}}</h3>
+    </div>
+
+  </div>
+
+  <div class="seccion">
+    <div class="form-row">
+      <div class="col">
+        <h1>Telefonos:</h1>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+
+          <tbody>
+            <tr *ngFor="let tele of telefonos">
+              <td>{{tele}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <!--Ubicacion -->
-  <div class="seccion">
-    <h1>Ubicación</h1>
-  </div>
-  <div class="seccion">
-    <h2>Pais: </h2>
-    <textarea readonly> {{voluntario.ubicacion.pais}}  </textarea>
-    <h2>Ciudad: </h2>
-    <textarea readonly> {{voluntario.ubicacion.ciudad}}  </textarea>
 
-    <h2>Dirección: </h2>
-    <textarea readonly> {{voluntario.ubicacion.direccion}}  </textarea>
-
-  </div>
   <!--Informacion final-->
   <div class="seccion">
-    <div class="tabla">
-      <h1>Idiomas</h1>
-      <table class="table table-light">
-        <thead>
-          <tr>
-            <th>Idiomas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let idi of idim">
-            <td>{{idi}}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="form-row">
+      <div class="col">
+        <h1>Idiomas:</h1>
+      </div>
+      <div class="col">
+        <table class="table table-light">
+
+          <tbody>
+            <tr *ngFor="let idi of idim">
+              <td>{{idi}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="seccionx">
-    <h1>Fecha nacimiento</h1>
-    <textarea readonly>{{voluntario.fechaNacimiento}}</textarea>
+
+  <div class="seccion">
+    <h1 style="margin-right: 20px;">Fecha nacimiento:</h1>
+    <div>
+      <h3>{{voluntario.fechaNacimiento}}</h3>
+    </div>
+
   </div>
-  
+
+  <!--Ubicacion -->
+  <div class="seccionh">
+    <h1>Ubicación</h1>
+
+    <div class="seccion">
+      <h1>Pais: </h1>
+      <textarea readonly> {{voluntario.ubicacion.pais}}  </textarea>
+      <h1>Ciudad: </h1>
+      <textarea readonly> {{voluntario.ubicacion.ciudad}}  </textarea>
+
+      <h1>Dirección: </h1>
+      <textarea readonly> {{voluntario.ubicacion.direccion}}  </textarea>
+
+    </div>
+  </div>
 
 
 </div>

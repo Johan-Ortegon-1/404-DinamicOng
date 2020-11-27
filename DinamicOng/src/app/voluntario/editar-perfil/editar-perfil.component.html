@@ -9,24 +9,18 @@
                 <div class="picsum-img-wrapper" *ngIf="!b">
                     <img [src]="voluntario.imagenPerfil">
                 </div>
-
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="imagen" accept="image/*" name="imagen"
                         (change)="uploadImage($event)">
                     <label class="custom-file-label" for="imagen">Selecciona una imagen</label>
                 </div>
-
-
             </div>
             <div class="nombre">
                 <h4><input type="text" name="nombreVoluntario" [(ngModel)]="voluntario.nombre" required
                         value={{voluntario.nombre}}></h4>
             </div>
-        </div>
-
-        <!-- Elemento para ingresar las habilidades de un Voluntario -->
+        </div> <!-- Elemento para ingresar las habilidades de un Voluntario -->
         <div class="seccionh">
-
             <h1>Habilidades:</h1>
             <div class="form-row">
                 <input type="text" name="habilida" [(ngModel)]="this.habilidadNuevaNombre">
@@ -39,7 +33,6 @@
                 </a>
             </div>
         </div>
-
         <div class="secciont">
             <table class="table table-bordered">
                 <tbody>
@@ -57,17 +50,13 @@
                 </tbody>
             </table>
             <p class="error">{{errorArea}}</p>
-
         </div>
         <!--Informacion media-->
         <div class="seccionh">
             <h1>Teléfonos</h1>
             <div class="form-row">
-                <div class="col-sm-8">
-
-                    <input class="form-control" name="telefono" id="telefono" type="number" [(ngModel)]="nuevoTelefono"
-                        name="nTelefono" placeholder="Ingrese un nuevo teléfono">
-
+                <div class="col-sm-8"><input class="form-control" name="telefono" id="telefono" type="number"
+                        [(ngModel)]="nuevoTelefono" name="nTelefono" placeholder="Ingrese un nuevo teléfono">
                 </div>
                 <div class="col-sm-2">
                     <a (click)="addTelefono()">
@@ -75,9 +64,7 @@
                     </a>
                 </div>
             </div>
-
         </div>
-
         <div class="secciont">
             <table class="table table-bordered">
                 <tbody>
@@ -96,7 +83,6 @@
             </table>
         </div>
         <p class="error">{{errorTelefonos}}</p>
-
         <!--Ubicacion -->
         <div class="seccionh">
             <h1>Ubicación</h1>
@@ -110,24 +96,21 @@
                 <input type="text" [(ngModel)]="voluntario.ubicacion.direccion" required name="txtDireccion">
             </div>
         </div>
-
         <!--Informacion final-->
-
         <div class="seccionh">
             <div class="form-row">
-            <h1 style="margin-right: 20px;">Idiomas:</h1>
-            
-            <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo" name="lista_idioma">
-                <option *ngFor="let idioma of idim">{{idiomas[idioma]}}</option>
+                <h1 style="margin-right: 20px;">Idiomas:</h1>
+
+                <select id="listaIdioma" name="lista-idiomas" [(ngModel)]="this.idiomaNuevo" name="lista_idioma">
+                    <option *ngFor="let idioma of idim">{{idiomas[idioma]}}</option>
                 </select>
                 <a (click)="addIdioma()">
                     <mat-icon class="big" aria-hidden="false" aria-label="add user">add_idioma</mat-icon>
                 </a>
             </div>
         </div>
-
         <div class="secciont">
-           <table class="table table-bordered">
+            <table class="table table-bordered">
                 <tbody>
                     <tr *ngFor="let idioma of voluntario.idiomas">
                         <td>
@@ -144,16 +127,13 @@
             </table>
             <p class="error">{{errorIdiomas}}</p>
         </div>
-
         <!--Botones de confirmacion y cancelacion -->
-       
+
         <!-- Elemento para ingresar la fecha de nacimiento de un Voluntario -->
         <div class="seccionx">
             <h1>Fecha Nacimiento</h1>
             <input type="date" name="fechaNacimiento" [(ngModel)]="voluntario.fechaNacimiento">
-
         </div>
-        
         <div class="seccionb">
             <button class="botonedit" (click)="cancelar()">Cancelar</button>
             <button type="submit" class="botonedit">Guardar</button>

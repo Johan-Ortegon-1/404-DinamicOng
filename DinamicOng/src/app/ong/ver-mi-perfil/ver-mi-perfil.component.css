@@ -1,7 +1,27 @@
 h1 {
   text-align: left;
   font-weight: 500;
-  font-size: 40px;
+  font-size: 30px;
+}
+
+h2{
+  
+  text-align: center;
+  font-weight: 500;
+  font-size: 50px;
+}
+h3{
+  
+  font-size: 25px;
+}
+.seccionh{
+  
+  width: 1000px;
+  height: auto;
+  margin: 30px;
+  
+  margin-left: 30px;
+  
 }
 
 #border {
@@ -139,12 +159,6 @@ button{
   width: 900px;
   height: auto;
   font-size: 27px;
-}
-
-h2{
-
-  text-align: center;
-  font-size: 30px;
 }
 
 table{

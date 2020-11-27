@@ -86,13 +86,14 @@ export class AuthService {
     var user = firebase.auth().currentUser;
 
     user.updateEmail(usuario.correo).then(function () {
+    
+    }).catch(function (error) {
+      console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO");
+     
+    });
     usuario.imagenPerfil = '';
     const param = JSON.parse(JSON.stringify(usuario));
     this.firestore.collection('usuarios').doc(usuario.id).update(param);
-    }).catch(function (error) {
-      console.log("ERROR AL ACTUALIZAR EMAIL DE VOLUNTARIO");
-      return;
-    });
     
   }
 
