@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './buscar-iniciativa.component.html',
   styleUrls: ['./buscar-iniciativa.component.css']
 })
+// Clase que representa el componente de buscar iniciativas desde el usuario voluntario
 export class BuscarIniciativaComponent implements OnInit, OnDestroy {
   public opcAreas = [];
   public areasConoc = AreasConocimiento;
@@ -28,11 +29,17 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
   public errorIdioma = '';
   public var = null;
 
-  constructor(private configC: NgbCarouselConfig, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) {
+  // Metodo constructor para crear un objeto del componente
+  // Parametros:
+  // - configC: Objeto que permite configurar el carousel de imagenes
+  // - iniciativaService: Objeto que permite llamar las servicios relacionadas a la iniciativa
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  constructor(private configC: NgbCarouselConfig, private iniciativaService: IniciativaService,  private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
    }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.iniciativaBuscar = new Iniciativa();
     this.hoy = this.obtenerFechaHoy(2);
@@ -44,11 +51,13 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
 
   }
 
+  // Metodo que se ejecuta al eliminar el componente
   ngOnDestroy():void {
     if(this.var != null)
       this.var.unsubscribe();
   }
 
+  // Metodo que se ejecuta para  buscar las inicitivas en base al formulario
   buscarIniciativa() {
     let iniciativas: Iniciativa[] = [];
 
@@ -74,6 +83,12 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
     });
   }
 
+  // Metodo que se ejecuta para verificar si una iniciativa cumple con filtro aplicado
+  // Parametros:
+  // - iniciativa: Objeto que contiene la informacion de la iniciativa
+  // Return: boolean
+  // retorna verdadero si la inciativa pasa el filtro
+  // retorna falso si la iniciativa no pasa el filtro
   verificarFiltro(iniciativa: Iniciativa): boolean {
     let arrFiltro: boolean[] = [false, false, false, false, false];
 
@@ -167,6 +182,10 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
     return sw;
   }
 
+  // Metodo que obtiene la fecha de hoy
+  // Parámetros:
+  // - formato: Número entre 1 y 2 que define el formato con el que se obtendrá la fecha
+  // Retorno: Un string con la fecha de hoy
   obtenerFechaHoy(formato: number) {
     const dateOb = new Date();
 
@@ -191,6 +210,7 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
 
   }
 
+  // Metodo para agregar un área de conocimiento a la lista de áreas de conocimiento de la iniciativa
   addAreaConoc() {
 
     if (this.iniciativaBuscar.areasConocimientoRelacionadas.indexOf(this.areaNueva) == -1) {
@@ -204,6 +224,7 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Metodo para eliminar un área de conocimiento de la lista de áreas de conocimiento de la iniciativa
   deleteAreaConoc(area: string) {
     const i = this.iniciativaBuscar.areasConocimientoRelacionadas.indexOf( area );
 
@@ -212,6 +233,7 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Metodo para agregar un idioma a la lista de idiomas de la iniciativa
   addIdioma() {
 
     if (this.iniciativaBuscar.idiomasDeseables.indexOf(this.idiomaNuevo) == -1) {
@@ -225,6 +247,7 @@ export class BuscarIniciativaComponent implements OnInit, OnDestroy {
     }
   }
 
+  // Metodo para eliminar un idioma de la lista de idiomas de la iniciativa
   deleteIdioma(idioma: string) {
     const i = this.iniciativaBuscar.idiomasDeseables.indexOf( idioma );
 

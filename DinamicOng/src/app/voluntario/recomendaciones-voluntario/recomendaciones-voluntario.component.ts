@@ -15,6 +15,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './recomendaciones-voluntario.component.html',
   styleUrls: ['./recomendaciones-voluntario.component.css']
 })
+// Clase que representa el componente de mostras las inicitivas recomendadad al voluntario
 export class RecomendacionesVoluntarioComponent implements OnInit {
 
   public iniciativas:Iniciativa[] = [];
@@ -22,11 +23,19 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
   public uid: string;
   public var = null;
 
-  constructor(private configC: NgbCarouselConfig, private voluntarioServices: VoluntarioService, private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute, private router: Router) {
+  // Metodo constructor para crear un objeto del componente
+  // Parametros:
+  // - configC: Objeto que permite configurar el carousel de imagenes
+  // - voluntarioService: Objeto que permite llamar los servicios relacionados al voluntario
+  // - ongService: Objeto que permite llamar los servicios relacionadas a la Ong
+  // - iniciativaService: Objeto que permite llamar las servicios relacionadas a la iniciativa
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  constructor(private configC: NgbCarouselConfig, private voluntarioServices: VoluntarioService, private ongService: OngService, private iniciativaService: IniciativaService, private router: Router) {
     configC.interval = 5000;
     configC.pauseOnHover = true;
    }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.voluntario = new Voluntario();
     this.uid = localStorage.getItem('uid');
@@ -36,11 +45,13 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
     });
   }
 
+  // Metodo que se ejecuta al eliminar el componente
   ngOnDestroy():void {
     if(this.var != null)
       this.var.unsubscribe();
   }
 
+  // Metodo que se ejecuta para  buscar las inicitivas en base a los datos del voluntario
   buscarIniciativa() {
     let iniciativas: Iniciativa[] = [];
 
@@ -81,6 +92,12 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
     });
   }
 
+  // Metodo que se ejecuta para verificar si una iniciativa cumple con los datos del voluntario
+  // Parametros:
+  // - iniciativa: Objeto que contiene la informacion de la iniciativa
+  // Return: boolean
+  // retorna verdadero si la inciativa pasa el filtro
+  // retorna falso si la iniciativa no pasa el filtro
   verificarFiltro(iniciativa: Iniciativa): boolean {
     let arrFiltro: boolean[] = [false, false, false, false];
 
@@ -152,10 +169,16 @@ export class RecomendacionesVoluntarioComponent implements OnInit {
     return sw;
   }
 
+  // Metodo que se ejecuta para navegar a la ong
+  // Parametros:
+  // - iniciativa: iniciativa que contiene el idOng, Ong que vamos a visualizar
   navVerOng(iniciativa: Iniciativa) {
     this.router.navigate(["/voluntario/ver-ong/" + iniciativa.idOng]);
   }
 
+  // Metodo que se ejecuta para navegar a la iniciativa
+  // Parametros:
+  // - id: representa el id de iniciativa que vamos a visualizar
   navVerIni(id: string) {
     this.router.navigate(["/voluntario/iniciativa/" + id]);
   }

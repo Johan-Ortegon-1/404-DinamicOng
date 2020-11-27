@@ -1,3 +1,4 @@
+<!-- Contenedor del componente ver-ong -->
 <div class="container" id="border">
 
   <div class="row">
@@ -76,6 +77,7 @@
       <h1 class="col-sm-12">Iniciativas</h1>
       <table class="table table-bordered">
         <tbody>
+          <!-- etiqueta lista las inicitivas de la Ong y aaciona la funcion redirigir(ini.id) -->
           <tr (click)="redirigir(ini.id)" *ngFor="let ini of iniciativas">
             <td>
               <div class="row">
@@ -99,6 +101,7 @@
   </div>
 
   <div class="pull-right">
+    <!-- Boton que acciona la funcion contactarOng() -->
     <a><button class="btn btn-primary" type="button" (click)="contactarOng()">Contactar ONG</button></a>
   </div>
 

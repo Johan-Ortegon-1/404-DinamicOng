@@ -13,6 +13,7 @@ import { Conversacion } from '../../models/conversacion';
   templateUrl: './ver-ong.component.html',
   styleUrls: ['./ver-ong.component.css']
 })
+// Clase que representa el componente para mostrar el usuario Ong desde el usuario voluntario
 export class VerOngComponent implements OnInit {
 
   public ong:Ong = new Ong();
@@ -20,14 +21,23 @@ export class VerOngComponent implements OnInit {
   public telefonoNuevo = '';
   public errorTelefonos = '';
 
+  // Metodo constructor para crear un objeto del componente
+  // Parametros:
+  // - ongService: Objeto que permite llamar los servicios relacionadas a la Ong
+  // - iniciativaService: Objeto que permite llamar las servicios relacionadas a la iniciativa
+  // - route: Objeto que permite obtener Parametros de la ruta
+  // - router: Objeto que permite la navegación entre componentes por la URL
+  // - chatService: Objeto que permite llamar los servicios relacionados al chat
   constructor(private ongService: OngService, private iniciativaService: IniciativaService, private route: ActivatedRoute,
     private router: Router, private chatService: ChatService) { }
 
+  // Metodo que se ejecuta al iniciar el componente
   ngOnInit(): void {
     this.ong.id = this.route.snapshot.paramMap.get('id');
     this.obtenerOngActual();
   }
 
+  // Metodo que se ejecuta para obtener la informacion de la Ong y mostrala en la vista
   obtenerOngActual() {
     this.ongService.consultarOngByID(this.ong.id).then(resp => {
       this.ong= resp.data() as Ong;
@@ -45,6 +55,10 @@ export class VerOngComponent implements OnInit {
     });
   }
 
+  // Metodo que se ejecuta al iniciar el componente
+  // Parametros:
+  // - idiniciativa: string que identifica a una iniciativa
+  // - cont: number que dice la posicion en el arreglo de iniciativas
   llenarListaIniciativas(idiniciativa: string, cont: number) {
     console.log('Llenando lista: ' + idiniciativa);
     let nuevaIniciativa = new Iniciativa();
@@ -76,10 +90,12 @@ export class VerOngComponent implements OnInit {
     });
   }
 
+  // Metodo que navega hacia una inciativa de la Ong
+  // Parametros:
+  // - id: string que identifica a una iniciativa
   redirigir(id: string) {
     if (localStorage.getItem('rol') == 'Voluntario') {
       this.router.navigate(['/voluntario/iniciativa/' + id]);
     }
   }
-
 }

@@ -22,6 +22,10 @@ export class OngComponent implements OnInit {
     } else if (localStorage.getItem('rol') == 'Voluntario') {
        this.router.navigate(['/voluntario']);
     }
+
+    if (this.router.url == '/ong') {
+      this.router.navigate(['/ong/recomendaciones-ong']);
+    }
   }
 
 }
