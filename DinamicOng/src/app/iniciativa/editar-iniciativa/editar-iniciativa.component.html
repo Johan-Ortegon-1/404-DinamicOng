@@ -156,13 +156,14 @@
             </ngb-carousel>
   
           </div>
-
+          
           <!-- Elemento que muestra las imagenes de la iniciativa -->
-          <div class="row">
+          
+          <div class="form-group row">
             <label class="col-sm-2 col-form-label">Imagenes Actuales: </label>
           </div>
           <div class="margin">
-      
+
             <ngb-carousel>
               <ng-template ngbSlide *ngFor="let item of imagenes">
                 <div class="picsum-img-wrapper">
@@ -170,11 +171,48 @@
                 </div>
               </ng-template>
             </ngb-carousel>
-      
-          </div>
-      
-
   
+          </div>
+          <!--   <div class="col-sm-2">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr *ngFor="let item of imagenes">
+                    <td>
+                      <div class="picsum-img-wrapper">
+                        <img [src]="item">
+                      </div>
+                    </td>
+                    <td class="small-td">
+                      <a (click)="deleteImagen(item)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> -->
+
+          <!--  Elemento que muestra las imagenes de la iniciativa que se van a eliminar 
+              
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Imagenes Eliminar: </label>
+            <div class="col-sm-2">
+              <table class="table table-bordered">
+                <tbody>
+                  <tr *ngFor="let item of imagenEliminar">
+                    <td>
+                      <div class="picsum-img-wrapper">
+                        <img [src]="item">
+                      </div>
+                    </td>
+                    <td class="small-td">
+                      <a (click)="regresarImagen(item)"><mat-icon class="small" aria-hidden="false" aria-label="add user">remove_circle</mat-icon></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div> -->
+
           <div class="row">
             <div class="col-sm-8"></div>
             <!-- Botón para cancelar la creación de la iniciativa -->

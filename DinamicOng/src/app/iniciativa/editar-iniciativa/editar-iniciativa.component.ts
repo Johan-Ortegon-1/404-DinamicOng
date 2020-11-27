@@ -36,6 +36,7 @@ export class EditarIniciativaComponent implements OnInit {
 
   public preview = []; // Lista de URL's de las imagenes para su previsualización
 
+  public imagenEliminar = []; // Lista de URL's de las imagenes que se van a eliminar
 
 
 
@@ -145,8 +146,11 @@ export class EditarIniciativaComponent implements OnInit {
       {
         this.iniciativaNueva.ubicacion.direccion = this.iniciativa.ubicacion.direccion;
       }
-    this.iniciativaService.updateIniciativa2(this.iniciativaNueva, this.imagenes.length);
-    this.router.navigate(['/ong/iniciativa/' + this.iniciativa.id]);
+    this.iniciativaService.updateIniciativa2(this.iniciativaNueva, this.imagenes.length, this.imagenEliminar);
+    
+    setTimeout(() => {
+      this.router.navigate(['/ong/iniciativa/' + this.iniciativa.id]);
+    }, 600);
   }
   // Metodo que obtiene el objeto de la iniciativa y realiza la lógica de identificación de usuario (banderas)
   obtenerIniciativa() {
@@ -234,9 +238,51 @@ export class EditarIniciativaComponent implements OnInit {
       this.iniciativaNueva.idiomasDeseables.splice( i, 1 );
     }
   }
+  //Metodo para volver a la ver la iniciativa
   volver()
   {
     this.router.navigate(['/ong/iniciativa/' + this.iniciativa.id]);
   }
+  //Metodo para eliminar una imagen
+  deleteImagen(img: string)
+  { 
+    let temporal = []; 
+    let encontro = false;
+    for(let p of this.imagenes)
+    {
+      if(p != img)
+      {
+        temporal.push(p);
+      }
+    }
+    for(let p of this.imagenEliminar)
+    {
+      if(p == img)
+      {
+        encontro = true;
+      }
+    }
+    if(!encontro)
+    {
+      this.imagenEliminar.push(img);
+      this.imagenes = temporal;
+    }
+    
+  }
 
+  //Método para regresar la imagen que se pretendia borrar
+  //Metodo para eliminar una imagen
+  regresarImagen(img: string)
+  { 
+    let temporal = []; 
+    this.imagenes.push(img);
+
+    for(let p of this.imagenEliminar)
+    {
+      if(p != img)
+        temporal.push(p);
+    }
+    this.imagenEliminar = temporal;
+    
+  }
 }
